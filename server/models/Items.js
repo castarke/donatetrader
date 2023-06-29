@@ -1,0 +1,76 @@
+const { Schema, model } = require('mongoose');
+
+const ItemSchema = new Schema(
+  {
+    owner: {
+        type: Schema.Types.ObjectId,
+        ref: 'Users',
+      },
+
+    desc: {
+      type: String,
+      required: true,
+      minlength: 1,
+      maxlength: 50
+    }, 
+    
+    value: {
+      type: Number,
+    },
+
+    donate: {
+      type: Boolean
+    },
+    
+    yearMade: {
+      type: Number,
+      required: true,
+    },
+
+    model:{
+      type: String
+    },
+
+    serial: {
+      type: String
+    },
+
+    category: {
+      type: [String]
+    },
+
+    tradefor: {
+      type: [String]
+    },
+
+    expire: {
+      type: Number
+    },
+    
+    dateListed: {
+      type: Date,
+      default: Date.now,
+      get: function (dateListed){
+        return dateListed.toLocaleString('en-US', {
+          month: 'long',
+          day: 'numeric',
+          year: 'numeric',
+          hour: 'numeric',
+          minute: 'numeric',
+          hour12: true,
+        });
+      }
+    },
+  },
+  {
+    toJSON: {
+      getters: true,
+    },
+    id: false,
+    versionKey: false
+  }
+)
+
+const Items = mongoose.model('items', thoughtsSchema)
+
+module.exports = Items;
