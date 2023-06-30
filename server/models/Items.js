@@ -39,13 +39,19 @@ const ItemSchema = new Schema(
       type: String
     },
 
-    category: {
-      type: [String]
-    },
+    categories: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Categories',
+      },
+    ],
 
-    tradefor: {
-      type: [String]
-    },
+    tradefor: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Categories',
+      },
+    ],
 
     expire: {
       type: Number
@@ -75,6 +81,6 @@ const ItemSchema = new Schema(
   }
 )
 
-const Items = mongoose.model('items', thoughtsSchema)
+const Items = mongoose.model('items', ItemSchema)
 
 module.exports = Items;
