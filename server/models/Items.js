@@ -13,6 +13,10 @@ const ItemSchema = new Schema(
       minlength: 1,
       maxlength: 50
     }, 
+
+    imagePath: {
+      type: String,
+    },
     
     value: {
       type: Number,
