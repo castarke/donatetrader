@@ -39,13 +39,6 @@ const userSchema = new Schema({
     minlength:5,
     maxlength:5,
   },
-
-  categories: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Categories',
-    },
-  ],
   
   items: [
     {

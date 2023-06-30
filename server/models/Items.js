@@ -39,9 +39,19 @@ const ItemSchema = new Schema(
       type: String
     },
 
-    tradefor: {
-      type: [String]
-    },
+    categories: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Categories',
+      },
+    ],
+
+    tradefor: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Categories',
+      },
+    ],
 
     expire: {
       type: Number
