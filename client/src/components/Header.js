@@ -24,5 +24,20 @@ function Header() {
         }
     };
 
-    
+   return (
+    <div>
+        <div>
+            <img src='donatetrader/client/public/photos/7838f228313e495da3ef4f9a6e71c5dd.png'/>
+        </div> 
+        <Navigation 
+        currentPage={currentPage}
+        handlePageChange={handlePageChange}
+        />
+        <main>
+            <div>{renderPage(currentPage)}</div>
+        </main>   
+    </div>
+   ) 
 }
+
+export default Header;
