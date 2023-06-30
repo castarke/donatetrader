@@ -40,6 +40,13 @@ const userSchema = new Schema({
     maxlength:5,
   },
 
+  categories: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Categories',
+    },
+  ],
+  
   items: [
     {
       type: Schema.Types.ObjectId,

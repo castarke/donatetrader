@@ -39,10 +39,6 @@ const ItemSchema = new Schema(
       type: String
     },
 
-    category: {
-      type: [String]
-    },
-
     tradefor: {
       type: [String]
     },
@@ -75,6 +71,6 @@ const ItemSchema = new Schema(
   }
 )
 
-const Items = mongoose.model('items', thoughtsSchema)
+const Items = mongoose.model('items', ItemSchema)
 
 module.exports = Items;
