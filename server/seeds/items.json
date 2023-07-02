@@ -1,0 +1,102 @@
+[
+    {
+        "desc" : "dresser",
+        "imagePath" : "/images/objectId.png",
+        "value" : 1000,
+        "donate" : false,
+        "yearMade" : 1995,
+        "model" : "",
+        "serial" : "",
+        "expire" : 7
+    },
+    {
+        "desc" : "dress",
+        "imagePath" : "/images/objectId.png",
+        "value" : 1000,
+        "donate" : false,
+        "yearMade" : 1995,
+        "model" : "Gucchi",
+        "serial" : "12334",
+        "expire" : 7
+    },
+    {
+        "desc" : "computer",
+        "imagePath" : "/images/objectId.png",
+        "value" : 1000,
+        "donate" : false,
+        "yearMade" : 2016,
+        "model" : "Compu",
+        "serial" : "2383432",
+        "expire" : 7
+    },
+    {
+        "desc" : "bicycle",
+        "imagePath" : "/images/objectId.png",
+        "value" : 1000,
+        "donate" : false,
+        "yearMade" : 1985,
+        "model" : "standard",
+        "serial" : "45637",
+        "expire" : 7
+    },
+    {
+        "desc" : "refridgerator",
+        "imagePath" : "/images/objectId.png",
+        "value" : 1000,
+        "donate" : false,
+        "yearMade" : 2002,
+        "model" : "cooler3000",
+        "serial" : "asc7s77",
+        "expire" : 7
+    },
+    {
+        "desc" : "chessboard",
+        "imagePath" : "/images/objectId.png",
+        "value" : 1000,
+        "donate" : false,
+        "yearMade" : 1923,
+        "model" : "",
+        "serial" : "",
+        "expire" : 7
+    },
+    {
+        "desc" : "blender",
+        "imagePath" : "/images/objectId.png",
+        "value" : 1000,
+        "donate" : false,
+        "yearMade" : 2012,
+        "model" : "blender 5000",
+        "serial" : "blend123",
+        "expire" : 7
+    },
+    {
+        "desc" : "car",
+        "imagePath" : "/images/objectId.png",
+        "value" : 1000,
+        "donate" : false,
+        "yearMade" : 2008,
+        "model" : "Camry",
+        "serial" : "ajxbbc675sd6x6z5",
+        "expire" : 365
+    },
+    {
+        "desc" : "toilet",
+        "imagePath" : "/images/objectId.png",
+        "value" : 300,
+        "donate" : false,
+        "yearMade" : 2001,
+        "model" : "",
+        "serial" : "",
+        "expire" : 7
+    },
+    {
+        "desc" : "build deck",
+        "imagePath" : "/images/objectId.png",
+        "value" : 1000,
+        "donate" : false,
+        "yearMade" : 1995,
+        "model" : "",
+        "serial" : "",
+        "expire" : 7
+    }    
+]
