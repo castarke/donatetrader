@@ -1,0 +1,92 @@
+[
+    {
+        "username": "Jane Doe",
+        "email" : "janedoe@gmail.com",
+        "password" : "janedoe123",
+        "city" : "Atlanta",
+        "state" : "ga",
+        "zip" : 12345,
+        "items" : []
+    },
+    {
+        "username": "Brett Farve",
+        "email" : "brettfarve@gmail.com",
+        "password" : "brettfarve123",
+        "city" : "Atlanta",
+        "state" : "ga",
+        "zip" : 12345,
+        "items" : []
+    },
+    {
+        "username": "Jane Smith",
+        "email" : "janesmith@gmail.com",
+        "password" : "janesmith123",
+        "city" : "Atlanta",
+        "state" : "ga",
+        "zip" : 12345,
+        "items" : []
+    },
+    {
+        "username": "Joe Smith",
+        "email" : "joesmith@gmail.com",
+        "password" : "joesmith123",
+        "city" : "Atlanta",
+        "state" : "ga",
+        "zip" : 12345,
+        "items" : []
+    },
+    {
+        "username": "Steve Johnson",
+        "email" : "stevejohnson@gmail.com",
+        "password" : "stevejohnson123",
+        "city" : "Atlanta",
+        "state" : "ga",
+        "zip" : 12345,
+        "items" : []
+    },
+    {
+        "username": "Leslie Knope",
+        "email" : "leslieknope@gmail.com",
+        "password" : "leslieknope123",
+        "city" : "Atlanta",
+        "state" : "ga",
+        "zip" : 12345,
+        "items" : []
+    },
+    {
+        "username": "Mike Lamb",
+        "email" : "mikelamb@gmail.com",
+        "password" : "mikelamb123",
+        "city" : "Atlanta",
+        "state" : "ga",
+        "zip" : 12345,
+        "items" : []
+    },
+    {
+        "username": "Sarah Lance",
+        "email" : "sarahlance@gmail.com",
+        "password" : "sarahlance123",
+        "city" : "Atlanta",
+        "state" : "ga",
+        "zip" : 12345,
+        "items" : []
+    },
+    {
+        "username": "Jessie Girl",
+        "email" : "jessiegirl@gmail.com",
+        "password" : "jessiegirl123",
+        "city" : "Atlanta",
+        "state" : "ga",
+        "zip" : 12345,
+        "items" : []
+    },
+    {
+        "username": "Ron Swanson",
+        "email" : "ronswanson@gmail.com",
+        "password" : "ronswanson123",
+        "city" : "Atlanta",
+        "state" : "ga",
+        "zip" : 12345,
+        "items" : []
+    }
+]

@@ -5,6 +5,6 @@ const CategorySchema = new Schema({
         type: String
     }
 })
-  const Categories = mongoose.model('categories', CategorySchema)
+  const Categories = model('categories', CategorySchema)
 
   module.exports = Categories;
