@@ -11,7 +11,7 @@ function Navigation() {
       </div>
       <div className='right-items'>
         <Link to='/account'>My Account</Link>
-        <Logout />
+        {/* <Logout /> */}
       </div>
     </nav>
   );

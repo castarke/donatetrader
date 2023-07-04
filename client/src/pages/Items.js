@@ -23,7 +23,7 @@ const ItemPage = ({ itemId }) => {
     <div>
     <h2>{item.desc}</h2>
     {<img src={item.imagePath} alt="Item" />}
-    <p>description: {item.desc}</p>
+    <p>Description: {item.desc}</p>
     <p>Date Listed : {item.dateListed}</p>
     <p>Owner: {item.owner}</p>
     </div>
