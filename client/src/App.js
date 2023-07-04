@@ -39,7 +39,7 @@ function App() {
                     <Navigation />
                 </div>
                 <div>
-                    <Home />
+                    {/* <Home /> */}
                 </div>
                 </>
             </Router>
