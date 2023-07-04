@@ -85,9 +85,19 @@ const GET_ALL_CATEGORIES = gql`
   }
 `;
 
+const GET_ITEM_DETAILS = gql`
+  query {
+    getAllCategories {
+      _id
+      category
+    }
+  }
+`;
+
 module.exports = {
   GET_ME,
   GET_ALL_ITEMS,
   GET_CATEGORY_BY_ID,
   GET_ALL_CATEGORIES,
+  GET_ITEM_DETAILS
 };
