@@ -3,7 +3,7 @@ import React from "react";
 const RecentTrades = () => {
    return (
        <div>
-           <p>Lorem Ipsum</p>
+           <p>Lorem Ipsum Recent RecentTrades</p>
        </div>
    )
 }
