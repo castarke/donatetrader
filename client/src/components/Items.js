@@ -3,7 +3,7 @@ import React from "react";
 const Items = () => {
    return (
        <div>
-           <p>Lorem Ipsum</p>
+           <p>Lorem Ipsum Items</p>
        </div>
    )
 }
