@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-const GET_ME = gql`
+export const GET_ME = gql`
   query {
     getUserById(id: $userId) {
       _id
@@ -39,7 +39,7 @@ const GET_ME = gql`
   }
 `;
 
-const GET_ALL_ITEMS = gql`
+export const GET_ALL_ITEMS = gql`
   query {
     getAllItems {
       _id
@@ -69,7 +69,7 @@ const GET_ALL_ITEMS = gql`
   }
 `;
 
-const GET_CATEGORY_BY_ID = gql`
+export const GET_CATEGORY_BY_ID = gql`
   query getCategoryById($id: ID!) {
     getCategoryById(id: $id) {
       _id
@@ -78,7 +78,7 @@ const GET_CATEGORY_BY_ID = gql`
   }
 `;
 
-const GET_ALL_CATEGORIES = gql`
+export const GET_ALL_CATEGORIES = gql`
   query {
     getAllCategories {
       _id
@@ -87,9 +87,3 @@ const GET_ALL_CATEGORIES = gql`
   }
 `;
 
-module.exports = {
-  GET_ME,
-  GET_ALL_ITEMS,
-  GET_CATEGORY_BY_ID,
-  GET_ALL_CATEGORIES,
-};
