@@ -24,7 +24,7 @@ type User {
     model: String
     serial: String
     categories: [Category!]!
-    tradefor: [Category!]!
+    tradeFor: [Category!]!
     expire: Int
     dateListed: String!
   }

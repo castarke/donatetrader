@@ -1,7 +1,50 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import {ApolloClient, ApolloProvider, InMemoryCache,createHttpLink} from '@apollo/client';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import Navigation from './components/Navbar';
+import Header from './components/Header';
+import Home from './pages/Home';
+import {setContext} from '@apollo/client/link/context';
 
-// The ReactDOM.render method is used to render a react element into the actual DOM
-// The first argument is the component we want to render, and the second is the container element on the page
-ReactDOM.render(<App />, document.getElementById('root'));
+
+const httpLink = createHttpLink({
+    uri:'/graphql'
+});
+
+const authLink = setContext((_, {headers}) => {
+    const token = localStorage.getItem('id_token');
+    return {
+        headers: {
+            ...headers,
+            authorization: token ? `Bearer ${token}`:'',
+        },
+    };
+});
+
+const client = new ApolloClient({
+    uri:'/graphql',
+    cache: new InMemoryCache(),
+    authLink: authLink.concat(httpLink),
+});
+
+function App() {
+    return (
+        <ApolloProvider client={client}>
+            <Router>
+                <>
+                <div>
+                    <Header />
+                </div>
+                <div>
+                    <Navigation />
+                </div>
+                <div>
+                    <Home />
+                </div>
+                </>
+            </Router>
+        </ApolloProvider>
+    );
+};
+
+export default App;
