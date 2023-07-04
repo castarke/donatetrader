@@ -1,9 +1,9 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { GET_ITEM_DETAILS } from '../utils/queries'; 
+const { GET_ALL_ITEMS } = require('../utils/queries');
 
 const ItemPage = ({ itemId }) => {
-  const { loading, error, data } = useQuery(GET_ITEM_DETAILS, {
+  const { loading, error, data } = useQuery(GET_ALL_ITEMS, {
     variables: { itemId },
   });
 
@@ -13,7 +13,6 @@ const ItemPage = ({ itemId }) => {
 
   if (error) {
     console.error('Error fetching item details:', error);
-
     return <div>Error fetching item details</div>;
   }
 
@@ -21,11 +20,11 @@ const ItemPage = ({ itemId }) => {
 
   return (
     <div>
-    <h2>{item.desc}</h2>
-    {<img src={item.imagePath} alt="Item" />}
-    <p>Description: {item.desc}</p>
-    <p>Date Listed : {item.dateListed}</p>
-    <p>Owner: {item.owner}</p>
+      <h2>{item.desc}</h2>
+      {<img src={item.imagePath} alt="Item" />}
+      <p>Description: {item.desc}</p>
+      <p>Date Listed : {item.dateListed}</p>
+      <p>Owner: {item.owner}</p>
     </div>
   );
 };
