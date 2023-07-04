@@ -1,16 +1,16 @@
 const db = require('../config/connection');
-const { Users, Items, Categories } = require('../models');
+const { Users, Items, Category } = require('../models');
 const items = require('./items.json');
 const categories = require('./categories.json')
 const users = require('./users.json')
 
 db.once('open', async () => {
-  await Categories.deleteMany({})
+  // await Category.deleteMany({})
   await Users.deleteMany({})
   await Items.deleteMany({})
-  await Categories.insertMany(categories)
+  // await Category.insertMany(categories)
   
-  const categoryArr = await Categories.find({},'_id')
+  const categoryArr = await Category.find({},'_id')
 
   for (let i=0; i<users.length; i++){
     users[i].items[0] = categoryArr[i] 
