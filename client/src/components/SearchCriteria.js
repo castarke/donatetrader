@@ -3,7 +3,7 @@
  const SearchCriteria = () => {
     return (
         <div>
-            <p>Lorem Ipsum</p>
+            <p>Lorem Ipsum Search Criteria</p>
         </div>
     )
  }

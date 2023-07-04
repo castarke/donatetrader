@@ -39,7 +39,6 @@ function App() {
                     <Navigation />
                 </div>
                 <div>
-                    {/* <Home /> */}
                 </div>
                 </>
             </Router>
