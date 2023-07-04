@@ -1,5 +1,5 @@
-const Users = require('./users')
-const Items = require('./items')
-const Categories = require('./categories')
+const Users = require('./Users')
+const Items = require('./Items')
+const {Subcategory, Category} = require('./Category')
 
-module.exports = { Users, Items, Categories };
+module.exports = { Users, Items, Category }
