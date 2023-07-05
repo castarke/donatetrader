@@ -35,10 +35,37 @@ type User {
   }
   
   type Query {
+    getAllUsers: [User!]!
     getUserById(id: ID!): User
     getAllItems: [Item!]!
+    getItembyId(id: ID!): [Item!]! 
     getCategoryById(id: ID!): Category
     getAllCategories: [Category!]!
+  }
+
+  type Mutation {
+    createUser(
+      username: String!,
+      email: String!,
+      password: String!,
+      city: String!,
+      state: String!,
+      zip: Int!,
+    ) : User
+
+    updateUser(
+      _id: ID!,
+      username: String!,
+      email: String!,
+      password: String!,
+      city: String!,
+      state: String!,
+      zip: Int!,
+      items: [Item!]!,
+    ) : User
+
+    removeUser(id : ID!) : User
+    removeItem(id : ID!) : Item
   }
   `
   module.exports = typeDefs;
