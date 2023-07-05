@@ -36,9 +36,6 @@ function App() {
                     <Header />
                 </div>
                 <div>
-                    <Navigation />
-                </div>
-                <div>
                 </div>
                 </>
             </Router>
