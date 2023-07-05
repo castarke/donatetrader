@@ -27,7 +27,7 @@ function Header() {
    return (
     <div>
         <div>
-            <img src='donatetrader/client/public/photos/7838f228313e495da3ef4f9a6e71c5dd.png'/>
+            <img src='./photos/dtlogo.png'/>
         </div> 
         <Navigation 
         currentPage={currentPage}
