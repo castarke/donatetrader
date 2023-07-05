@@ -4,6 +4,10 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.7.16",
+<<<<<<< HEAD
+=======
+    "@material-ui/core": "^4.12.4",
+>>>>>>> da8183b9cc381aa04ae02937b994b3c17478ff23
     "@mui/icons-material": "^5.13.7",
     "@mui/material": "^5.13.7",
     "@testing-library/jest-dom": "^5.16.5",

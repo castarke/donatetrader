@@ -36,7 +36,6 @@ function App() {
                     <Header />
                 </div>
                 <div>
-                    {/* <Home /> */}
                 </div>
                 </>
             </Router>
