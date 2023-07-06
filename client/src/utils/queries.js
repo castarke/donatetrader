@@ -87,3 +87,44 @@ export const GET_ALL_CATEGORIES = gql`
   }
 `;
 
+export const GET_NOTIFICATIONS = gql`
+  query GetNotifications {
+    notifications {
+      id
+      message
+      createdAt
+    }
+  }
+`;
+
+export const GET_USER_ITEMS = gql`
+  query GetUserItems($userId: ID!) {
+    getUserById(id: $userId) {
+      items {
+        _id
+        owner {
+          _id
+          username
+          email
+        }
+        desc
+        imagePath
+        value
+        donate
+        yearMade
+        model
+        serial
+        categories {
+          _id
+          category
+        }
+        tradeFor {
+          _id
+          category
+        }
+        expire
+        dateListed
+      }
+    }
+  }
+`;
