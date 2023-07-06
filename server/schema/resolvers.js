@@ -3,7 +3,7 @@ const { Category, Items, Users } = require('../models');
 const resolvers = {
   Query: {
     getAllUsers: async () => {
-      return Users.find()({});
+      return Users.find();
     },
 
     getUserById: async (parent, { userId }) => {
@@ -11,7 +11,7 @@ const resolvers = {
     },
 
     getAllItems: async () => {
-      return Items.find()({});
+      return Items.find();
     },
 
     getItemById: async (parent, { itemId }) => {
@@ -19,7 +19,7 @@ const resolvers = {
     },
 
     getAllCategories: async () => {
-      return Category.find()({});
+      return Category.find();
     },
 
     getCategoryById: async (parent, { categoryId }) => {

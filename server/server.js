@@ -21,7 +21,7 @@ app.get('/',(req,res)=>{
 //Create a new instance of an Apollo Server with the GraphQL Schema
 const startApolloServer=async(typeDefs,resolvers)=>{
     await server.start();
-    server.applyMiddleWare({app});
+    server.applyMiddleware({app});
 
     db.once('open',()=>{
         app.listen(PORT,()=>{
