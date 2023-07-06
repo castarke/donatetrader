@@ -7,7 +7,7 @@ import Header from './components/Header';
 import Home from './pages/Home';
 import {setContext} from '@apollo/client/link/context';
 import SearchCriteria from './components/SearchCriteria';
-import Items from './components/Items';
+import Gallery from './components/Gallery';
 import RecentTrades from './components/RecentTrades';
 
 
@@ -43,7 +43,7 @@ function App() {
                         <Route path="/faq" component={Faq} />
                     </Switch> */}
                 <SearchCriteria />
-                <Items />
+                <Gallery />
                 <RecentTrades />
             </Router>
         </ApolloProvider>
