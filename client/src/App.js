@@ -1,11 +1,8 @@
 import React from 'react';
 import {ApolloClient, ApolloProvider, InMemoryCache,createHttpLink} from '@apollo/client';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import Navigation from './components/Navbar';
-import Header from './components/Header';
-import Home from './pages/Home';
 import {setContext} from '@apollo/client/link/context';
-
+import UploadImage from './components/uploadimage'
 
 const httpLink = createHttpLink({
     uri:'/graphql'
@@ -33,7 +30,7 @@ function App() {
             <Router>
                 <>
                 <div>
-                    <Header />
+                    <UploadImage />
                 </div>
                 <div>
                 </div>
