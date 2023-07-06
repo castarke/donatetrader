@@ -2,13 +2,12 @@ import React from 'react';
 import {ApolloClient, ApolloProvider, InMemoryCache,createHttpLink} from '@apollo/client';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 // import Navigation from './components/Navbar';
-import './App.css';
 import Navbar from "./components/Navbar";
 import Header from './components/Header';
 import Home from './pages/Home';
 import {setContext} from '@apollo/client/link/context';
 import SearchCriteria from './components/SearchCriteria';
-import Gallery from './components/Gallery';
+import Items from './components/Items';
 import RecentTrades from './components/RecentTrades';
 
 
@@ -40,20 +39,12 @@ function App() {
                     {/* <Switch>
                         <Route exact path="/Home" pages={Home} />
                         <Route path="/About" component={About} />
-                        // <Route path="/Contact" component={Contact} />
+                        <Route path="/Contact" component={Contact} />
                         <Route path="/faq" component={Faq} />
                     </Switch> */}
-                <div className="app-container">
-                    <div className="container">
-                        <SearchCriteria />
-                    </div>
-                    <div className="container">
-                        <Gallery />
-                    </div>
-                    <div className="container">
-                        <RecentTrades />
-                    </div>
-                </div>
+                <SearchCriteria />
+                <Items />
+                <RecentTrades />
             </Router>
         </ApolloProvider>
   );
