@@ -5,7 +5,7 @@ import Navigation from './components/Navbar';
 import Header from './components/Header';
 import Home from './pages/Home';
 import {setContext} from '@apollo/client/link/context';
-
+//a
 
 const httpLink = createHttpLink({
     uri:'/graphql'
