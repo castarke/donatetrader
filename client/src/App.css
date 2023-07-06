@@ -40,3 +40,15 @@
 .logo-image {
   max-width: 100px; 
 }
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-between;
+}
+
+.container {
+  flex: 1;
+  margin: 10px;
+}
