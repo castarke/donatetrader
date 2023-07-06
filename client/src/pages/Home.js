@@ -1,8 +1,8 @@
 import React from 'react';
 import SearchCriteria from '../components/SearchCriteria';
-import Items from '../components/Items';
+import Gallery from '../components/Gallery';
 import RecentTrades from '../components/RecentTrades';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -39,9 +39,9 @@ export default function Home() {
         <SearchCriteria />
       </div>
       <div className={classes.itemsContainer}>
-        <Items />
+        <Gallery />
       </div>
-      <div>
+      <div className={classes.searchContainer}>
         <RecentTrades />
       </div>
     </div>
