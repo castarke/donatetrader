@@ -77,6 +77,36 @@ function Navbar() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
+  const NavigationLinks = (
+    <>
+      <Typography>
+        <Link to="/" color="inherit">
+          Home
+        </Link>
+      </Typography>
+      <Typography>
+        <Link to="/about" color="inherit">
+          About
+        </Link>
+      </Typography>
+      <Typography>
+        <Link to="/contact" color="inherit">
+          Contact
+        </Link>
+      </Typography>
+      <Typography>
+        <Link to="/gallery" color="inherit">
+          Items for trade
+        </Link>
+      </Typography>
+      <Typography>
+        <Link to="/account" color="inherit">
+          My Account
+        </Link>
+      </Typography>
+    </>
+  );
+
   return (
     <AppBar position="static">
       <CssBaseline />
@@ -85,22 +115,9 @@ function Navbar() {
           <Logo className={classes.logo} />
         </Typography>
         {isMobile ? (
-          <DrawerComponent />
+          <DrawerComponent links={NavigationLinks} />
         ) : (
-          <div className={classes.navlinks}>
-            <Link to="/" className={classes.link}>
-              Home
-            </Link>
-            <Link to="/about" className={classes.link}>
-              About
-            </Link>
-            <Link to="/contact" className={classes.link}>
-              Contact
-            </Link>
-            <Link to="/faq" className={classes.link}>
-              FAQ
-            </Link>
-          </div>
+          <div className={classes.navlinks}>{NavigationLinks}</div>
         )}
       </Toolbar>
     </AppBar>
