@@ -38,7 +38,7 @@ type User {
     getAllUsers: [User!]!
     getUserById(id: ID!): User
     getAllItems: [Item!]!
-    getItembyId(id: ID!): [Item!]! 
+    getItemById(id: ID!): [Item!]! 
     getCategoryById(id: ID!): Category
     getAllCategories: [Category!]!
   }
@@ -61,7 +61,7 @@ type User {
       city: String!,
       state: String!,
       zip: Int!,
-      items: [Item!]!,
+      items: [ID!]!,
     ) : User
 
     removeUser(id : ID!) : User
