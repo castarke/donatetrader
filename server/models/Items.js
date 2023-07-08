@@ -83,4 +83,4 @@ const ItemSchema = new Schema(
 
 const Items = model('items', ItemSchema)
 
-module.exports = Items
+module.exports = Items;

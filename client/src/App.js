@@ -1,52 +1,50 @@
 import React from 'react';
-import {ApolloClient, ApolloProvider, InMemoryCache,createHttpLink} from '@apollo/client';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-// import Navigation from './components/Navbar';
+import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from "./components/Navbar";
 import Header from './components/Header';
 import Home from './pages/Home';
-import {setContext} from '@apollo/client/link/context';
+import AccountInfo from './pages/Account'; // Import the AccountInfo component
+import { setContext } from '@apollo/client/link/context';
 import SearchCriteria from './components/SearchCriteria';
 import Gallery from './components/Gallery';
 import RecentTrades from './components/RecentTrades';
 
-
 const httpLink = createHttpLink({
-    uri:'/graphql'
+  uri: 'http://localhost:3001/graphql'
 });
 
-const authLink = setContext((_, {headers}) => {
-    const token = localStorage.getItem('id_token');
-    return {
-        headers: {
-            ...headers,
-            authorization: token ? `Bearer ${token}`:'',
-        },
-    };
-});
+// const authLink = setContext((_, { headers }) => {
+//   const token = localStorage.getItem('id_token');
+//   return {
+//     headers: {
+//       ...headers,
+//       authorization: token ? `Bearer ${token}` : '',
+//     },
+//   };
+// });
 
 const client = new ApolloClient({
-    uri:'/graphql',
-    cache: new InMemoryCache(),
-    authLink: authLink.concat(httpLink),
+  uri: 'http://localhost:3001/graphql',
+  cache: new InMemoryCache(),
+  // authLink: authLink.concat(httpLink),
 });
 
 function App() {
-    return (
-        <ApolloProvider client={client}>
-            <Router>
-                <Navbar />
-                    {/* <Switch>
-                        <Route exact path="/Home" pages={Home} />
-                        <Route path="/About" component={About} />
-                        <Route path="/Contact" component={Contact} />
-                        <Route path="/faq" component={Faq} />
-                    </Switch> */}
-                <SearchCriteria />
-                <Gallery />
-                <RecentTrades />
-            </Router>
-        </ApolloProvider>
+  return (
+    <ApolloProvider client={client}>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/account" element={<AccountInfo />} /> 
+        </Routes>
+        {/* <SearchCriteria /> */}
+        {/* <Gallery /> */}
+        {/* <RecentTrades /> */}
+      </Router>
+    </ApolloProvider>
   );
 };
 
