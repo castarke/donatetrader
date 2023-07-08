@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { CREATE_ITEM } from '../utils/mutations';
-import CloudinaryUploadWidget from '../components/CloudinaryUploadWidget';
+import CloudinaryUploadWidget from '../components/CloudinaryUploadWidget'
 
 const AddItem = ({ ownerId }) => {
   const [itemData, setItemData] = useState({
+    owner:ownerId,
     desc: '',
     imagePath: '',
     value: 0,
@@ -54,12 +55,12 @@ const AddItem = ({ ownerId }) => {
         <div style={{ border: '1px solid black', width: '200px', height: '200px' }}>
           <img id="itemImage" src="" alt="" />
         </div>
-        <CloudinaryUploadWidget />
 
         <label>Description:</label>
         <input type="text" name="desc" value={itemData.desc} onChange={handleChange} />
         <button type="submit">Add Item</button>
       </form>
+      <CloudinaryUploadWidget />
     </div>
   );
 };

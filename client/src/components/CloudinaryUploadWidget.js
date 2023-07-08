@@ -10,12 +10,12 @@ const CloudinaryUploadWidget = ({ setParentVariable }) => {
         },
         (error, result) => {
           if (!error && result && result.event === "success") {
-            const imageUrl = result.info.url;
-            console.log(imageUrl)
-            document.getElementById("itemImage").src=imageUrl
+            let imageUrl = result.info.url
+            console.log(2, imageUrl)
+            document.getElementById("itemImage").src = imageUrl
           }
         }
-      );
+      ) 
     };
 
     document.getElementById("upload_widget").addEventListener(

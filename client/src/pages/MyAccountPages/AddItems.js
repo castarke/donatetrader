@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { CREATE_ITEM } from './mutations';
+// import { CREATE_ITEM } from '../../utils/mutations';
 
 const AddItemForm = ({ ownerId }) => {
   const [itemData, setItemData] = useState({
@@ -15,32 +15,32 @@ const AddItemForm = ({ ownerId }) => {
     tradeForIds: [],
   });
 
-  const [createItem, { loading, error }] = useMutation(CREATE_ITEM);
+  // const [createItem, { loading, error }] = useMutation(CREATE_ITEM);
 
-  const handleChange = (e) => {
-    setItemData({
-      ...itemData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  // const handleChange = (e) => {
+  //   setItemData({
+  //     ...itemData,
+  //     [e.target.name]: e.target.value,
+  //   });
+  // };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    createItem({
-      variables: {
-        ownerId,
-        ...itemData,
-      },
-    })
-      .then((response) => {
-        console.log('Item created:', response.data.createItem);
-        // Perform any additional actions upon successful item creation
-      })
-      .catch((error) => {
-        console.error('Error creating item:', error);
-        // Handle error state or display error message
-      });
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   createItem({
+  //     variables: {
+  //       ownerId,
+  //       ...itemData,
+  //     },
+  //   })
+  //     .then((response) => {
+  //       console.log('Item created:', response.data.createItem);
+  //       // Perform any additional actions upon successful item creation
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error creating item:', error);
+  //       // Handle error state or display error message
+  //     });
+  // };
 
   if (loading) return <p>Creating item...</p>;
   if (error) return <p>Error creating item: {error.message}</p>;
@@ -55,7 +55,7 @@ const AddItemForm = ({ ownerId }) => {
             type="text"
             name="desc"
             value={itemData.desc}
-            onChange={handleChange}
+            // onChange={handleChange}
           />
         </label>
         {/* Include other input fields for item data */}

@@ -23,8 +23,8 @@ type User {
     yearMade: Int!
     model: String
     serial: String
-    categories: [Category!]!
-    tradeFor: [Category!]!
+    categories: [Category]
+    tradeFor: [Category]
     expire: Int
     dateListed: String!
   }
@@ -36,7 +36,7 @@ type User {
   
   type Query {
     getAllUsers: [User!]!
-    getUserById(id: ID!): User
+    getUserById(id: ID!): User!
     getAllItems: [Item!]!
     getItemById(id: ID!): [Item!]! 
     getCategoryById(id: ID!): Category
@@ -53,22 +53,6 @@ type User {
       zip: Int!,
     ) : User
 
-    createItem(
-        _id: ID!,
-        owner: User!,
-        desc: String!,
-        imagePath: String,
-        value: Float,
-        donate: Boolean,
-        yearMade: Int!,
-        model: String,
-        serial: String,
-        categories: [Category!]!,
-        tradeFor: [Category!]!,
-        expire: Int,
-        dateListed: String!,
-    ) : Item
-
     updateUser(
       _id: ID!,
       username: String!,
@@ -79,6 +63,19 @@ type User {
       zip: Int!,
       items: [ID!]!,
     ) : User
+
+    createItem(
+      ownerId: ID!
+      desc: String!
+      imagePath: String
+      value: Float
+      donate: Boolean
+      yearMade: Int!
+      model: String
+      serial: String
+      categoryIds: [ID!]!
+      tradeForIds: [ID!]
+    ): Item
 
     removeUser(id : ID!) : User
     removeItem(id : ID!) : Item
