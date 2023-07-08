@@ -23,8 +23,8 @@ type User {
     yearMade: Int!
     model: String
     serial: String
-    categories: [Category]
-    tradeFor: [Category]
+    categories: [Category!]!
+    tradeFor: [Category!]!
     expire: Int
     dateListed: String!
   }
@@ -36,7 +36,7 @@ type User {
   
   type Query {
     getAllUsers: [User!]!
-    getUserById(id: ID!): User!
+    getUserById(id: ID!): User
     getAllItems: [Item!]!
     getItemById(id: ID!): [Item!]! 
     getCategoryById(id: ID!): Category
@@ -52,6 +52,22 @@ type User {
       state: String!,
       zip: Int!,
     ) : User
+
+    createItem(
+        _id: ID!,
+        owner: User!,
+        desc: String!,
+        imagePath: String,
+        value: Float,
+        donate: Boolean,
+        yearMade: Int!,
+        model: String,
+        serial: String,
+        categories: [Category!]!,
+        tradeFor: [Category!]!,
+        expire: Int,
+        dateListed: String!,
+    ) : Item
 
     updateUser(
       _id: ID!,

@@ -6,17 +6,8 @@ const resolvers = {
       return Users.find();
     },
 
-    getUserById: async (parent, { id }) => {
-      console.log('kitties', id)
-      return Users.findOne({ _id: id }).populate({
-        path: 'items',
-        model: 'items',
-        populate: {
-          path: 'owner',
-          model: 'users'
-        }
-      })
-      .exec()
+    getUserById: async (parent, { userId }) => {
+      return Users.findOne({ _id: userId });
     },
 
     getAllItems: async () => {
@@ -67,6 +58,11 @@ const resolvers = {
         }},
         {new: true}
     )},
+
+    createItem: async (parent, {itemId}) =>{
+        return Items.create({data});
+      },
+
 
     removeUser: async (parent, { userId }) => {
       return Users.findOneAndDelete({ _id: userId });
