@@ -1,6 +1,7 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_ME } from '../utils/queries';
+import { Link } from 'react-router-dom';
 
 const AccountInfo = () => {
   const userId = '64a8f15973f40a5810873692';
@@ -29,12 +30,19 @@ const AccountInfo = () => {
       <ul>
         {items.map((item) => (
           <li key={item._id}>
-            <img src={item.imagePath}/>
+            <img src={item.imagePath} alt={item.desc} />
             <p>Description: {item.desc}</p>
             <p>Value: {item.value}</p>
+            <Link to={`/update-item/${item._id}`}>
+              <button>Update Item</button>
+            </Link>
           </li>
         ))}
       </ul>
+
+      <Link to="/add-item">
+        <button>Add Item</button>
+      </Link>
     </div>
   );
 };

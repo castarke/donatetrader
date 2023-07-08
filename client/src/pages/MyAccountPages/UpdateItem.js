@@ -34,11 +34,9 @@ const UpdateItemForm = ({ itemId }) => {
     })
       .then((response) => {
         console.log('Item updated:', response.data.updateItem);
-        // Perform any additional actions upon successful item update
       })
       .catch((error) => {
         console.error('Error updating item:', error);
-        // Handle error state or display error message
       });
   };
 
@@ -112,7 +110,6 @@ const UpdateItemForm = ({ itemId }) => {
             onChange={handleChange}
           />
         </label>
-        {/* Add more input fields for other item data */}
         <button type="submit">Update Item</button>
       </form>
     </div>
