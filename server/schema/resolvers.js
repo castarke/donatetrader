@@ -6,8 +6,17 @@ const resolvers = {
       return Users.find();
     },
 
-    getUserById: async (parent, { userId }) => {
-      return Users.findOne({ _id: userId });
+    getUserById: async (parent, { id }) => {
+      console.log('kitties', id)
+      return Users.findOne({ _id: id }).populate({
+        path: 'items',
+        model: 'items',
+        populate: {
+          path: 'owner',
+          model: 'users'
+        }
+      })
+      .exec()
     },
 
     getAllItems: async () => {
