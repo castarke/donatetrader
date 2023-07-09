@@ -2,6 +2,8 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
 
+scalar Date
+
 type User {
     _id: ID!
     username: String!
@@ -20,13 +22,13 @@ type User {
     imagePath: String
     value: Float
     donate: Boolean
-    yearMade: Int!
+    yearMade: String!
     model: String
     serial: String
     categories: [Category]
     tradeFor: [Category]
     expire: Int
-    dateListed: String!
+    dateListed: Date
   }
   
   type Category {
@@ -37,7 +39,7 @@ type User {
   type Query {
     getAllUsers: [User!]!
     getUserById(id: ID!): User!
-    getAllItems(last:Int): [Item]
+    getAllItems(first:Int): [Item]
     getItemById(id: ID!): Item 
     getCategoryById(id: ID!): Category
     getAllCategories: [Category!]!
@@ -65,7 +67,7 @@ type User {
     ) : User
 
     createItem(
-      ownerId: ID!
+      owner: ID!
       desc: String!
       imagePath: String
       value: Float
@@ -73,8 +75,8 @@ type User {
       yearMade: Int!
       model: String
       serial: String
-      categoryIds: [ID!]!
-      tradeForIds: [ID!]
+      categoryIds: [ID]
+      tradeForIds: [ID]
     ): Item
 
     removeUser(id : ID!) : User
