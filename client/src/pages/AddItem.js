@@ -3,12 +3,16 @@ import { useMutation, useQuery } from '@apollo/client';
 import { CREATE_ITEM } from '../utils/mutations';
 import { GET_ALL_CATEGORIES } from '../utils/queries';
 import CloudinaryUploadWidget from '../components/CloudinaryUploadWidget';
+<<<<<<< HEAD
 //import Header from '../components/Header'
 //import Footer from '../components/Footer'
 import SearchCriteria from '../components/SearchCriteria'
 import RecentTrades from '../components/RecentTrades'
 import useStyles from '../utils/makeStyles'
 
+=======
+import { Link } from 'react-router-dom';
+>>>>>>> 6bf0722af735ec607937ce1760a3f779feb19c92
 
 const ownerId = "64aa0287e14635b4eb7767f9"
 
@@ -73,7 +77,6 @@ const AddItem = () => {
       })
       .catch((error) => {
         console.error('Error creating item:', error, itemData);
-        // Handle error state or display error message
       });
   };
 
@@ -164,10 +167,41 @@ const AddItem = () => {
             </div>
           </form>
         </div>
-        <div className={classes.searchContainer} style={{float: 'left', width:'20%'}}>
-          <RecentTrades />
-        </div>
-      </div>
+
+        <label>
+          Year Made:
+          <input
+            type="number"
+            name="yearMade"
+            value={itemData.yearMade}
+            onChange={handleChange}
+          />
+        </label>
+
+        <label>
+          Model:
+          <input
+            type="text"
+            name="model"
+            value={itemData.model}
+            onChange={handleChange}
+          />
+        </label>
+
+        <label>
+          Serial:
+          <input
+            type="text"
+            name="serial"
+            value={itemData.serial}
+            onChange={handleChange}
+          />
+        </label>
+        <button type="submit">Add Item</button>
+      </form>
+      <Link to="/account">
+        <button>Back to Account</button>
+      </Link>
     </div>
   );
 };

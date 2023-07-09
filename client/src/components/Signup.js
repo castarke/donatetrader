@@ -1,8 +1,8 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { SIGNUP_USER } from './utils/mutations';
+import { SIGNUP_USER } from '../utils/mutations';
 
-function Signup(){
+function Signup() {
     const [email,setEmail]=useState('');
     const [password,setPassword]=useState('');
     const[name,setName]=useState('');
@@ -47,3 +47,5 @@ function Signup(){
         </div>
     );
 }
+
+export default Signup;

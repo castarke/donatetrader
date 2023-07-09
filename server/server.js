@@ -1,13 +1,32 @@
 const express=require('express');
+const jwt=require('jsonwebtoken');
 const {ApolloServer}=require('apollo-server-express');
 const path=require('path');
 const{typeDefs,resolvers}=require('./schema');
 const db= require('./config/connection');
 const PORT=process.env.PORT||3001;
 const app=express();
+
+const getUserFromToken=(token)=>{
+    try{
+        if(token){
+            return jwt.verify(token,'9nw59gd');//secret-key
+        }
+        return null;
+    }catch(error){
+        return null;
+    }
+};
+
+
 const server=new ApolloServer({
     typeDefs,
     resolvers,
+    context:({req})=>{
+        const token=req.headers.authorization||'';
+        const user=getUserFromToken(token);
+        return {user};
+    },
 });
 
 //a
