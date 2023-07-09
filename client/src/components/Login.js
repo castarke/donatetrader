@@ -1,6 +1,8 @@
 import {useMutation} from '@apollo/client';
 import {LOGIN_USER} from '../utils/mutations';
 import { useState } from 'react';
+import Auth from '../utils/auth';
+
 
 function Login(){
     const [email,setEmail]=useState('');
@@ -8,19 +10,21 @@ function Login(){
     const [loginUser]=useMutation(LOGIN_USER);
     const handleLogin=async()=>{
         try{
-            const response=await loginUser({
+            const data=await loginUser({
                 variables:{
                     email,
                     password,
                 },
             });
-            const {token}=response.data.login;
-            localStorage.setItem('token',token);
+            Auth.login(data.login.token);
+            //localStorage.setItem('token',token);
             }
         catch(error){
             console.log(error);
         }
     };
+
+   
 
     return(
         <div>
