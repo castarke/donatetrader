@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { CREATE_ITEM } from '../utils/mutations';
 import CloudinaryUploadWidget from '../components/CloudinaryUploadWidget';
+import { Link } from 'react-router-dom';
 
 const AddItem = ({ ownerId }) => {
   const [itemData, setItemData] = useState({
@@ -42,7 +43,6 @@ const AddItem = ({ ownerId }) => {
       })
       .catch((error) => {
         console.error('Error creating item:', error, itemData);
-        // Handle error state or display error message
       });
   };
 
@@ -140,6 +140,9 @@ const AddItem = ({ ownerId }) => {
         </label>
         <button type="submit">Add Item</button>
       </form>
+      <Link to="/account">
+        <button>Back to Account</button>
+      </Link>
     </div>
   );
 };
