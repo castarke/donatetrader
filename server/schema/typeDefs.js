@@ -34,7 +34,6 @@ type User {
   type Category {
     _id: ID!
     name: String!
-    category: String! 
   }
   
   type Query {
