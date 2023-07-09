@@ -7,7 +7,7 @@ db.once('open', async () => {
   await Users.deleteMany({})
   await Items.deleteMany({})
   
-  //const categoryArr = await Category.find({},'_id')
+  // const categoryArr = await Category.find({},'_id')
 
   // for (let i=0; i<users.length; i++){
   //   users[i].items[0] = categoryArr[i] 

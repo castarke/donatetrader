@@ -57,6 +57,11 @@ export const GET_ALL_ITEMS = gql`
       serial
       categories {
         _id
+        category
+      }
+      tradeFor {
+        _id
+        category
       }
       expire
       dateListed
@@ -104,7 +109,7 @@ export const GET_ALL_CATEGORIES = gql`
   query {
     getAllCategories {
       _id
-      name
+      category
     }
   }
 `;
