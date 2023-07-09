@@ -24,11 +24,6 @@ const useStyles = makeStyles((theme) => ({
       width: '100%',
     },
   },
-  navlinks: {
-    marginLeft: theme.spacing(5),
-    display: 'flex',
-
-  },
 }));
 
 export default useStyles

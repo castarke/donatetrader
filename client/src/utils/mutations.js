@@ -92,9 +92,11 @@ export const UPDATE_ITEM = gql`
       serial
       categories {
         _id
+        category
       }
       tradeFor {
         _id
+        category
       }
       expire
       dateListed

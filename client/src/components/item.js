@@ -10,7 +10,7 @@ const Item = ({ itemId }) => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
-  const item = data?.getItemById; 
+  const item = data?.getItemById; // Access the 'getItemById' object from the 'data'
 
   if (!item) return <p>No item found.</p>;
 
