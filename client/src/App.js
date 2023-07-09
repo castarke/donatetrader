@@ -10,6 +10,7 @@ import SearchCriteria from './components/SearchCriteria';
 import Gallery from './components/Gallery';
 import RecentTrades from './components/RecentTrades';
 import Login from './components/login';
+import LoginNavbar from './LoginNav';
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql'
