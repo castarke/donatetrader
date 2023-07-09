@@ -69,6 +69,33 @@ export const GET_ALL_ITEMS = gql`
   }
 `;
 
+export const GET_ITEM_BY_ID = gql`
+  query getItemById($id: ID!) {
+    getItemById(id: $id) {
+      _id
+      desc
+      imagePath
+      value
+      donate
+      yearMade
+      model
+      serial
+      expire
+      dateListed
+    }
+  }
+`;
+
+
+export const GET_Latest_8 = gql`
+  query {
+    getAllItems(last: 8) {
+      _id
+    }
+  }
+`;
+
+
 export const GET_CATEGORY_BY_ID = gql`
   query getCategoryById($id: ID!) {
     getCategoryById(id: $id) {

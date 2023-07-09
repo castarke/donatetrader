@@ -19,12 +19,15 @@ const resolvers = {
       .exec()
     },
 
-    getAllItems: async () => {
+    getAllItems: async (_, { last }) => {
+      if (last) {
+        return Items.find().limit(last);
+      }
       return Items.find();
     },
 
-    getItemById: async (parent, { itemId }) => {
-      return Items.findOne({ _id: itemId });
+    getItemById: async (parent, { id }) => {
+      return Items.findOne({ _id: id });
     },
 
     getAllCategories: async () => {

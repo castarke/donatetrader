@@ -37,8 +37,8 @@ type User {
   type Query {
     getAllUsers: [User!]!
     getUserById(id: ID!): User!
-    getAllItems: [Item!]!
-    getItemById(id: ID!): [Item!]! 
+    getAllItems(last:Int): [Item]
+    getItemById(id: ID!): Item 
     getCategoryById(id: ID!): Category
     getAllCategories: [Category!]!
   }

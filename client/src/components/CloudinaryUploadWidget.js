@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 
 const CloudinaryUploadWidget = ({ setParentVariable }) => {
   useEffect(() => {
-    const handleUploadWidget = () => {
+    const handleUploadWidget = (event) => {
+      event.preventDefault()
       window.cloudinary.openUploadWidget(
         {
           cloudName: "dzflmgr7f",
