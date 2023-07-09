@@ -4,6 +4,7 @@ const resolvers = {
 
   Date: {
     // Resolver function for the Date scalar type
+    // Format the date value as "dd/mm/yyyy" before returning it
     resolve: (date) => {
       // Format the date value as "dd/mm/yyyy"
       const formattedDate = date.toLocaleDateString("en-GB");
@@ -55,7 +56,7 @@ const resolvers = {
       return Users.create(...data);
     },
 
-    createItem: async (parent, { owner, desc, imagePath, value, donate, yearMade, model, serial, categories, tradeFor }) => {
+    createItem: async (parent, { owner, desc, imagePath, value, donate, yearMade, model, serial, categoryIds, tradeForIds }) => {
       const newItem = await Items.create({
         owner,
         desc,
@@ -65,8 +66,8 @@ const resolvers = {
         yearMade,
         model,
         serial,
-        categories: categories,
-        tradeFor: tradeFor,
+        categories: categoryIds,
+        tradeFor: tradeForIds,
         expire: null, // You can set the initial value for 'expire' field as per your requirement
         dateListed: new Date().toISOString() // You can set the initial value for 'dateListed' field as per your requirement
       });

@@ -33,8 +33,7 @@ type User {
   
   type Category {
     _id: ID!
-    name: String!
-    category: String! 
+    category: String!
   }
   
   type Query {
@@ -76,8 +75,8 @@ type User {
       yearMade: Int!
       model: String
       serial: String
-      categories: [ID]
-      tradeFor: [ID]
+      categoryIds: [ID]
+      tradeForIds: [ID]
     ): Item
 
     removeUser(id : ID!) : User
