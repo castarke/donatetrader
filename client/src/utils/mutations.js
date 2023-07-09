@@ -89,8 +89,16 @@ const UPDATE_ITEM = gql`
 const LOGIN_USER = gql`
   mutation loginUser($email: String!, $password: String!) {
     loginUser(email: $email, password: $password) {
+      token
+    }
+  }
+`;
+
+const SIGNUP_USER=gql`
+  mutation Signup($email:String!, $password:String!, $name:String!){
+    signup(email:$email, password:$password, name:$name){
       _id
-      username
+      name
       email
     }
   }
@@ -102,4 +110,5 @@ module.exports = {
   CREATE_ITEM,
   UPDATE_ITEM,
   LOGIN_USER,
+  SIGNUP_USER
 };

@@ -66,6 +66,7 @@ type User {
 
     removeUser(id : ID!) : User
     removeItem(id : ID!) : Item
+    signup(email:String!,password:String!,name:String!):User!
   }
   `
   module.exports = typeDefs;

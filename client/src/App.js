@@ -9,6 +9,7 @@ import { setContext } from '@apollo/client/link/context';
 import SearchCriteria from './components/SearchCriteria';
 import Gallery from './components/Gallery';
 import RecentTrades from './components/RecentTrades';
+import Login from './components/login';
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql'
@@ -39,6 +40,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/account" element={<AccountInfo />} /> 
+          <Route path="/login" component={Login}/>
         </Routes>
         {/* <SearchCriteria /> */}
         {/* <Gallery /> */}
