@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { UPDATE_ITEM } from './mutations';
+import { UPDATE_ITEM } from '../../utils/mutations';
+import { useParams } from 'react-router-dom';
 
-const UpdateItemForm = ({ itemId }) => {
+const UpdateItemForm = () => {
+  const { itemId } = useParams();
+
   const [itemData, setItemData] = useState({
     desc: '',
     imagePath: '',

@@ -4,7 +4,7 @@ import { GET_ME } from '../utils/queries';
 import { Link } from 'react-router-dom';
 
 const AccountInfo = () => {
-  const userId = '64a8f15973f40a5810873692';
+  const userId = '64aa0287e14635b4eb7767f9';
 
   const { loading, error, data } = useQuery(GET_ME, {
     variables: {
@@ -33,14 +33,13 @@ const AccountInfo = () => {
             <img src={item.imagePath} alt={item.desc} />
             <p>Description: {item.desc}</p>
             <p>Value: {item.value}</p>
-            <Link to={`/update-item/${item._id}`}>
+            <Link to={`/updateitem/${item._id}`}>
               <button>Update Item</button>
             </Link>
           </li>
         ))}
       </ul>
-
-      <Link to="/add-item">
+      <Link to="/additem">
         <button>Add Item</button>
       </Link>
     </div>
