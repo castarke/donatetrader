@@ -16,7 +16,6 @@ import Login from './components/Login';
 // import LoginNavbar from './LoginNav';
 import Signup from './components/Signup';
 
-
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql'
 });

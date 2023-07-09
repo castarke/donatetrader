@@ -60,14 +60,16 @@ const ItemSchema = new Schema(
     dateListed: {
       type: Date,
       default: Date.now,
-      get: function (dateListed) {
-        const options = {
-          day: '2-digit',
-          month: '2-digit',
+      get: function (dateListed){
+        return dateListed.toLocaleString('en-US', {
+          month: 'long',
+          day: 'numeric',
           year: 'numeric',
-        };
-        return dateListed.toLocaleDateString('en-GB', options);
-      },
+          hour: 'numeric',
+          minute: 'numeric',
+          hour12: true,
+        });
+      }
     },
   },
   {
@@ -75,8 +77,8 @@ const ItemSchema = new Schema(
       getters: true,
     },
     id: false,
-    versionKey: false,
-  } 
+    versionKey: false
+  }
 )
 
 const Items = model('items', ItemSchema)

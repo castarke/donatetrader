@@ -87,9 +87,9 @@ export const GET_ITEM_BY_ID = gql`
 `;
 
 
-export const GET_Latest_9 = gql`
+export const GET_Latest_8 = gql`
   query {
-    getAllItems(first: 9) {
+    getAllItems(last: 8) {
       _id
     }
   }
