@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
+
+// import { CREATE_ITEM } from '../../utils/mutations';
+
 import { CREATE_ITEM } from './mutations';
 import { Link } from 'react-router-dom';
+
 
 const AddItemForm = ({ ownerId }) => {
   const [itemData, setItemData] = useState({
@@ -16,14 +20,15 @@ const AddItemForm = ({ ownerId }) => {
     tradeForIds: [],
   });
 
-  const [createItem, { loading, error }] = useMutation(CREATE_ITEM);
+  // const [createItem, { loading, error }] = useMutation(CREATE_ITEM);
 
-  const handleChange = (e) => {
-    setItemData({
-      ...itemData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  // const handleChange = (e) => {
+  //   setItemData({
+  //     ...itemData,
+  //     [e.target.name]: e.target.value,
+  //   });
+  // };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -54,7 +59,7 @@ const AddItemForm = ({ ownerId }) => {
             type="text"
             name="desc"
             value={itemData.desc}
-            onChange={handleChange}
+            // onChange={handleChange}
           />
         </label>
         <button type="submit">Add Item</button>

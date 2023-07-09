@@ -37,8 +37,8 @@ type User {
   type Query {
     getAllUsers: [User!]!
     getUserById(id: ID!): User!
-    getAllItems: [Item!]!
-    getItemById(id: ID!): [Item!]! 
+    getAllItems(last:Int): [Item]
+    getItemById(id: ID!): Item 
     getCategoryById(id: ID!): Category
     getAllCategories: [Category!]!
   }
@@ -63,6 +63,19 @@ type User {
       zip: Int!,
       items: [ID!]!,
     ) : User
+
+    createItem(
+      ownerId: ID!
+      desc: String!
+      imagePath: String
+      value: Float
+      donate: Boolean
+      yearMade: Int!
+      model: String
+      serial: String
+      categoryIds: [ID!]!
+      tradeForIds: [ID!]
+    ): Item
 
     removeUser(id : ID!) : User
     removeItem(id : ID!) : Item

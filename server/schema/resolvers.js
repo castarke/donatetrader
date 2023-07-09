@@ -19,12 +19,15 @@ const resolvers = {
         .exec();
     },
 
-    getAllItems: async () => {
+    getAllItems: async (_, { last }) => {
+      if (last) {
+        return Items.find().limit(last);
+      }
       return Items.find();
     },
 
-    getItemById: async (parent, { itemId }) => {
-      return Items.findOne({ _id: itemId });
+    getItemById: async (parent, { id }) => {
+      return Items.findOne({ _id: id });
     },
 
     getAllCategories: async () => {
@@ -37,32 +40,37 @@ const resolvers = {
   },
 
   Mutation: {
-    createUser: async (parent, { username, email, password, city, state, zip }) => {
-      return Users.create({ 
-        username,
-        email,
-        password,
-        city,
-        state,
-        zip
-      });
+    createUser: async (parent, data ) => {
+      return Users.create(...data);
     },
 
-    updateUser: async (parent, { userId, username, email, password, city, state, zip, items }) => {
-      return Users.findOneAndUpdate(
-        {_id: userId},
-        {
-          username,
-          email,
-          password,
-          city,
-          state,
-          zip,
-          items
-        },
-        {new: true}
-      );
+    createItem: async (parent, { ownerId, desc, imagePath, value, donate, yearMade, model, serial, categoryIds, tradeForIds }) => {
+      const newItem = await Items.create({
+        owner: ownerId,
+        desc,
+        imagePath,
+        value,
+        donate,
+        yearMade,
+        model,
+        serial,
+        categories: categoryIds,
+        tradeFor: tradeForIds,
+        expire: null, // You can set the initial value for 'expire' field as per your requirement
+        dateListed: new Date().toISOString() // You can set the initial value for 'dateListed' field as per your requirement
+      });
+    
+      return newItem;
     },
+
+    updateUser: async (parent, {userId, data})=> {
+      return Users.findOneAndUpdate(
+         { _id: userId },
+         { $push: {...data} },
+         { new: true }
+      );
+   },
+
 
     removeUser: async (parent, { userId }) => {
       return Users.findOneAndDelete({ _id: userId });
