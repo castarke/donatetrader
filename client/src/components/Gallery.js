@@ -1,6 +1,9 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Paper } from "@material-ui/core";
+import { useQuery } from "@apollo/client";
+import { GET_Latest_8 } from "../utils/queries";
+import Item from "./item"; 
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,25 +20,21 @@ const useStyles = makeStyles((theme) => ({
 const Gallery = () => {
   const classes = useStyles();
 
-  const galleryImages = [
-    "https://example.com/image1.jpg",
-    "https://example.com/image2.jpg",
-    "https://example.com/image3.jpg",
-    "https://example.com/image4.jpg",
-    "https://example.com/image5.jpg",
-    "https://example.com/image6.jpg",
-    "https://example.com/image7.jpg",
-    "https://example.com/image8.jpg",
-    "https://example.com/image9.jpg"
-  ];
+  const { loading, error, data } = useQuery(GET_Latest_8);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
+  const items = data.getAllItems;
+  console.log(items)
 
   return (
     <div className={classes.root}>
       <Grid container spacing={2}>
-        {galleryImages.map((image, index) => (
-          <Grid item xs={4} key={index}>
+        {items.map((item) => (
+          <Grid item xs={4} key={item._id}>
             <Paper className={classes.paper}>
-              <img src={image} alt={`Image ${index + 1}`} width="100%" />
+              <Item itemId={item._id} />
             </Paper>
           </Grid>
         ))}

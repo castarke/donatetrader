@@ -1,6 +1,6 @@
-const { gql } = require('apollo-server-express');
+import { gql } from '@apollo/client';
 
-const CREATE_USER = gql`
+export const CREATE_USER = gql`
   mutation createUser($username: String!, $email: String!, $password: String!, $city: String!, $state: String!, $zip: Int!) {
     createUser(username: $username, email: $email, password: $password, city: $city, state: $state, zip: $zip) {
       _id
@@ -9,12 +9,15 @@ const CREATE_USER = gql`
       city
       state
       zip
+      items {
+        _id
+      }
     }
   }
 `;
 
 const UPDATE_USER = gql`
-  mutation updateUser($userId: ID!, $username: String, $email: String, $password: String, $city: String, $state: String, $zip: Int) {
+  mutation updateUser($userId: ID!, $username: String!, $email: String!, $password: String!, $city: String!, $state: String!, $zip: Int!) {
     updateUser(userId: $userId, username: $username, email: $email, password: $password, city: $city, state: $state, zip: $zip) {
       _id
       username
@@ -22,13 +25,38 @@ const UPDATE_USER = gql`
       city
       state
       zip
+      items {
+        _id
+      }
     }
   }
 `;
 
-const CREATE_ITEM = gql`
-  mutation createItem($ownerId: ID!, $desc: String!, $imagePath: String, $value: Float, $donate: Boolean, $yearMade: Int!, $model: String, $serial: String, $categoryIds: [ID!]!, $tradeForIds: [ID!]) {
-    createItem(ownerId: $ownerId, desc: $desc, imagePath: $imagePath, value: $value, donate: $donate, yearMade: $yearMade, model: $model, serial: $serial, categoryIds: $categoryIds, tradeForIds: $tradeForIds) {
+export const CREATE_ITEM = gql`
+  mutation createItem(
+    $ownerId: ID!,
+    $desc: String!,
+    $imagePath: String,
+    $value: Float,
+    $donate: Boolean,
+    $yearMade: Int!,
+    $model: String,
+    $serial: String,
+    $categoryIds: [ID!]!,
+    $tradeForIds: [ID!]
+  ) {
+    createItem(
+      ownerId: $ownerId,
+      desc: $desc,
+      imagePath: $imagePath,
+      value: $value,
+      donate: $donate,
+      yearMade: $yearMade,
+      model: $model,
+      serial: $serial,
+      categoryIds: $categoryIds,
+      tradeForIds: $tradeForIds
+    ) {
       _id
       owner {
         _id
@@ -56,7 +84,8 @@ const CREATE_ITEM = gql`
   }
 `;
 
-const UPDATE_ITEM = gql`
+
+export const UPDATE_ITEM = gql`
   mutation updateItem($itemId: ID!, $desc: String, $imagePath: String, $value: Float, $donate: Boolean, $yearMade: Int, $model: String, $serial: String, $categoryIds: [ID!], $tradeForIds: [ID!]) {
     updateItem(itemId: $itemId, desc: $desc, imagePath: $imagePath, value: $value, donate: $donate, yearMade: $yearMade, model: $model, serial: $serial, categoryIds: $categoryIds, tradeForIds: $tradeForIds) {
       _id
@@ -86,7 +115,7 @@ const UPDATE_ITEM = gql`
   }
 `;
 
-const LOGIN_USER = gql`
+export const LOGIN_USER = gql`
   mutation loginUser($email: String!, $password: String!) {
     loginUser(email: $email, password: $password) {
       token
@@ -94,7 +123,7 @@ const LOGIN_USER = gql`
   }
 `;
 
-const SIGNUP_USER=gql`
+export const SIGNUP_USER=gql`
   mutation Signup($email:String!, $password:String!, $name:String!){
     signup(email:$email, password:$password, name:$name){
       _id
@@ -103,12 +132,3 @@ const SIGNUP_USER=gql`
     }
   }
 `;
-
-module.exports = {
-  CREATE_USER,
-  UPDATE_USER,
-  CREATE_ITEM,
-  UPDATE_ITEM,
-  LOGIN_USER,
-  SIGNUP_USER
-};
