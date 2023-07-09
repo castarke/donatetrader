@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   searchContainer: {
-    width: '33.33%',
+    width: '30%',
     marginRight: '10px',
     border: '1px solid #ccc',
     padding: '10px',

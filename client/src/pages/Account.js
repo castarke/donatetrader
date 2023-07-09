@@ -4,7 +4,7 @@ import { GET_ME } from '../utils/queries';
 import { Link } from 'react-router-dom';
 
 const AccountInfo = () => {
-  const userId = '64aa0287e14635b4eb7767f9';
+  const userId = '64ab1bc816bdca8708957839';
 
   const { loading, error, data } = useQuery(GET_ME, {
     variables: {
