@@ -71,6 +71,12 @@ const resolvers = {
     removeItem: async (parent, { itemId }) => {
       return Items.findOneAndDelete({ _id: itemId });
     },
+
+    signup:async(_,{name,email,password})=>{
+      const user=new User({name,email,password});
+      await user.save();
+      return user;
+    },
   },
 };
 
