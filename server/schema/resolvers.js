@@ -7,16 +7,16 @@ const resolvers = {
     },
 
     getUserById: async (parent, { id }) => {
-      console.log('kitties', id)
-      return Users.findOne({ _id: id }).populate({
-        path: 'items',
-        model: 'items',
-        populate: {
-          path: 'owner',
-          model: 'users'
-        }
-      })
-      .exec()
+      return Users.findOne({ _id: id })
+        .populate({
+          path: 'items',
+          model: 'items',
+          populate: {
+            path: 'owner',
+            model: 'users'
+          }
+        })
+        .exec();
     },
 
     getAllItems: async () => {
@@ -37,36 +37,32 @@ const resolvers = {
   },
 
   Mutation: {
-    createUser: async (parent, { userId }) => {
+    createUser: async (parent, { username, email, password, city, state, zip }) => {
       return Users.create({ 
-        username:username,
-        email:email,
-        password:password,
-        city:city,
-        state:state,
-        zip:zip});
+        username,
+        email,
+        password,
+        city,
+        state,
+        zip
+      });
     },
 
-    updateUser: async (parent, {
-      userId,
-      email,
-      password,
-      city,
-      state,
-      zip,
-      items }) => {
+    updateUser: async (parent, { userId, username, email, password, city, state, zip, items }) => {
       return Users.findOneAndUpdate(
-        {_id:userId},
-        {$addToSet:{
-          email:email,
-          password:password,
-          city:city,
-          state:state,
-          zip:zip,
-          items:items
-        }},
+        {_id: userId},
+        {
+          username,
+          email,
+          password,
+          city,
+          state,
+          zip,
+          items
+        },
         {new: true}
-    )},
+      );
+    },
 
     removeUser: async (parent, { userId }) => {
       return Users.findOneAndDelete({ _id: userId });
