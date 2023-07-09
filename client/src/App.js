@@ -11,7 +11,11 @@ import SearchCriteria from './components/SearchCriteria';
 import Gallery from './components/Gallery';
 import RecentTrades from './components/RecentTrades';
 import Login from './components/login';
+<<<<<<< HEAD
+import LoginNavbar from './LoginNav';
+=======
 import { Contact } from './pages/Contact'
+>>>>>>> 47330ae1342ce702275fc6dc56f7e7ca1cad78eb
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql'
