@@ -9,12 +9,15 @@ export const CREATE_USER = gql`
       city
       state
       zip
+      items {
+        _id
+      }
     }
   }
 `;
 
-export const UPDATE_USER = gql`
-  mutation updateUser($userId: ID!, $username: String, $email: String, $password: String, $city: String, $state: String, $zip: Int) {
+const UPDATE_USER = gql`
+  mutation updateUser($userId: ID!, $username: String!, $email: String!, $password: String!, $city: String!, $state: String!, $zip: Int!) {
     updateUser(userId: $userId, username: $username, email: $email, password: $password, city: $city, state: $state, zip: $zip) {
       _id
       username
@@ -22,6 +25,9 @@ export const UPDATE_USER = gql`
       city
       state
       zip
+      items {
+        _id
+      }
     }
   }
 `;
@@ -112,8 +118,16 @@ export const UPDATE_ITEM = gql`
 export const LOGIN_USER = gql`
   mutation loginUser($email: String!, $password: String!) {
     loginUser(email: $email, password: $password) {
+      token
+    }
+  }
+`;
+
+export const SIGNUP_USER=gql`
+  mutation Signup($email:String!, $password:String!, $name:String!){
+    signup(email:$email, password:$password, name:$name){
       _id
-      username
+      name
       email
     }
   }
