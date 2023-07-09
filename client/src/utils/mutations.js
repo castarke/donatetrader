@@ -34,7 +34,7 @@ export const UPDATE_USER = gql`
 
 export const CREATE_ITEM = gql`
   mutation createItem(
-    $owner: ID!,
+    $ownerId: ID!,
     $desc: String!,
     $imagePath: String,
     $value: Float,
@@ -42,11 +42,11 @@ export const CREATE_ITEM = gql`
     $yearMade: Int!,
     $model: String,
     $serial: String,
-    $categoryIds: [ID],
-    $tradeForIds: [ID]
+    $categoryIds: [ID!]!,
+    $tradeForIds: [ID!]
   ) {
     createItem(
-      owner: $owner,
+      ownerId: $ownerId,
       desc: $desc,
       imagePath: $imagePath,
       value: $value,
@@ -58,6 +58,11 @@ export const CREATE_ITEM = gql`
       tradeForIds: $tradeForIds
     ) {
       _id
+      owner {
+        _id
+        username
+        email
+      }
       desc
       imagePath
       value
@@ -65,6 +70,14 @@ export const CREATE_ITEM = gql`
       yearMade
       model
       serial
+      categories {
+        _id
+        category
+      }
+      tradeFor {
+        _id
+        category
+      }
       expire
       dateListed
     }
