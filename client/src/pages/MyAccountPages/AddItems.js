@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { CREATE_ITEM } from './mutations';
+import { Link } from 'react-router-dom';
 
 const AddItemForm = ({ ownerId }) => {
   const [itemData, setItemData] = useState({
@@ -34,11 +35,9 @@ const AddItemForm = ({ ownerId }) => {
     })
       .then((response) => {
         console.log('Item created:', response.data.createItem);
-        // Perform any additional actions upon successful item creation
       })
       .catch((error) => {
         console.error('Error creating item:', error);
-        // Handle error state or display error message
       });
   };
 
@@ -58,9 +57,12 @@ const AddItemForm = ({ ownerId }) => {
             onChange={handleChange}
           />
         </label>
-        {/* Include other input fields for item data */}
         <button type="submit">Add Item</button>
       </form>
+
+      <Link to="/account">
+        <button>Go Back to Account</button>
+      </Link>
     </div>
   );
 };
