@@ -1,6 +1,18 @@
 const { Category, Items, Users } = require('../models');
 
 const resolvers = {
+
+  Date: {
+    // Resolver function for the Date scalar type
+    // Format the date value as "dd/mm/yyyy" before returning it
+    resolve: (date) => {
+      // Format the date value as "dd/mm/yyyy"
+      const formattedDate = date.toLocaleDateString("en-GB");
+      return formattedDate;
+    },
+  },
+
+  
   Query: {
     getAllUsers: async () => {
       return Users.find();

@@ -2,6 +2,8 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
 
+scalar Date
+
 type User {
     _id: ID!
     username: String!
@@ -26,7 +28,7 @@ type User {
     categories: [Category]
     tradeFor: [Category]
     expire: Int
-    dateListed: String!
+    dateListed: Date
   }
   
   type Category {

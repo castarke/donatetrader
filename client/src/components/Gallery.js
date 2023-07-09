@@ -26,7 +26,6 @@ const Gallery = () => {
   if (error) return <p>Error: {error.message}</p>;
 
   const items = data.getAllItems;
-  console.log(items)
 
   return (
     <div className={classes.root}>
