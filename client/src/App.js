@@ -4,15 +4,18 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from "./components/Navbar";
 import Header from './components/Header';
 import Home from './pages/Home';
-import AccountInfo from './pages/Account'; // Import the AccountInfo component
+import AccountInfo from './pages/Account';
 import AddItem from './pages/AddItem'
 import { setContext } from '@apollo/client/link/context';
 import SearchCriteria from './components/SearchCriteria';
 import Gallery from './components/Gallery';
 import RecentTrades from './components/RecentTrades';
-import Login from './components/login';
-import LoginNavbar from './LoginNav';
 import { Contact } from './pages/Contact'
+import UpdateItemForm from './pages/MyAccountPages/UpdateItem';
+import Login from './components/Login';
+// import LoginNavbar from './LoginNav';
+import Signup from './components/Signup';
+
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql'
@@ -44,8 +47,10 @@ function App() {
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/account" element={<AccountInfo />} /> 
           <Route path="/additem" element={<AddItem />} />
-          {/* <Route path="/login" component={Login}/>
-          <Route path ="/contact" element={<Contact />}/> */}
+          <Route path="/updateitem/:itemId" element={<UpdateItemForm />} />
+          <Route path="/login" element={<Login />}/>
+          <Route path='/signup' element={<Signup />}/>
+          <Route path ="/contact" element={<Contact />}/>
         </Routes>
         {/* <SearchCriteria /> */}
         {/* <Gallery /> */}

@@ -1,5 +1,5 @@
 import {useMutation} from '@apollo/client';
-import {LOGIN_USER} from '..utils/mutations';
+import {LOGIN_USER} from '../utils/mutations';
 import { useState } from 'react';
 import Auth from '../utils/auth';
 
@@ -45,4 +45,4 @@ function Login(){
     );
 }
 
-export default Login
+export default Login;
