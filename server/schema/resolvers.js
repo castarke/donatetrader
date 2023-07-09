@@ -7,16 +7,16 @@ const resolvers = {
     },
 
     getUserById: async (parent, { id }) => {
-      console.log('kitties', id)
-      return Users.findOne({ _id: id }).populate({
-        path: 'items',
-        model: 'items',
-        populate: {
-          path: 'owner',
-          model: 'users'
-        }
-      })
-      .exec()
+      return Users.findOne({ _id: id })
+        .populate({
+          path: 'items',
+          model: 'items',
+          populate: {
+            path: 'owner',
+            model: 'users'
+          }
+        })
+        .exec();
     },
 
     getAllItems: async (_, { last }) => {
@@ -71,12 +71,19 @@ const resolvers = {
       );
    },
 
+
     removeUser: async (parent, { userId }) => {
       return Users.findOneAndDelete({ _id: userId });
     },
 
     removeItem: async (parent, { itemId }) => {
       return Items.findOneAndDelete({ _id: itemId });
+    },
+
+    signup:async(_,{name,email,password})=>{
+      const user=new User({name,email,password});
+      await user.save();
+      return user;
     },
   },
 };
