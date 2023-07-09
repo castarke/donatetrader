@@ -80,25 +80,41 @@ function Navbar() {
   const NavigationLinks = (
     <>
       <Typography>
+        <Link to="/login" color="inherit">
+          Login
+        </Link>
+      </Typography>
+      
+      <Typography>
+        <Link to="/signup" color="inherit">
+          Signup
+        </Link>
+      </Typography>
+    
+      <Typography>
         <Link to="/" color="inherit">
           Home
         </Link>
       </Typography>
+
       <Typography>
         <Link to="/about" color="inherit">
           About
         </Link>
       </Typography>
+
       <Typography>
         <Link to="/contact" color="inherit">
           Contact
         </Link>
       </Typography>
+
       <Typography>
         <Link to="/gallery" color="inherit">
           Items for trade
         </Link>
       </Typography>
+      
       <Typography>
         <Link to="/account" color="inherit">
           My Account

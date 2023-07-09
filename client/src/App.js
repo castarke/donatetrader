@@ -10,8 +10,9 @@ import { setContext } from '@apollo/client/link/context';
 import SearchCriteria from './components/SearchCriteria';
 import Gallery from './components/Gallery';
 import RecentTrades from './components/RecentTrades';
-// import Login from './components/login';
-// import { Contact } from './pages/Contact'
+import Login from './components/login';
+import LoginNavbar from './LoginNav';
+import { Contact } from './pages/Contact'
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql'
