@@ -33,42 +33,44 @@ export const UPDATE_USER = gql`
 `;
 
 export const CREATE_ITEM = gql`
-  mutation createItem(
-    $owner: ID!,
-    $desc: String!,
-    $imagePath: String,
-    $value: Float,
-    $donate: Boolean,
-    $yearMade: Int!,
-    $model: String,
-    $serial: String,
-    $categoryIds: [ID],
-    $tradeForIds: [ID]
+mutation createItem(
+  $owner: ID!,
+  $desc: String!,
+  $imagePath: String,
+  $value: Float,
+  $donate: Boolean,
+  $yearMade: Int!,
+  $model: String,
+  $serial: String,
+  $categories: [ID],
+  $tradeFor: [ID]
+) {
+  createItem(
+    owner: $owner,
+    desc: $desc,
+    imagePath: $imagePath,
+    value: $value,
+    donate: $donate,
+    yearMade: $yearMade,
+    model: $model,
+    serial: $serial,
+    categories: $categories,
+    tradeFor: $tradeFor
   ) {
-    createItem(
-      owner: $owner,
-      desc: $desc,
-      imagePath: $imagePath,
-      value: $value,
-      donate: $donate,
-      yearMade: $yearMade,
-      model: $model,
-      serial: $serial,
-      categoryIds: $categoryIds,
-      tradeForIds: $tradeForIds
-    ) {
-      _id
-      desc
-      imagePath
-      value
-      donate
-      yearMade
-      model
-      serial
-      expire
-      dateListed
-    }
+    _id
+    desc
+    imagePath
+    value
+    donate
+    yearMade
+    model
+    serial
+    expire
+    dateListed
+    categories{_id}
+    tradeFor{_id}
   }
+}
 `;
 
 
