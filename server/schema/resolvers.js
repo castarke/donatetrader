@@ -12,7 +12,7 @@ const resolvers = {
     },
   },
 
-  
+
   Query: {
     getAllUsers: async () => {
       return Users.find();
@@ -31,9 +31,9 @@ const resolvers = {
         .exec();
     },
 
-    getAllItems: async (_, { last }) => {
-      if (last) {
-        return Items.find().limit(last);
+    getAllItems: async (_, { first }) => {
+      if (first) {
+        return Items.find().limit(first).sort({dateListed: -1});
       }
       return Items.find();
     },
@@ -56,9 +56,9 @@ const resolvers = {
       return Users.create(...data);
     },
 
-    createItem: async (parent, { ownerId, desc, imagePath, value, donate, yearMade, model, serial, categoryIds, tradeForIds }) => {
+    createItem: async (parent, { owner, desc, imagePath, value, donate, yearMade, model, serial, categoryIds, tradeForIds }) => {
       const newItem = await Items.create({
-        owner: ownerId,
+        owner,
         desc,
         imagePath,
         value,
