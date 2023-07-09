@@ -13,8 +13,8 @@ import RecentTrades from './components/RecentTrades';
 import { Contact } from './pages/Contact'
 import UpdateItemForm from './pages/MyAccountPages/UpdateItem';
 import Login from './components/Login';
-import LoginNavbar from './LoginNav';
-import { Contact } from './pages/Contact'
+// import LoginNavbar from './LoginNav';
+import Signup from './components/Signup';
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql'
@@ -47,8 +47,8 @@ function App() {
           <Route path="/account" element={<AccountInfo />} /> 
           <Route path="/additem" element={<AddItem />} />
           <Route path="/updateitem/:itemId" element={<UpdateItemForm />} />
-
-          <Route path="/login" component={Login}/>
+          <Route path="/login" element={<Login />}/>
+          <Route path='/signup' element={<Signup />}/>
           <Route path ="/contact" element={<Contact />}/>
         </Routes>
         {/* <SearchCriteria /> */}
