@@ -38,7 +38,13 @@ const resolvers = {
     },
 
     getItemById: async (parent, { id }) => {
-      return Items.findOne({ _id: id });
+      return Items.findOne({ _id: id })
+      .populate({
+        path: 'owner',
+        model: 'users',
+      })
+      .populate('categories')
+      .populate('tradeFor');
     },
 
     getAllCategories: async () => {

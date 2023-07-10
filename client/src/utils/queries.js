@@ -65,20 +65,33 @@ export const GET_ALL_ITEMS = gql`
 `;
 
 export const GET_ITEM_BY_ID = gql`
-  query getItemById($id: ID!) {
-    getItemById(id: $id) {
+query getItemById($id: ID!) {
+  getItemById(id: $id) {
+    _id
+    owner{
       _id
-      desc
-      imagePath
-      value
-      donate
-      yearMade
-      model
-      serial
-      expire
-      dateListed
+      username
+      email
+    }
+    desc
+    imagePath
+    value
+    donate
+    yearMade
+    model
+    serial
+    expire
+    dateListed
+    categories {
+      _id
+      name
+    }
+    tradeFor {
+      _id
+      name
     }
   }
+}
 `;
 
 

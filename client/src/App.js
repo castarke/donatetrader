@@ -14,6 +14,7 @@ import UpdateItemForm from './pages/MyAccountPages/UpdateItem';
 import Login from './components/Login';
 // import LoginNavbar from './LoginNav';
 import Signup from './components/Signup';
+import ItemPage from './pages/ItemPage'
 
 
 const httpLink = createHttpLink({
@@ -50,6 +51,7 @@ function App() {
           <Route path="/login" element={<Login />}/>
           <Route path='/signup' element={<Signup />}/>
           <Route path ="/contact" element={<Contact />}/>
+          <Route path ="/item/:itemId" element={<ItemPage />}/>
         </Routes>
         {/* <SearchCriteria /> */}
         {/* <Gallery /> */}

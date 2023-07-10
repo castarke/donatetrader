@@ -1,6 +1,7 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 import { GET_ITEM_BY_ID } from "../utils/queries";
+import { Link } from "react-router-dom";
 
 const Item = ({ itemId }) => {
   const { loading, error, data } = useQuery(GET_ITEM_BY_ID, {
@@ -18,10 +19,14 @@ const Item = ({ itemId }) => {
 
   return (
     <div>
-      <img src={imagePath} alt="Item" />
-      <p>Description: {desc}</p>
-      <p>Year: {yearMade}</p>
-      <p>Listed Date: {dateListed}</p>
+      <Link to={`/item/${itemId}`}>
+        <div>
+          <img src={imagePath} alt="Item" />
+          <p>Description: {desc}</p>
+          <p>Year: {yearMade}</p>
+          <p>Listed Date: {dateListed}</p>
+        </div>
+      </Link>
     </div>
   );
 };
