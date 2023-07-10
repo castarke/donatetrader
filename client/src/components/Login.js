@@ -17,7 +17,7 @@ function Login() {
           },
         });
   
-        const token = data.login.token; // Assuming the token is returned as `data.login.token`
+        const token = data.login.token;
   
         if (token) {
           Auth.login(token);
@@ -31,6 +31,7 @@ function Login() {
       <div style={styles.container}>
         <h2>Login</h2>
         <div style={styles.form}>
+          <p>Please enter your email</p>
           <input
             style={styles.input}
             type="email"
@@ -38,6 +39,7 @@ function Login() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
+          <p>Please enter your password</p>
           <input
             style={styles.input}
             type="password"
