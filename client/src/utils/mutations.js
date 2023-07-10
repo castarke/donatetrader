@@ -92,11 +92,9 @@ export const UPDATE_ITEM = gql`
       serial
       categories {
         _id
-        category
       }
       tradeFor {
         _id
-        category
       }
       expire
       dateListed
@@ -106,8 +104,14 @@ export const UPDATE_ITEM = gql`
 
 export const LOGIN_USER = gql`
   mutation loginUser($email: String!, $password: String!) {
-    loginUser(email: $email, password: $password) {
+    login(email: $email, password: $password) {
       token
+      user {
+        id
+        username
+        email
+        # Add any other desired user fields
+      }
     }
   }
 `;

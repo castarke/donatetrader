@@ -1,42 +1,3 @@
-// import React from 'react';
-// import { Link } from 'react-router-dom';
-// import { Typography } from '@material-ui/core';
-
-// function Navigation() {
-//   return (
-//     <nav className='navbar'>
-//       <div className='left-items'>
-//         <Typography>
-//           <Link to='/' color='inherit'>
-//             Home
-//           </Link>
-//         </Typography>
-//         <Typography>
-//           <Link to='/items' color='inherit'>
-//             Items
-//           </Link>
-//         </Typography>
-//         <Typography>
-//           <Link to='/donations' color='inherit'>
-//             Donations
-//           </Link>
-//         </Typography>
-//       </div>
-//       <div className='right-items'>
-//         <Typography>
-//           <Link to='/account' color='inherit'>
-//             My Account
-//           </Link>
-//         </Typography>
-//         {/* <Logout /> */}
-//       </div>
-//     </nav>
-//   );
-// }
-
-// export default Navigation;
-
-
 import React from "react";
 import {
   AppBar,
@@ -47,27 +8,34 @@ import {
   useTheme,
   useMediaQuery,
 } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import DrawerComponent from "./Drawer";
 import Logo from "./Logo";
 
 const useStyles = makeStyles((theme) => ({
   navlinks: {
-    marginLeft: theme.spacing(5),
     display: "flex",
+    alignItems: "center",
+    marginLeft: theme.spacing(5),
+    padding: theme.spacing(7),
+    "& > * + *": {
+      marginLeft: theme.spacing(2), 
+    },
   },
   logo: {
-    flexGrow: "1",
+    flexGrow: 1,
     cursor: "pointer",
   },
   link: {
     textDecoration: "none",
     color: "white",
     fontSize: "20px",
-    marginLeft: theme.spacing(20),
-    "&:hover": {
+    "&:hover, &:focus": {
       color: "#7FFFD4",
       borderBottom: "1px solid white",
+    },
+    "&.active": {
+      color: "white"
     },
   },
 }));
@@ -77,58 +45,91 @@ function Navbar() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
-  const NavigationLinks = (
-    <>
-      <Typography>
-        <Link to="/login" color="inherit">
-          Login
-        </Link>
-      </Typography>
-      
-      <Typography>
-        <Link to="/signup" color="inherit">
-          Signup
-        </Link>
-      </Typography>
-    
-      <Typography>
-        <Link to="/" color="inherit">
-          Home
-        </Link>
-      </Typography>
+  const linkStyle = {
+    color: "white",
+  };
 
-      <Typography>
-        <Link to="/about" color="inherit">
-          About
-        </Link>
-      </Typography>
-
-      <Typography>
-        <Link to="/contact" color="inherit">
-          Contact
-        </Link>
-      </Typography>
-
-      <Typography>
-        <Link to="/gallery" color="inherit">
-          Items for trade
-        </Link>
-      </Typography>
-      
-      <Typography>
-        <Link to="/account" color="inherit">
-          My Account
-        </Link>
-      </Typography>
-    </>
-  );
+  const NavigationLinks = [
+    <NavLink
+      exact
+      to="/login"
+      className={classes.link}
+      activeClassName="active"
+      style={linkStyle}
+      key="login"
+    >
+      Login
+    </NavLink>,
+    <NavLink
+      exact
+      to="/signup"
+      className={classes.link}
+      activeClassName="active"
+      style={linkStyle}
+      key="signup"
+    >
+      Signup
+    </NavLink>,
+    <NavLink
+      exact
+      to="/"
+      className={classes.link}
+      activeClassName="active"
+      style={linkStyle}
+      key="home"
+    >
+      Home
+    </NavLink>,
+    <NavLink
+      exact
+      to="/about"
+      className={classes.link}
+      activeClassName="active"
+      style={linkStyle}
+      key="about"
+    >
+      About
+    </NavLink>,
+    <NavLink
+      exact
+      to="/contact"
+      className={classes.link}
+      activeClassName="active"
+      style={linkStyle}
+      key="contact"
+    >
+      Contact
+    </NavLink>,
+    <NavLink
+      exact
+      to="/gallery"
+      className={classes.link}
+      activeClassName="active"
+      style={linkStyle}
+      key="gallery"
+    >
+      Items for trade
+    </NavLink>,
+    <NavLink
+      exact
+      to="/account"
+      className={classes.link}
+      activeClassName="active"
+      style={linkStyle}
+      key="account"
+    >
+      My Account
+    </NavLink>,
+  ];
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" style ={{backgroundColor: '#66b2b2'}}>
       <CssBaseline />
       <Toolbar>
         <Typography variant="h4" className={classes.logo}>
-          <Logo className={classes.logo} />
+          <Link to="/" className={classes.link}>
+            <Logo className={classes.logo} />
+          </Link>
         </Typography>
         {isMobile ? (
           <DrawerComponent links={NavigationLinks} />
