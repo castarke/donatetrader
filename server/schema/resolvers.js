@@ -88,6 +88,24 @@ const resolvers = {
       );
    },
 
+   updateItem: async (parent, { _id, desc, imagePath, value, donate, yearMade, model, serial, categories, tradeFor }) => {
+  return Items.findOneAndUpdate(
+    { _id: _id },
+    {
+      desc,
+      imagePath,
+      value,
+      donate,
+      yearMade,
+      model,
+      serial,
+      categories,
+      tradeFor,
+    },
+    { new: true }
+  );
+},
+
 
     removeUser: async (parent, { userId }) => {
       return Users.findOneAndDelete({ _id: userId });
