@@ -67,7 +67,6 @@
 // }
 // export default DrawerComponent;
 
-
 import React, { useState } from "react";
 import {
   Drawer,
@@ -89,6 +88,9 @@ const useStyles = makeStyles(() => ({
   icon: {
     color: "white",
   },
+  listItemText: {
+    color: "blue",
+  },
 }));
 
 function DrawerComponent({ links }) {
@@ -98,7 +100,20 @@ function DrawerComponent({ links }) {
   return (
     <>
       <Drawer open={openDrawer} onClose={() => setOpenDrawer(false)}>
-        <List>{links}</List>
+        <List>
+          {links.map((link, index) => (
+            <ListItem
+              button
+              key={index}
+              onClick={() => setOpenDrawer(false)}
+            >
+              <ListItemText
+                primary={link.props.children}
+                classes={{ primary: classes.listItemText }}
+              />
+            </ListItem>
+          ))}
+        </List>
       </Drawer>
       <IconButton
         onClick={() => setOpenDrawer(!openDrawer)}
@@ -111,3 +126,4 @@ function DrawerComponent({ links }) {
 }
 
 export default DrawerComponent;
+

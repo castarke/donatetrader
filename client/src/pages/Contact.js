@@ -124,7 +124,7 @@ export const Contact = (props) => {
           <div className="col-md-12">
             <div className="row">
               <div className="social">
-                <ul>
+                {/* <ul>
                   <li>
                     <a href={props.data ? props.data.facebook : "/"}>
                       <i className="fa fa-facebook"></i>
@@ -140,20 +140,20 @@ export const Contact = (props) => {
                       <i className="fa fa-youtube"></i>
                     </a>
                   </li>
-                </ul>
+                </ul> */}
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div id="footer">
+      {/* <div id="footer">
         <div className="container text-center">
           <p>
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi sequi 
             similique doloremque ad illum delectus soluta modi ipsum maiores fugiat?
           </p>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
