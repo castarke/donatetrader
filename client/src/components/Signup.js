@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { SIGNUP_USER } from '../utils/mutations';
-import backgroundImg from './signup_pic.jpg';
+import useStyles from '../utils/styles';
 
 function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [signupMutation, { loading, error }] = useMutation(SIGNUP_USER);
+  const classes = useStyles();
 
   const handleSignup = async () => {
     try {
@@ -24,36 +25,33 @@ function Signup() {
   };
 
   return (
-    <div style={styles.background}>
-      <div style={styles.container}>
+    <div className={classes.background}>
+      <div className={classes.container}>
         <h2>Sign Up</h2>
-        <div style={styles.form}>
-          <p>Please enter your name</p>
+        <div className={classes.form}>
           <input
-            style={styles.input}
+            className={classes.input}
             type="text"
-            placeholder="Name"
+            placeholder="Please enter your name"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-          <p>Please enter your email</p>
           <input
-            style={styles.input}
+            className={classes.input}
             type="email"
-            placeholder="Email"
+            placeholder="Please enter your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <p>Please create a password</p>
           <input
-            style={styles.input}
+            className={classes.input}
             type="password"
-            placeholder="Create Password"
+            placeholder="Please create a password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           <button
-            style={styles.button}
+            className={classes.button}
             onClick={handleSignup}
             disabled={loading}
           >
@@ -65,50 +63,5 @@ function Signup() {
     </div>
   );
 }
-
-const styles = {
-  background: {
-    backgroundColor: '#dcdcdc',
-    backgroundImage: `url(${backgroundImg})`, // Set the background image
-    backgroundSize: 'cover', // Adjust the background size
-    backgroundRepeat: 'no-repeat', // Prevent repeating the image
-    backgroundPosition: 'center', // Center the background image
-    minHeight: '80vh', // Set a minimum height to cover the entire viewport
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: '20px',
-    border: '1px solid #ccc',
-    borderRadius: '4px',
-    maxWidth: '300px',
-    backgroundColor: 'rgba(255, 255, 255, 0.3)',
-  },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    marginTop: '20px',
-  },
-  input: {
-    width: '100%',
-    padding: '10px',
-    marginBottom: '10px',
-    border: '1px solid teal',
-    borderRadius: '4px',
-  },
-  button: {
-    padding: '10px 20px',
-    background: '#4CAF50',
-    color: 'white',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer',
-  },
-};
 
 export default Signup;
