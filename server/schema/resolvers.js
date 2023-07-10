@@ -1,6 +1,5 @@
 const { Category, Items, Users } = require('../models');
-const {User}=require('../models');
-const users=[];
+
 const resolvers = {
 
   Date: {
@@ -14,17 +13,11 @@ const resolvers = {
 
 
   Query: {
-    users:() => users,
-
-    // getUser: (parent, { id }) => {
-    //   return Users.findOne(user => user.id === id);
-    // },
-
     getAllUsers: async () => {
       return Users.find();
     },
 
-    getUser: async (parent, { id }) => {
+    getUserById: async (parent, { id }) => {
       return Users.findOne({ _id: id })
         .populate({
           path: 'items',
@@ -122,38 +115,12 @@ const resolvers = {
       return Items.findOneAndDelete({ _id: itemId });
     },
 
-    signup: async (_, { username, email }) => {
-      // Perform server-side validation
-      const errors = {};
-
-      // Check if username is already taken
-      const existingUsername = await User.findOne({ username });
-      if (existingUsername) {
-        errors.username = 'Username is already taken';
-      }
-
-      // Check if email is already registered
-      const existingEmail = await User.findOne({ email });
-      if (existingEmail) {
-        errors.email = 'Email is already registered';
-      }
-
-      // If there are validation errors, throw an error with the error object
-      if (Object.keys(errors).length > 0) {
-        throw new Error(JSON.stringify(errors));
-      }
-
-      // Create the new user
-      const newUser = {
-        id: String(users.length + 1),
-        username,
-        email,
-      };
-      users.push(newUser);
-      return newUser;
+    signup:async(_,{name,email,password})=>{
+      const user=new User({name,email,password});
+      await user.save();
+      return user;
     },
-    }
-  };
-
+  },
+};
 
 module.exports = resolvers;
