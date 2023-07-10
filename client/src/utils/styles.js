@@ -1,29 +1,48 @@
 import { makeStyles } from '@material-ui/core/styles';
+import backgroundImg from '../utils/signup_pic.jpg';
 
 const useStyles = makeStyles((theme) => ({
+  background: {
+    backgroundImage: `url(${backgroundImg})`,
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    minHeight: '80vh',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   container: {
     display: 'flex',
-    [theme.breakpoints.down('md')]: {
-      flexDirection: 'column',
-    },
-  },
-  searchContainer: {
-    width: '33.33%',
-    marginRight: '10px',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: '20px',
     border: '1px solid #ccc',
-    padding: '10px',
-    [theme.breakpoints.down('md')]: {
-      width: '100%',
-      marginRight: '0',
-      marginBottom: '10px',
-    },
+    borderRadius: '4px',
+    maxWidth: '300px',
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
   },
-  itemsContainer: {
-    width: '66.66%',
-    [theme.breakpoints.down('md')]: {
-      width: '100%',
-    },
+  form: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginTop: '20px',
+  },
+  input: {
+    width: '100%',
+    padding: '10px',
+    marginBottom: '10px',
+    border: '1px solid teal',
+    borderRadius: '4px',
+  },
+  button: {
+    padding: '10px 20px',
+    background: '#4CAF50',
+    color: 'white',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: 'pointer',
   },
 }));
 
-export default useStyles
+export default useStyles;
