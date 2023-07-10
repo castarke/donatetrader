@@ -101,24 +101,24 @@ const resolvers = {
 
     signup: async (parent, { username, email,password }) => {
       // Perform server-side validation
-      const errors = {};
+      //const errors = {};
 
-      // Check if username is already taken
-      const existingUsername = await User.findOne({ username });
-      if (existingUsername) {
-        errors.username = 'Username is already taken';
-      }
+      // // Check if username is already taken
+      // const existingUsername = await User.findOne({ username });
+      // if (existingUsername) {
+      //   errors.username = 'Username is already taken';
+      // }
 
-      // Check if email is already registered
-      const existingEmail = await User.findOne({ email });
-      if (existingEmail) {
-        errors.email = 'Email is already registered';
-      }
+      // // Check if email is already registered
+      // const existingEmail = await User.findOne({ email });
+      // if (existingEmail) {
+      //   errors.email = 'Email is already registered';
+      // }
 
-      // If there are validation errors, throw an error with the error object
-      if (Object.keys(errors).length > 0) {
-        throw new Error(JSON.stringify(errors));
-      }
+      // // If there are validation errors, throw an error with the error object
+      // if (Object.keys(errors).length > 0) {
+      //   throw new Error(JSON.stringify(errors));
+      // }
 
       // Create the new user
       // const newUser = {
@@ -129,7 +129,7 @@ const resolvers = {
       // users.push(newUser);
       // return newUser;
 
-      const newUser = await User.create({ username, email, password });
+      const newUser = await Users.create({ username, email, password });
       const savedUser = await newUser.save();
       const token=signToken(savedUser)
       return {savedUser,token};
