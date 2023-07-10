@@ -1,6 +1,7 @@
 const { Category, Items, Users } = require('../models');
 const {User}=require('../models');
-const users=[];
+const { signToken } = require('../utils/auth');
+//const users=[];
 const resolvers = {
 
   Date: {
@@ -25,7 +26,7 @@ const resolvers = {
     },
 
     getUser: async (parent, { id }) => {
-      return Users.findOne({ _id: id })
+      return Users.findOne({ id: id })
         .populate({
           path: 'items',
           model: 'items',
@@ -98,7 +99,7 @@ const resolvers = {
       return Items.findOneAndDelete({ _id: itemId });
     },
 
-    signup: async (_, { username, email }) => {
+    signup: async (parent, { username, email,password }) => {
       // Perform server-side validation
       const errors = {};
 
@@ -120,14 +121,38 @@ const resolvers = {
       }
 
       // Create the new user
-      const newUser = {
-        id: String(users.length + 1),
-        username,
-        email,
-      };
-      users.push(newUser);
-      return newUser;
+      // const newUser = {
+      //   id: String(users.length + 1),
+      //   usernamec,
+      //   email,
+      // };
+      // users.push(newUser);
+      // return newUser;
+
+      const newUser = await User.create({ username, email, password });
+      const savedUser = await newUser.save();
+      const token=signToken(savedUser)
+      return {savedUser,token};
     },
+
+    loginUser: async (_, { username, password }) => {
+      // e.g., check if username and password are provided
+
+      if (!username || !password) {
+        throw new Error('Please provide a username and password');
+      }
+
+      // Find the user by username
+      const user = await User.findOne({ username });
+
+      // Handle user not found or incorrect password
+      if (!user || !user.verifyPassword(password)) {
+        throw new Error('Invalid username or password');
+      }
+
+      // Return the authenticated user
+      return user;
+    }
     }
   };
 

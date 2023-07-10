@@ -5,7 +5,7 @@ const typeDefs = gql`
 scalar Date
 
 type User {
-    _id: ID!
+    id: ID!
     username: String!
     email: String!
     password: String!
@@ -37,6 +37,11 @@ type User {
     category: String! 
   }
   
+  type Auth{
+    token:ID!
+    user:User
+  }
+
   type Query {
     
     users:[User!]!
@@ -59,7 +64,7 @@ type User {
     ) : User
 
     updateUser(
-      _id: ID!,
+      id: ID!,
       username: String!,
       email: String!,
       password: String!,
@@ -84,7 +89,8 @@ type User {
 
     removeUser(id : ID!) : User
     removeItem(id : ID!) : Item
-    signup(username:String!,email:String!,password:String!):User!
+    signup(username:String!,email:String!,password:String!):Auth
+    loginUser(username: String!, password: String!): Auth
   }
   `;
   module.exports = typeDefs;

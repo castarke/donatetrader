@@ -4,64 +4,62 @@ import Auth from '../utils/auth';
 import { LOGIN_USER } from '../utils/mutations';
 
 function Login() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [formData, setFormData] = useState({
+        username: '',
+        password: '',
+      });
     const [loginUser, { loading, error }] = useMutation(LOGIN_USER);
   
-    const handleLogin = async () => {
-      try {
-        const { data } = await loginUser({
-          variables: {
-            email,
-            password,
-          },
+    const handleChange = (e) => {
+        setFormData({
+          ...formData,
+          [e.target.name]: e.target.value,
         });
+      };
   
-        const token = data.login.token;
-  
-        if (token) {
-          Auth.login(token);
-        }
-      } catch (error) {
-        console.log(error);
-      }
+      const handleSubmit = (e) => {
+        e.preventDefault();
+    
+        loginUser({ variables: formData })
+          .then((res) => {
+            Auth.login(res.data.login.token);
+            console.log('User logged in successfully:', res.data);
+            // Perform any necessary actions after successful login
+          })
+          .catch((error) => {
+            console.error('Login error:', error.message);
+            // Handle login error or display error message to the user
+          });
+      };
+    
+      return (
+        <div style={styles.background}>
+        <div style={styles.container}>
+          <h1>Login Page</h1>
+          <form onSubmit={handleSubmit}>
+            {/* Input fields for username and password */}
+            <input
+              type="text"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+            />
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+            />
+            <button type="submit" disabled={loading}>
+              {loading ? 'Logging in...' : 'Login'}
+            </button>
+          </form>
+          {error && <p>{error.message}</p>}
+        </div>
+        </div>
+      );
     };
   
-    return (
-      <div style={styles.container}>
-        <h2>Login</h2>
-        <div style={styles.form}>
-          <p>Please enter your email</p>
-          <input
-            style={styles.input}
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <p>Please enter your password</p>
-          <input
-            style={styles.input}
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button
-            style={{
-              ...styles.button,
-              backgroundColor: loading ? '#ccc' : '#4CAF50',
-            }}
-            onClick={handleLogin}
-            disabled={loading}
-          >
-            {loading ? 'Logging in...' : 'Login'}
-          </button>
-          {error && <p>Error occurred. Please try again.</p>}
-        </div>
-      </div>
-    );
-  }
 
 const styles = {
     container: {

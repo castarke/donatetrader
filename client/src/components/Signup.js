@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { SIGNUP_USER } from '../utils/mutations';
 import backgroundImg from './signup_pic.jpg';
+import Auth from '../utils/auth';
 
 function Signup() {
     const [formData, setFormData] = useState({
@@ -29,6 +30,7 @@ function Signup() {
     if (Object.keys(validationErrors).length === 0) {
         signupMutation({ variables: formData })
         .then((res) => {
+          Auth.login(res.data.signup.token)
           console.log('User signed up successfully:', res.data);
           // Perform any necessary actions after successful signup
         })
