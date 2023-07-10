@@ -46,7 +46,7 @@ const ItemSchema = new Schema(
       },
     ],
 
-    tradefor: [
+    tradeFor: [
       {
         type: Schema.Types.ObjectId,
         ref: 'Category',
