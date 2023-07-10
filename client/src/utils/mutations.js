@@ -75,33 +75,27 @@ mutation createItem(
 
 
 export const UPDATE_ITEM = gql`
-  mutation updateItem($itemId: ID!, $desc: String, $imagePath: String, $value: Float, $donate: Boolean, $yearMade: Int, $model: String, $serial: String, $categoryIds: [ID!], $tradeForIds: [ID!]) {
-    updateItem(itemId: $itemId, desc: $desc, imagePath: $imagePath, value: $value, donate: $donate, yearMade: $yearMade, model: $model, serial: $serial, categoryIds: $categoryIds, tradeForIds: $tradeForIds) {
+mutation updateItem($itemId: ID!, $owner:ID!, $desc: String!, $imagePath: String, $value: Float, $donate: Boolean, $yearMade: Int!, $model: String, $serial: String, $categories: [ID!], $tradeFor: [ID!]) {
+  updateItem(_id: $itemId, owner:$owner, desc: $desc, imagePath: $imagePath, value: $value, donate: $donate, yearMade: $yearMade, model: $model, serial: $serial, categories: $categories, tradeFor: $tradeFor) {
+    _id
+    owner{_id}
+    desc
+    imagePath
+    value
+    donate
+    yearMade
+    model
+    serial
+    categories {
       _id
-      owner {
-        _id
-        username
-        email
-      }
-      desc
-      imagePath
-      value
-      donate
-      yearMade
-      model
-      serial
-      categories {
-        _id
-        category
-      }
-      tradeFor {
-        _id
-        category
-      }
-      expire
-      dateListed
+      name
+    }
+    tradeFor {
+      _id
+      name
     }
   }
+}
 `;
 
 export const LOGIN_USER = gql`
