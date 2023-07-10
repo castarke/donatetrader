@@ -37,6 +37,8 @@ function DrawerComponent({ links }) {
               button
               key={index}
               onClick={() => setOpenDrawer(false)}
+              component={Link}
+              to={link.props.to}
             >
               <ListItemText
                 primary={link.props.children}
@@ -57,4 +59,3 @@ function DrawerComponent({ links }) {
 }
 
 export default DrawerComponent;
-

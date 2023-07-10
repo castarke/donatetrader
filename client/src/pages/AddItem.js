@@ -10,7 +10,7 @@ import RecentTrades from '../components/RecentTrades'
 import useStyles from '../utils/makeStyles'
 import { Link } from 'react-router-dom';
 
-const ownerId = "64aa0287e14635b4eb7767f9"
+const ownerId = "64ab59d11b04aa8af0dadd55"
 
 
 const AddItem = () => {

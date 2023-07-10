@@ -28,6 +28,7 @@ function Signup() {
       <div style={styles.container}>
         <h2>Sign Up</h2>
         <div style={styles.form}>
+          <p>Please enter your name</p>
           <input
             style={styles.input}
             type="text"
@@ -35,6 +36,7 @@ function Signup() {
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
+          <p>Please enter your email</p>
           <input
             style={styles.input}
             type="email"
@@ -42,6 +44,7 @@ function Signup() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
+          <p>Please create a password</p>
           <input
             style={styles.input}
             type="password"
