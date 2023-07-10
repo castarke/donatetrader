@@ -4,7 +4,9 @@ import { CREATE_ITEM } from '../utils/mutations';
 import CloudinaryUploadWidget from '../components/CloudinaryUploadWidget';
 import { Link } from 'react-router-dom';
 
-const AddItem = ({ ownerId }) => {
+const ownerId = "64aa0287e14635b4eb7767f9"
+
+const AddItem = () => {
   const [itemData, setItemData] = useState({
     owner: ownerId,
     desc: '',
@@ -33,8 +35,16 @@ const AddItem = ({ ownerId }) => {
     e.preventDefault();
     createItem({
       variables: {
-        ownerId,
-        itemData,
+        owner: ownerId,
+        desc: itemData.desc,
+        imagePath: document.getElementById("itemImage").src,
+        value: parseFloat(itemData.value),
+        donate: itemData.donate,
+        yearMade: parseInt(itemData.yearMade),
+        model:itemData.model,
+        serial: itemData.serial,
+        categoryIds: itemData.categoryIds,
+        tradeForIds: itemData.tradeForIds,
       },
     })
       .then((response) => {
