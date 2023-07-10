@@ -1,68 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import { useMutation, useQuery } from '@apollo/client';
-import { useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
 import { UPDATE_ITEM } from '../../utils/mutations';
-import { GET_ITEM_BY_ID } from '../../utils/queries';
-import CloudinaryUploadWidget from '../../components/CloudinaryUploadWidget';
-import SearchCriteria from '../../components/SearchCriteria'
-import RecentTrades from '../../components/RecentTrades'
-import useStyles from '../../utils/makeStyles'
-
-const ownerId = "64aa0287e14635b4eb7767f9"
+import { useParams } from 'react-router-dom';
 
 const UpdateItemForm = () => {
-  const classes = useStyles()
   const { itemId } = useParams();
-
-  const { loading:currentItemLoading, error:currentItemError, data:currentItemData } = useQuery(GET_ITEM_BY_ID, {
-    variables: { id: itemId },
-  });
 
   const [itemData, setItemData] = useState({
     desc: '',
     imagePath: '',
     value: 0,
     donate: false,
-    yearMade: '',
+    yearMade: 0,
     model: '',
     serial: '',
-    categories: [],
-    tradeFor: []
+    categoryIds: [],
+    tradeForIds: [],
   });
-
-  useEffect(() => {
-    if (currentItemData) {
-      const currentData = currentItemData.getItemById;
-      setItemData({
-        desc: currentData.desc,
-        owner: currentData.owner,
-        imagePath: currentData.imagePath,
-        value: currentData.value,
-        donate: currentData.donate,
-        yearMade: currentData.yearMade,
-        model: currentData.model,
-        serial: currentData.serial,
-        categories: currentData.categories,
-        tradeFor: currentData.tradeFor,
-      });
-    }
-  }, [currentItemData]);
 
   const [updateItem, { loading, error }] = useMutation(UPDATE_ITEM);
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    let newValue = type === 'checkbox' ? checked : value;
-
-    if (name === 'categories' || name === 'tradeFor') {
-      const selectedOptions = Array.from(e.target.selectedOptions);
-      newValue = selectedOptions.map((option) => option.value);
-    }
-    setItemData((prevData) => ({
-      ...prevData,
-      [name]: newValue,
-    }));
+    setItemData({
+      ...itemData,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleSubmit = (e) => {
@@ -71,9 +33,6 @@ const UpdateItemForm = () => {
       variables: {
         itemId,
         ...itemData,
-        value:parseFloat(itemData.value),
-        yearMade:parseInt(itemData.yearMade),
-        owner:ownerId
       },
     })
       .then((response) => {
@@ -84,8 +43,8 @@ const UpdateItemForm = () => {
       });
   };
 
-  if (currentItemLoading || loading) return <p>Loading item...</p>;
-  if (currentItemError || error) return <p>Error loading item: {error.message}</p>;
+  if (loading) return <p>Updating item...</p>;
+  if (error) return <p>Error updating item: {error.message}</p>;
 
   return (
     <div>
@@ -102,8 +61,12 @@ const UpdateItemForm = () => {
         </label>
         <label>
           Image Path:
-          <img id="itemImage" src={itemData.imagePath} alt="item image" />
-          <CloudinaryUploadWidget />
+          <input
+            type="text"
+            name="imagePath"
+            value={itemData.imagePath}
+            onChange={handleChange}
+          />
         </label>
         <label>
           Value:
