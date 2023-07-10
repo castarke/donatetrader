@@ -123,7 +123,7 @@ function Navbar() {
   ];
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" style ={{backgroundColor: '#66b2b2git'}}>
       <CssBaseline />
       <Toolbar>
         <Typography variant="h4" className={classes.logo}>

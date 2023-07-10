@@ -20,7 +20,7 @@ const useStyles = makeStyles(() => ({
     color: "white",
   },
   listItemText: {
-    color: "blue",
+    color: "#008B8B",
   },
 }));
 
