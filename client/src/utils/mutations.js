@@ -88,34 +88,11 @@ mutation updateItem($itemId: ID!, $owner:ID!, $desc: String!, $imagePath: String
     serial
     categories {
       _id
-<<<<<<< HEAD
       name
     }
     tradeFor {
       _id
       name
-=======
-      owner {
-        _id
-        username
-        email
-      }
-      desc
-      imagePath
-      value
-      donate
-      yearMade
-      model
-      serial
-      categories {
-        _id
-      }
-      tradeFor {
-        _id
-      }
-      expire
-      dateListed
->>>>>>> cc45c63e33925f953375b42529b7e8b788c65470
     }
   }
 }
