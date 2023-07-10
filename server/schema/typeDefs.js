@@ -38,8 +38,10 @@ type User {
   }
   
   type Query {
+    
+    users:[User!]!
+    getUser(id: ID!): User!
     getAllUsers: [User!]!
-    getUserById(id: ID!): User!
     getAllItems(first:Int): [Item]
     getItemById(id: ID!): Item 
     getCategoryById(id: ID!): Category
@@ -82,7 +84,7 @@ type User {
 
     removeUser(id : ID!) : User
     removeItem(id : ID!) : Item
-    signup(email:String!,password:String!,name:String!):User!
+    signup(username:String!,email:String!,password:String!):User!
   }
-  `
+  `;
   module.exports = typeDefs;

@@ -4,67 +4,115 @@ import { SIGNUP_USER } from '../utils/mutations';
 import backgroundImg from './signup_pic.jpg';
 
 function Signup() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
-  const [signupMutation, { loading, error }] = useMutation(SIGNUP_USER);
-
-  const handleSignup = async () => {
-    try {
-      const response = await signupMutation({
-        variables: {
-          email,
-          password,
-          name,
-        },
+    const [formData, setFormData] = useState({
+        username: '',
+        email: '',
+        password: '',
       });
-    } catch (error) {
-      console.log(error);
+  const [signupMutation, { loading }] = useMutation(SIGNUP_USER);
+
+  const [errors, setErrors] = useState({});
+
+  
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const validationErrors = validateForm(formData);
+    if (Object.keys(validationErrors).length === 0) {
+        signupMutation({ variables: formData })
+        .then((res) => {
+          console.log('User signed up successfully:', res.data);
+          // Perform any necessary actions after successful signup
+        })
+        .catch((error) => {
+          console.error('Signup error:', error.message);
+          // Handle signup error or display error message to the user
+        });
+    } else {
+      setErrors(validationErrors);
     }
   };
 
-  return (
+  const validateForm = (formData) => {
+    const errors = {};
+
+    if (!formData.username.trim()) {
+      errors.username = 'Username is required';
+    }
+
+    if (!formData.email.trim()) {
+      errors.email = 'Email is required';
+    } else if (!isValidEmail(formData.email)) {
+      errors.email = 'Invalid email format';
+    }
+
+    if (!formData.password.trim()) {
+      errors.password = 'Password is required';
+    }
+
+    return errors;
+  };
+
+  const isValidEmail = (email) => {
+    // Regular expression for basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+return(
     <div style={styles.background}>
       <div style={styles.container}>
-        <h2>Sign Up</h2>
-        <div style={styles.form}>
-          <p>Please enter your name</p>
+        <h1>Signup Page</h1>
+        <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="username">Username:</label>
           <input
-            style={styles.input}
             type="text"
-            placeholder="Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            id="username"
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
           />
-          <p>Please enter your email</p>
-          <input
-            style={styles.input}
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <p>Please create a password</p>
-          <input
-            style={styles.input}
-            type="password"
-            placeholder="Create Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button
-            style={styles.button}
-            onClick={handleSignup}
-            disabled={loading}
-          >
-            {loading ? 'Signing up...' : 'Submit'}
-          </button>
-          {error && <p>Error occurred. Please try again.</p>}
+          {errors.username && <p>{errors.username}</p>}
         </div>
-      </div>
+        <div>
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+          />
+          {errors.email && <p>{errors.email}</p>}
+        </div>
+        <div>
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+          />
+          {errors.password && <p>{errors.password}</p>}
+        </div>
+        <button type="submit" disabled={loading}>
+          {loading ? 'Signing up...' : 'Signup'}
+        </button>
+      </form>
+    </div>
     </div>
   );
-}
+};
 
 const styles = {
   background: {
