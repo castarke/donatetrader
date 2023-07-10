@@ -88,11 +88,34 @@ mutation updateItem($itemId: ID!, $owner:ID!, $desc: String!, $imagePath: String
     serial
     categories {
       _id
+<<<<<<< HEAD
       name
     }
     tradeFor {
       _id
       name
+=======
+      owner {
+        _id
+        username
+        email
+      }
+      desc
+      imagePath
+      value
+      donate
+      yearMade
+      model
+      serial
+      categories {
+        _id
+      }
+      tradeFor {
+        _id
+      }
+      expire
+      dateListed
+>>>>>>> cc45c63e33925f953375b42529b7e8b788c65470
     }
   }
 }
@@ -100,18 +123,25 @@ mutation updateItem($itemId: ID!, $owner:ID!, $desc: String!, $imagePath: String
 
 export const LOGIN_USER = gql`
   mutation loginUser($email: String!, $password: String!) {
-    loginUser(email: $email, password: $password) {
+    login(email: $email, password: $password) {
       token
+      user {
+        id
+        username
+        email
+        # Add any other desired user fields
+      }
     }
   }
 `;
 
 export const SIGNUP_USER=gql`
-  mutation Signup($email:String!, $password:String!, $name:String!){
-    signup(email:$email, password:$password, name:$name){
-      _id
-      name
+  mutation Signup ($name:String!, $email:String!, $password:String!){
+    signup(username:$name, email:$email, password:$password){
+      id
+      username
       email
+      password
     }
   }
 `;
