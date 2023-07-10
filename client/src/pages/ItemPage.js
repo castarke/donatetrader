@@ -21,7 +21,15 @@ const ItemPage = () => {
 
   if (!item) return <p>No item found.</p>;
 
-  const { _id, owner, categories, tradeFor, imagePath, desc, yearMade, dateListed } = item;
+  const { _id, owner, categories, tradeFor, donate, model, serial, imagePath, desc, yearMade, dateListed } = item;
+  let value = item.value
+
+  //hide value if donated
+  if (donate){
+    value = "Donating"
+  }else{
+    value = `Value: ${value}`
+  }
 
   return (
     <div className={classes.container}>
@@ -32,7 +40,23 @@ const ItemPage = () => {
         <img src={imagePath} alt="Item" />
         <p>Description: {desc}</p>
         <p>Year: {yearMade}</p>
+        <p>Model: {model}</p>
+        <p>Serial: {serial}</p>
         <p>Listed Date: {dateListed}</p>
+        <p>Owner: {owner.name}</p>
+        <p>Categories:</p>
+        <ul>
+          {categories.map((element) => (
+            <li key={element._id}>{element.name}</li>
+          ))}
+        </ul>
+        <p>Trading For:</p>
+        <ul>
+          {tradeFor.map((element) => (
+            <li key={element._id}>{element.name}</li>
+          ))}
+        </ul>
+        <p>{value}</p>
       </div>
       <div className={classes.searchContainer}>
         <RecentTrades />

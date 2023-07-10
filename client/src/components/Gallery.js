@@ -4,18 +4,7 @@ import { Grid, Paper } from "@material-ui/core";
 import { useQuery } from "@apollo/client";
 import { GET_Latest_9 } from "../utils/queries";
 import Item from "./item"; 
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    marginTop: theme.spacing(2),
-  },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-  },
-}));
+import useStyles from '../utils/styles'
 
 const Gallery = () => {
   const classes = useStyles();

@@ -20,10 +20,12 @@ const Item = ({ itemId }) => {
   return (
     <div>
       <Link to={`/item/${itemId}`}>
-        <img src={imagePath} alt="Item" />
-        <p>Description: {desc}</p>
-        <p>Year: {yearMade}</p>
-        <p>Listed Date: {dateListed}</p>
+        <div>
+          <img src={imagePath} alt="Item" />
+          <p>Description: {desc}</p>
+          <p>Year: {yearMade}</p>
+          <p>Listed Date: {dateListed}</p>
+        </div>
       </Link>
     </div>
   );
