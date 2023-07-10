@@ -34,7 +34,6 @@ type User {
   type Category {
     _id: ID!
     name: String!
-    category: String! 
   }
   
   type Query {
@@ -80,6 +79,20 @@ type User {
       tradeFor: [ID]
     ): Item
 
+    updateItem(
+      _id: ID!
+      owner: ID!
+      desc: String!
+      imagePath: String
+      value: Float
+      donate: Boolean
+      yearMade: Int!
+      model: String
+      serial: String
+      categories: [ID]
+      tradeFor: [ID]
+    ): Item
+    
     removeUser(id : ID!) : User
     removeItem(id : ID!) : Item
     signup(email:String!,password:String!,name:String!):User!
