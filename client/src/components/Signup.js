@@ -11,7 +11,7 @@ function Signup() {
     password: '',
     city: '',
     state: '',
-    zip: "",
+    zip: '',
   });
 
   const styles = useStyles();
@@ -28,15 +28,13 @@ function Signup() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-console.log(formData)
+    console.log(formData);
     signupMutation({ variables: formData })
       .then((res) => {
         console.log('User signed up successfully:', res.data);
-        // Perform any necessary actions after successful signup
       })
       .catch((error) => {
         console.error('Signup error:', error.message);
-        // Handle signup error or display error message to the user
       });
   };
 

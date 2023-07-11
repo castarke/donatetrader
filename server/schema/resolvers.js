@@ -64,9 +64,12 @@ const resolvers = {
   },
 
   Mutation: {
-    createUser: async (parent, data) => {
-      return Users.create(...data);
+    createUser: async (parent, { username, email, password, city, state, zip }) => {
+      console.log('Creating a new user...');
+      return Users.create({ username, email, password, city, state, zip });
     },
+    
+    
 
     createItem: async (parent, { owner, desc, imagePath, value, donate, yearMade, model, serial, categories, tradeFor }) => {
       const newItem = await Items.create({
@@ -131,13 +134,14 @@ const resolvers = {
     signup: async (parent, { username, email, password, city, state, zip }) => {
       const user = await Users.create({ username, email, password, city, state, zip });
       const token = signToken(user);
-
+    
       if (!token) {
         throw new Error("Token generation failed.");
       }
-
-      return { token }; 
+    
+      return { token, user };
     },
+    
   },
 };
 
