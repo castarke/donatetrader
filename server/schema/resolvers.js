@@ -114,7 +114,7 @@ const resolvers = {
       return Items.findOneAndDelete({ _id: itemId });
     },
 
-    signup:async(parent,{name,email,password})=>{
+    signup:async(parent,{username,email,password})=>{
       const user=await Users.create({username,email,password});
       const token=signToken(user);
       //await user.save();

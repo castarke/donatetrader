@@ -99,24 +99,25 @@ mutation updateItem($itemId: ID!, $owner:ID!, $desc: String!, $imagePath: String
 `;
 
 export const LOGIN_USER = gql`
-  mutation loginUser($email: String!, $password: String!) {
-    loginUser(email: $email, password: $password) {
+  mutation loginUser($username: String!, $password: String!) {
+    loginUser(username: $username, password: $password) {
       token
     }
   }
 `;
 
 export const SIGNUP_USER=gql`
-  mutation signup ($username:String!, $email:String!, $password:String!){
-    signup(username:$username, email:$email, password:$password){
+  mutation signup ($username:String!, $email:String!, $password:String!, $city: String!, $state:String!, $zip:Int!){
+    signup(username:$username, email:$email, password:$password, city:$city,state:$state,zip:$zip){
       token
       user{
-        id
+        _id
       username
       email
+      city
+      state
+      zip
       }
-      
-  
     }
   }
 `;
