@@ -34,6 +34,7 @@ type User {
   type Category {
     _id: ID!
     name: String!
+    category: Category!
   }
   
   type Auth{

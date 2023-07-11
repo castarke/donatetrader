@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { SIGNUP_USER } from '../utils/mutations';
-import backgroundImg from './signup_pic.jpg';
+// import backgroundImg from './signup_pic.jpg';
 import Auth from '../utils/auth';
 import useStyles from '../utils/styles';
 function Signup() {
