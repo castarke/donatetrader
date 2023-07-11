@@ -1,11 +1,5 @@
 const { Category, Items, Users } = require('../models');
-<<<<<<< HEAD
-const {User}=require('../models');
 const { signToken } = require('../utils/auth');
-//const users=[];
-=======
-
->>>>>>> 3f80cdb0e78bd06a6be88fafa5bdb3650ae6793b
 const resolvers = {
 
   Date: {
@@ -22,13 +16,8 @@ const resolvers = {
       return Users.find();
     },
 
-<<<<<<< HEAD
-    getUser: async (parent, { id }) => {
-      return Users.findOne({ id: id })
-=======
     getUserById: async (parent, { id }) => {
       return Users.findOne({ _id: id })
->>>>>>> 3f80cdb0e78bd06a6be88fafa5bdb3650ae6793b
         .populate({
           path: 'items',
           model: 'items',
@@ -125,71 +114,13 @@ const resolvers = {
       return Items.findOneAndDelete({ _id: itemId });
     },
 
-<<<<<<< HEAD
-    signup: async (parent, { username, email,password }) => {
-      // Perform server-side validation
-      //const errors = {};
-
-      // // Check if username is already taken
-      // const existingUsername = await User.findOne({ username });
-      // if (existingUsername) {
-      //   errors.username = 'Username is already taken';
-      // }
-
-      // // Check if email is already registered
-      // const existingEmail = await User.findOne({ email });
-      // if (existingEmail) {
-      //   errors.email = 'Email is already registered';
-      // }
-
-      // // If there are validation errors, throw an error with the error object
-      // if (Object.keys(errors).length > 0) {
-      //   throw new Error(JSON.stringify(errors));
-      // }
-
-      // Create the new user
-      // const newUser = {
-      //   id: String(users.length + 1),
-      //   usernamec,
-      //   email,
-      // };
-      // users.push(newUser);
-      // return newUser;
-
-      const newUser = await Users.create({ username, email, password });
-      const savedUser = await newUser.save();
-      const token=signToken(savedUser)
-      return {savedUser,token};
-    },
-
-    loginUser: async (_, { username, password }) => {
-      // e.g., check if username and password are provided
-
-      if (!username || !password) {
-        throw new Error('Please provide a username and password');
-      }
-
-      // Find the user by username
-      const user = await User.findOne({ username });
-
-      // Handle user not found or incorrect password
-      if (!user || !user.verifyPassword(password)) {
-        throw new Error('Invalid username or password');
-      }
-
-      // Return the authenticated user
-      return user;
-    }
-    }
-  };
-=======
-    signup:async(_,{name,email,password})=>{
-      const user=new User({name,email,password});
-      await user.save();
-      return user;
+    signup:async(parent,{name,email,password})=>{
+      const user=await Users.create({username,email,password});
+      const token=signToken(user);
+      //await user.save();
+      return {token,user};
     },
   },
 };
->>>>>>> 3f80cdb0e78bd06a6be88fafa5bdb3650ae6793b
 
 module.exports = resolvers;
