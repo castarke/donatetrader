@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/client';
 import { CREATE_ITEM } from '../utils/mutations';
 import { GET_ALL_CATEGORIES } from '../utils/queries';
@@ -10,10 +11,8 @@ import RecentTrades from '../components/RecentTrades'
 import useStyles from '../utils/makeStyles'
 import { Link } from 'react-router-dom';
 
-const ownerId = "64ab59d11b04aa8af0dadd55"
-
-
 const AddItem = () => {
+  const { ownerId } = useParams();
   const classes = useStyles();
   const [itemData, setItemData] = useState({
     owner: ownerId,

@@ -1,10 +1,15 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
+import { Grid, Paper } from "@material-ui/core";
 import { GET_ME } from '../utils/queries';
 import { Link } from 'react-router-dom';
+import { MY_ITEMS } from '../utils/queries'
+import Item from '../components/item';
+import useStyles from '../utils/styles'
 
 const AccountInfo = () => {
-  const userId = '64aa0287e14635b4eb7767f9';
+  const classes = useStyles();
+  const userId = '64ad0a616d6e9c7814c9a4fa';
 
   const { loading, error, data } = useQuery(GET_ME, {
     variables: {
@@ -12,36 +17,48 @@ const AccountInfo = () => {
     },
   });
 
-  if (loading) return <p>Loading account information...</p>;
-  if (error) return <p>Error fetching account information: {error.message}</p>;
+  const {loading:itemsLoading, error:itemsError, data:itemsData} = useQuery(MY_ITEMS,{
+    variables: {
+      owner: userId,
+    }
+  })
+
+  if (loading || itemsLoading) return <p>Loading account information...</p>;
+  if (error || itemsError ) return <p>Error fetching account information: {error.message}</p>;
 
   const { getUserById } = data;
   const { username, email, city, state, zip, items } = getUserById;
 
   return (
-    <div>
-      <h2>Account Information</h2>
-      <p>Username: {username}</p>
-      <p>Email: {email}</p>
-      <p>City: {city}</p>
-      <p>State: {state}</p>
-      <p>Zip: {zip}</p>
-      <p>Items:</p>
-      <ul>
-        {items.map((item) => (
-          <li key={item._id}>
-            <img src={item.imagePath} alt={item.desc} />
-            <p>Description: {item.desc}</p>
-            <p>Value: {item.value}</p>
-            <Link to={`/updateitem/${item._id}`}>
-              <button>Update Item</button>
-            </Link>
-          </li>
-        ))}
-      </ul>
-      <Link to="/additem">
-        <button>Add Item</button>
-      </Link>
+    <div className={classes.container}>
+      <div className={classes.searchContainer}>
+        <h2>Account Information</h2>
+        <p>Username: {username}</p>
+        <p>Email: {email}</p>
+        <p>City: {city}</p>
+        <p>State: {state}</p>
+        <p>Zip: {zip}</p>
+      </div>
+      <div className={classes.itemsContainer}>
+        <h2>Items:</h2>
+        <div>
+          <Grid container spacing={2}>
+            {items.map((item) => (
+            <Grid item xs={4} key={item._id}>
+              <Paper className={classes.paper}>
+              <Item itemId={item._id} />
+              <Link to={`/updateitem/${item._id}`}>
+                <button>Update Item</button>
+              </Link>
+              </Paper>
+            </Grid>
+            ))}
+          </Grid>
+        </div>
+        <Link to={`/additem/${userId}`}>
+          <button>Add Item</button>
+        </Link>
+      </div>
     </div>
   );
 };
