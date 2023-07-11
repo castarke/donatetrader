@@ -44,6 +44,16 @@ const resolvers = {
         .populate('tradeFor');
     },
 
+    getItemByOwner: async (parent, { owner }) => {
+      return Items.find({ owner })
+        .populate({
+          path: 'owner',
+          model: 'users',
+        })
+        .populate('categories')
+        .populate('tradeFor');
+    },
+
     getAllCategories: async () => {
       return Category.find();
     },
@@ -73,6 +83,12 @@ const resolvers = {
         expire: null,
         dateListed: new Date().toISOString()
       });
+
+      await Users.findOneAndUpdate(
+        {_id:owner},
+        {$push: {items:newItem._id} }
+      )
+
 
       return newItem;
     },

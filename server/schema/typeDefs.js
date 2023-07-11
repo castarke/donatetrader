@@ -47,6 +47,7 @@ type User {
     getUserById(id: ID!): User!
     getAllItems(first:Int): [Item]
     getItemById(id: ID!): Item 
+    getItemByOwner(owner : ID!):[Item]
     getCategoryById(id: ID!): Category
     getAllCategories: [Category!]!
   }
