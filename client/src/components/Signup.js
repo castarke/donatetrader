@@ -4,14 +4,14 @@ import { SIGNUP_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
 import useStyles from '../utils/styles';
 
-function Signup() {
+function Signup({ setIsLoggedIn }) {
   const [formData, setFormData] = useState({
     username: '',
     email: '',
     password: '',
     city: '',
     state: '',
-    zip: "",
+    zip: '',
   });
 
   const styles = useStyles();
@@ -28,15 +28,15 @@ function Signup() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-console.log(formData)
     signupMutation({ variables: formData })
       .then((res) => {
+        const token = res.data.signup.token;
+        Auth.login(token);
+        setIsLoggedIn(true); // Set isLoggedIn to true
         console.log('User signed up successfully:', res.data);
-        // Perform any necessary actions after successful signup
       })
       .catch((error) => {
         console.error('Signup error:', error.message);
-        // Handle signup error or display error message to the user
       });
   };
 
@@ -101,7 +101,6 @@ console.log(formData)
 
           <button
             className={styles.button}
-            // onClick={handleSubmit}
             disabled={loading}
           >
             {loading ? 'Signing up...' : 'Submit'}

@@ -106,6 +106,7 @@ export const LOGIN_USER = gql`
   }
 `;
 
+
 export const SIGNUP_USER = gql`
   mutation signup($username: String!, $email: String!, $password: String!, $city: String!, $state: String!, $zip: String!) {
     signup(username: $username, email: $email, password: $password, city: $city, state: $state, zip: $zip) {
