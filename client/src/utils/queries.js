@@ -26,11 +26,9 @@ export const GET_ME = gql`
         serial
         categories {
           _id
-          category
         }
         tradeFor {
           _id
-          category
         }
         expire
         dateListed

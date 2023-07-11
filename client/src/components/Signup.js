@@ -1,18 +1,23 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { SIGNUP_USER } from '../utils/mutations';
-import backgroundImg from './signup_pic.jpg';
 import Auth from '../utils/auth';
 import useStyles from '../utils/styles';
+
 function Signup() {
-    const [formData, setFormData] = useState({
-        username: '',
-        email: '',
-        password: '',
-      });
-  
-  const classes = useStyles();
-  const [signupMutation, { loading,error}] = useMutation(SIGNUP_USER);
+  const [formData, setFormData] = useState({
+    username: '',
+    email: '',
+    password: '',
+    city: '',
+    state: '',
+    zip: '',
+  });
+
+  const styles = useStyles();
+
+  const [signupMutation, { loading, error }] = useMutation(SIGNUP_USER);
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -35,33 +40,75 @@ function Signup() {
   };
 
   return (
-    <div>
-      <h1>Signup Page</h1>
-      <form onSubmit={handleSubmit}>
-        {/* Input fields for username, email, and password */}
-        <input
-          type="text"
-          name="username"
-          value={formData.username}
-          onChange={handleChange}
-        />
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-        />
-        <button type="submit" disabled={loading}>
-          {loading ? 'Signing up...' : 'Signup'}
-        </button>
-      </form>
-      {error && <p>{error.message}</p>}
+    <div className={styles.background}>
+      <div className={styles.container}>
+        <h2>Sign Up</h2>
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <input
+            className={styles.input}
+            type="text"
+            name="username"
+            placeholder="Username"
+            value={formData.username}
+            onChange={handleChange}
+          />
+
+          <input
+            className={styles.input}
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleChange}
+          />
+
+          <input
+            className={styles.input}
+            type="password"
+            name="password"
+            placeholder="Create Password"
+            value={formData.password}
+            onChange={handleChange}
+          />
+
+          <input
+            className={styles.input}
+            type="text"
+            name="city"
+            placeholder="City"
+            value={formData.city}
+            onChange={handleChange}
+          />
+
+          <input
+            className={styles.input}
+            type="text"
+            name="state"
+            placeholder="State"
+            value={formData.state}
+            onChange={handleChange}
+          />
+
+          <input
+            className={styles.input}
+            type="text"
+            name="zip"
+            placeholder="Zip code"
+            value={formData.zip}
+            onChange={handleChange}
+          />
+
+          <button
+            className={styles.button}
+            // onClick={handleSubmit}
+            disabled={loading}
+          >
+            {loading ? 'Signing up...' : 'Submit'}
+          </button>
+
+          {error && <p>Error occurred. Please try again.</p>}
+        </form>
+      </div>
     </div>
   );
 }

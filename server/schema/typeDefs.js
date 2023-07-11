@@ -34,6 +34,7 @@ type User {
   type Category {
     _id: ID!
     name: String!
+    category: Category!
   }
   
   type Auth{
@@ -100,8 +101,8 @@ type User {
     
     removeUser(id : ID!) : User
     removeItem(id : ID!) : Item
-    signup(email:String!,password:String!,name:String!):Auth
-    loginUser(email:String!,password:String!,name:String!):Auth
+    signup($username:String!, $email:String!, $password:String!, $city: String!, $state:String!, $zip:Int!):Auth
+    loginUser(password:String!,username:String!):Auth
   }
   `
   module.exports = typeDefs;

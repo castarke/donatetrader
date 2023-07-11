@@ -11,7 +11,7 @@ import Gallery from './components/Gallery';
 import RecentTrades from './components/RecentTrades';
 import { Contact } from './pages/Contact'
 import UpdateItemForm from './pages/MyAccountPages/UpdateItem';
-//import Login from './components/Login';
+import Login from './components/Login';
 // import LoginNavbar from './LoginNav';
 import Signup from './components/Signup';
 import ItemPage from './pages/ItemPage'
@@ -48,7 +48,7 @@ function App() {
           <Route path="/account" element={<AccountInfo />} /> 
           <Route path="/additem" element={<AddItem />} />
           <Route path="/updateitem/:itemId" element={<UpdateItemForm />} />
-         
+         <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />}/>
           <Route path ="/contact" element={<Contact />}/>
           <Route path ="/item/:itemId" element={<ItemPage />}/>

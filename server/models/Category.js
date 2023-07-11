@@ -24,6 +24,7 @@ let Category = model('Category', categorySchema);
 
 //process categories
 const createCategories = async () => {
+  console.log(categories)
   for (const category of categories) {
     const existingCategory = await Category.findOne({ name: category.name });
 
@@ -37,7 +38,7 @@ const createCategories = async () => {
   console.log('All categories processed.');
 }
 
-createCategories()
+// createCategories()
 
 module.exports = {
   Subcategory,
