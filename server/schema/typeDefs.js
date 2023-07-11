@@ -9,10 +9,10 @@ type User {
     username: String!
     email: String!
     password: String!
-    city: String!
-    state: String!
-    zip: Int!
-    items: [Item!]!
+    city: String
+    state: String
+    zip: Int
+    items: [Item]
   }
   
   type Item {
@@ -36,6 +36,11 @@ type User {
     name: String!
   }
   
+  type Auth{
+    token:ID!
+    user:User
+  }
+
   type Query {
     getAllUsers: [User!]!
     getUserById(id: ID!): User!
@@ -95,7 +100,8 @@ type User {
     
     removeUser(id : ID!) : User
     removeItem(id : ID!) : Item
-    signup(email:String!,password:String!,name:String!):User!
+    signup(email:String!,password:String!,name:String!):Auth
+    loginUser(email:String!,password:String!,name:String!):Auth
   }
   `
   module.exports = typeDefs;

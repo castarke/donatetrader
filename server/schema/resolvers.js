@@ -1,5 +1,5 @@
 const { Category, Items, Users } = require('../models');
-
+const { signToken } = require('../utils/auth');
 const resolvers = {
 
   Date: {
@@ -114,10 +114,11 @@ const resolvers = {
       return Items.findOneAndDelete({ _id: itemId });
     },
 
-    signup:async(_,{name,email,password})=>{
-      const user=new User({name,email,password});
-      await user.save();
-      return user;
+    signup:async(parent,{name,email,password})=>{
+      const user=await Users.create({username,email,password});
+      const token=signToken(user);
+      //await user.save();
+      return {token,user};
     },
   },
 };
