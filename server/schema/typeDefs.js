@@ -11,7 +11,7 @@ type User {
     password: String!
     city: String
     state: String
-    zip: Int
+    zip: String
     items: [Item]
   }
   
@@ -58,7 +58,7 @@ type User {
       password: String!,
       city: String!,
       state: String!,
-      zip: Int!,
+      zip: String!,
     ) : User
 
     updateUser(
@@ -68,7 +68,7 @@ type User {
       password: String!,
       city: String!,
       state: String!,
-      zip: Int!,
+      zip: String!,
       items: [ID!]!,
     ) : User
 
@@ -101,7 +101,7 @@ type User {
     
     removeUser(id : ID!) : User
     removeItem(id : ID!) : Item
-    signup($username:String!, $email:String!, $password:String!, $city: String!, $state:String!, $zip:Int!):Auth
+    signup(username:String!, email:String!, password:String!, city: String!, state:String!, zip:String!):Auth
     loginUser(password:String!,username:String!):Auth
   }
   `
