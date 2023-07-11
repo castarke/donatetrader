@@ -1,15 +1,30 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { SIGNUP_USER } from '../utils/mutations';
+<<<<<<< HEAD
 import backgroundImg from './signup_pic.jpg';
 import Auth from '../utils/auth';
+=======
+import useStyles from '../utils/styles';
+>>>>>>> 3f80cdb0e78bd06a6be88fafa5bdb3650ae6793b
 
 function Signup() {
-    const [formData, setFormData] = useState({
-        username: '',
-        email: '',
-        password: '',
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [signupMutation, { loading, error }] = useMutation(SIGNUP_USER);
+  const classes = useStyles();
+
+  const handleSignup = async () => {
+    try {
+      const response = await signupMutation({
+        variables: {
+          email,
+          password,
+          name,
+        },
       });
+<<<<<<< HEAD
   const [signupMutation, { loading }] = useMutation(SIGNUP_USER);
 
   const [errors, setErrors] = useState({});
@@ -40,125 +55,51 @@ function Signup() {
         });
     } else {
       setErrors(validationErrors);
+=======
+    } catch (error) {
+      console.log(error);
+>>>>>>> 3f80cdb0e78bd06a6be88fafa5bdb3650ae6793b
     }
   };
 
-  const validateForm = (formData) => {
-    const errors = {};
-
-    if (!formData.username.trim()) {
-      errors.username = 'Username is required';
-    }
-
-    if (!formData.email.trim()) {
-      errors.email = 'Email is required';
-    } else if (!isValidEmail(formData.email)) {
-      errors.email = 'Invalid email format';
-    }
-
-    if (!formData.password.trim()) {
-      errors.password = 'Password is required';
-    }
-
-    return errors;
-  };
-
-  const isValidEmail = (email) => {
-    // Regular expression for basic email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
-
-return(
-    <div style={styles.background}>
-      <div style={styles.container}>
-        <h1>Signup Page</h1>
-        <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="username">Username:</label>
+  return (
+    <div className={classes.background}>
+      <div className={classes.container}>
+        <h2>Sign Up</h2>
+        <div className={classes.form}>
           <input
+            className={classes.input}
             type="text"
-            id="username"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
+            placeholder="Please enter your name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
-          {errors.username && <p>{errors.username}</p>}
-        </div>
-        <div>
-          <label htmlFor="email">Email:</label>
           <input
+            className={classes.input}
             type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
+            placeholder="Please enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
-          {errors.email && <p>{errors.email}</p>}
-        </div>
-        <div>
-          <label htmlFor="password">Password:</label>
           <input
+            className={classes.input}
             type="password"
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
+            placeholder="Please create a password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
-          {errors.password && <p>{errors.password}</p>}
+          <button
+            className={classes.button}
+            onClick={handleSignup}
+            disabled={loading}
+          >
+            {loading ? 'Signing up...' : 'Submit'}
+          </button>
+          {error && <p>Error occurred. Please try again.</p>}
         </div>
-        <button type="submit" disabled={loading}>
-          {loading ? 'Signing up...' : 'Signup'}
-        </button>
-      </form>
-    </div>
+      </div>
     </div>
   );
-};
-
-const styles = {
-  background: {
-    backgroundColor: '#dcdcdc',
-    backgroundImage: `url(${backgroundImg})`, // Set the background image
-    backgroundSize: 'cover', // Adjust the background size
-    backgroundRepeat: 'no-repeat', // Prevent repeating the image
-    backgroundPosition: 'center', // Center the background image
-    minHeight: '80vh', // Set a minimum height to cover the entire viewport
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: '20px',
-    border: '1px solid #ccc',
-    borderRadius: '4px',
-    maxWidth: '300px',
-    backgroundColor: 'rgba(255, 255, 255, 0.3)',
-  },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    marginTop: '20px',
-  },
-  input: {
-    width: '100%',
-    padding: '10px',
-    marginBottom: '10px',
-    border: '1px solid teal',
-    borderRadius: '4px',
-  },
-  button: {
-    padding: '10px 20px',
-    background: '#4CAF50',
-    color: 'white',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer',
-  },
-};
+}
 
 export default Signup;

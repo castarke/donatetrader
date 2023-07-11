@@ -1,7 +1,11 @@
 const { Category, Items, Users } = require('../models');
+<<<<<<< HEAD
 const {User}=require('../models');
 const { signToken } = require('../utils/auth');
 //const users=[];
+=======
+
+>>>>>>> 3f80cdb0e78bd06a6be88fafa5bdb3650ae6793b
 const resolvers = {
 
   Date: {
@@ -13,20 +17,18 @@ const resolvers = {
     },
   },
 
-
   Query: {
-    users:() => users,
-
-    // getUser: (parent, { id }) => {
-    //   return Users.findOne(user => user.id === id);
-    // },
-
     getAllUsers: async () => {
       return Users.find();
     },
 
+<<<<<<< HEAD
     getUser: async (parent, { id }) => {
       return Users.findOne({ id: id })
+=======
+    getUserById: async (parent, { id }) => {
+      return Users.findOne({ _id: id })
+>>>>>>> 3f80cdb0e78bd06a6be88fafa5bdb3650ae6793b
         .populate({
           path: 'items',
           model: 'items',
@@ -46,7 +48,13 @@ const resolvers = {
     },
 
     getItemById: async (parent, { id }) => {
-      return Items.findOne({ _id: id });
+      return Items.findOne({ _id: id })
+      .populate({
+        path: 'owner',
+        model: 'users',
+      })
+      .populate('categories')
+      .populate('tradeFor');
     },
 
     getAllCategories: async () => {
@@ -91,6 +99,24 @@ const resolvers = {
    },
 
 
+   updateItem: async (parent, { _id, desc, imagePath, value, donate, yearMade, model, serial, categories, tradeFor }) => {
+    return Items.findOneAndUpdate(
+      { _id: _id },
+      {
+        desc,
+        imagePath,
+        value,
+        donate,
+        yearMade,
+        model,
+        serial,
+        categories,
+        tradeFor,
+      },
+      { new: true }
+    );
+  },
+
     removeUser: async (parent, { userId }) => {
       return Users.findOneAndDelete({ _id: userId });
     },
@@ -99,6 +125,7 @@ const resolvers = {
       return Items.findOneAndDelete({ _id: itemId });
     },
 
+<<<<<<< HEAD
     signup: async (parent, { username, email,password }) => {
       // Perform server-side validation
       //const errors = {};
@@ -155,6 +182,14 @@ const resolvers = {
     }
     }
   };
-
+=======
+    signup:async(_,{name,email,password})=>{
+      const user=new User({name,email,password});
+      await user.save();
+      return user;
+    },
+  },
+};
+>>>>>>> 3f80cdb0e78bd06a6be88fafa5bdb3650ae6793b
 
 module.exports = resolvers;

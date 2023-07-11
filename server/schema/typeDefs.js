@@ -34,7 +34,6 @@ type User {
   type Category {
     _id: ID!
     name: String!
-    category: String! 
   }
   
   type Auth{
@@ -43,10 +42,8 @@ type User {
   }
 
   type Query {
-    
-    users:[User!]!
-    getUser(id: ID!): User!
     getAllUsers: [User!]!
+    getUserById(id: ID!): User!
     getAllItems(first:Int): [Item]
     getItemById(id: ID!): Item 
     getCategoryById(id: ID!): Category
@@ -87,10 +84,28 @@ type User {
       tradeFor: [ID]
     ): Item
 
+    updateItem(
+      _id: ID!
+      owner: ID!
+      desc: String!
+      imagePath: String
+      value: Float
+      donate: Boolean
+      yearMade: Int!
+      model: String
+      serial: String
+      categories: [ID]
+      tradeFor: [ID]
+    ): Item
+    
     removeUser(id : ID!) : User
     removeItem(id : ID!) : Item
+<<<<<<< HEAD
     signup(username:String!,email:String!,password:String!):Auth
     loginUser(username: String!, password: String!): Auth
+=======
+    signup(email:String!,password:String!,name:String!):User!
+>>>>>>> 3f80cdb0e78bd06a6be88fafa5bdb3650ae6793b
   }
-  `;
+  `
   module.exports = typeDefs;

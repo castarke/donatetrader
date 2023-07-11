@@ -75,48 +75,39 @@ mutation createItem(
 
 
 export const UPDATE_ITEM = gql`
-  mutation updateItem($itemId: ID!, $desc: String, $imagePath: String, $value: Float, $donate: Boolean, $yearMade: Int, $model: String, $serial: String, $categoryIds: [ID!], $tradeForIds: [ID!]) {
-    updateItem(itemId: $itemId, desc: $desc, imagePath: $imagePath, value: $value, donate: $donate, yearMade: $yearMade, model: $model, serial: $serial, categoryIds: $categoryIds, tradeForIds: $tradeForIds) {
+mutation updateItem($itemId: ID!, $owner:ID!, $desc: String!, $imagePath: String, $value: Float, $donate: Boolean, $yearMade: Int!, $model: String, $serial: String, $categories: [ID!], $tradeFor: [ID!]) {
+  updateItem(_id: $itemId, owner:$owner, desc: $desc, imagePath: $imagePath, value: $value, donate: $donate, yearMade: $yearMade, model: $model, serial: $serial, categories: $categories, tradeFor: $tradeFor) {
+    _id
+    owner{_id}
+    desc
+    imagePath
+    value
+    donate
+    yearMade
+    model
+    serial
+    categories {
       _id
-      owner {
-        _id
-        username
-        email
-      }
-      desc
-      imagePath
-      value
-      donate
-      yearMade
-      model
-      serial
-      categories {
-        _id
-      }
-      tradeFor {
-        _id
-      }
-      expire
-      dateListed
+      name
+    }
+    tradeFor {
+      _id
+      name
     }
   }
+}
 `;
 
 export const LOGIN_USER = gql`
   mutation loginUser($email: String!, $password: String!) {
     loginUser(email: $email, password: $password) {
       token
-      user {
-        id
-        username
-        email
-        # Add any other desired user fields
-      }
     }
   }
 `;
 
 export const SIGNUP_USER=gql`
+<<<<<<< HEAD
   mutation signup ($username:String!, $email:String!, $password:String!){
     signup(username:$username, email:$email, password:$password){
       token
@@ -127,6 +118,13 @@ export const SIGNUP_USER=gql`
       }
       
   
+=======
+  mutation Signup($email:String!, $password:String!, $name:String!){
+    signup(email:$email, password:$password, name:$name){
+      _id
+      name
+      email
+>>>>>>> 3f80cdb0e78bd06a6be88fafa5bdb3650ae6793b
     }
   }
 `;
