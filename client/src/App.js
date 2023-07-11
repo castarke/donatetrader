@@ -11,6 +11,7 @@ import Gallery from './components/Gallery';
 import RecentTrades from './components/RecentTrades';
 import { Contact } from './pages/Contact'
 import UpdateItemForm from './pages/MyAccountPages/UpdateItem';
+import Search from './pages/Search';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import ItemPage from './pages/ItemPage'
@@ -46,12 +47,13 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/account" element={<AccountInfo />} /> 
-          <Route path="/additem/:ownerId" element={<AddItem />} />
-          <Route path="/updateitem/:itemId" element={<UpdateItemForm />} />
           <Route path='/login' element={<Login setIsLoggedIn={setIsLoggedIn} />} />
           <Route path='/signup' element={<Signup setIsLoggedIn={setIsLoggedIn} />} />
           <Route path ="/contact" element={<Contact />} />
           <Route path ="/item/:itemId" element={<ItemPage />} />
+          <Route path="/additem/:ownerId" element={<AddItem />} />
+          <Route path="/updateitem/:itemId" element={<UpdateItemForm />} />
+          <Route path="/search/:searchCriteria" element={<Search />} />
         </Routes>
         {/* <SearchCriteria /> */}
         {/* <RecentTrades /> */}

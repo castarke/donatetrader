@@ -9,7 +9,7 @@ import useStyles from '../utils/styles'
 
 const AccountInfo = () => {
   const classes = useStyles();
-  const userId = '64ad0a616d6e9c7814c9a4fa';
+  const userId = '64ad97284229c43aef83e8ed';
 
   const { loading, error, data } = useQuery(GET_ME, {
     variables: {
