@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { UPDATE_ITEM } from '../../utils/mutations';
 import { GET_ITEM_BY_ID } from '../../utils/queries';
+import { GET_ALL_CATEGORIES } from '../../utils/queries';
 import CloudinaryUploadWidget from '../../components/CloudinaryUploadWidget';
 import SearchCriteria from '../../components/SearchCriteria'
 import RecentTrades from '../../components/RecentTrades'
@@ -19,6 +20,9 @@ const UpdateItemForm = () => {
     variables: { id: itemId },
   });
 
+  const { loading:loadingCategory , error: categoryError, data:categoryData} = useQuery(GET_ALL_CATEGORIES);
+
+
   const [itemData, setItemData] = useState({
     desc: '',
     imagePath: '',
@@ -30,6 +34,9 @@ const UpdateItemForm = () => {
     categories: [],
     tradeFor: []
   });
+
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedTradeFor, setSelectedTradeFor] = useState([]);
 
   useEffect(() => {
     if (currentItemData) {
@@ -46,6 +53,8 @@ const UpdateItemForm = () => {
         categories: currentData.categories,
         tradeFor: currentData.tradeFor,
       });
+      setSelectedCategories(currentData.categories);
+      setSelectedTradeFor(currentData.tradeFor);
     }
   }, [currentItemData]);
 
@@ -84,8 +93,22 @@ const UpdateItemForm = () => {
       });
   };
 
-  if (currentItemLoading || loading) return <p>Loading item...</p>;
-  if (currentItemError || error) return <p>Error loading item: {error.message}</p>;
+  const handleCategoryChange = (e) => {
+    const selectedOptions = Array.from(e.target.selectedOptions);
+    const selectedValues = selectedOptions.map((option) => option.value);
+    setSelectedCategories(selectedValues);
+  };
+
+  const handleTradeForChange = (e) => {
+    const selectedOptions = Array.from(e.target.selectedOptions);
+    const selectedValues = selectedOptions.map((option) => option.value);
+    setSelectedTradeFor(selectedValues);
+  };
+
+  if (currentItemLoading || loadingCategory || loading) return <p>Loading item...</p>;
+  if (currentItemError || categoryError || error) return <p>Error loading item: {error.message}</p>;
+
+  const categories = categoryData.getAllCategories
 
   return (
     <div>
@@ -150,6 +173,18 @@ const UpdateItemForm = () => {
             onChange={handleChange}
           />
         </label>
+        <label>Categories</label>
+        <select name="categories" onChange={handleCategoryChange} value={selectedCategories} multiple>
+            {categories.map((item) =>(
+              <option key={item._id} value={item._id}>{item.name}</option>
+            ))}
+        </select>
+        <label>Want to Trade For</label>
+        <select name="tradeFor" onChange={handleTradeForChange} value={selectedTradeFor} multiple>
+            {categories.map((item) =>(
+              <option key={item._id} value={item._id}>{item.name}</option>
+            ))}
+        </select>
         <button type="submit">Update Item</button>
       </form>
     </div>

@@ -9,7 +9,7 @@ const Item = ({ itemId }) => {
   });
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  if (error) return <p>Error: {error.message}{console.log(error, itemId)}</p>;
 
   const item = data?.getItemById; 
 

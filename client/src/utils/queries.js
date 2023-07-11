@@ -1,5 +1,14 @@
 import { gql } from '@apollo/client';
 
+
+export const SEARCH_BY = gql`
+query searchBy($searchCriteria: SearchCriteria!) {
+  searchBy(searchCriteria: $searchCriteria) {
+    _id
+  }
+}
+`;
+
 export const GET_ME = gql`
   query ($userId: ID!) {
     getUserById(id: $userId) {
