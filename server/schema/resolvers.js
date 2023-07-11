@@ -10,6 +10,25 @@ const resolvers = {
   },
 
   Query: {
+    searchBy: async (_, { searchCriteria }) => {
+      const { searchText, categories } = searchCriteria;
+      let query = {};
+      if (searchText) {
+        query.desc = { $regex: searchText, $options: 'i' };
+      }
+  
+      if (categories && categories.length > 0) {
+        query.categories = { $in: categories };
+      }
+  
+      try {
+        const searchResults = await Items.find(query);
+        console.log(searchResults)
+        return searchResults;
+      } catch (error) {
+        throw new Error('No Items Found!');
+      }
+    },
     getAllUsers: async () => {
       return Users.find();
     },

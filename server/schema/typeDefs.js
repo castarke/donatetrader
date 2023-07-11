@@ -4,6 +4,11 @@ const typeDefs = gql`
 
 scalar Date
 
+input SearchCriteria{
+  searchText: String
+  categories: [ID]
+}
+
 type User {
     _id: ID!
     username: String!
@@ -43,6 +48,7 @@ type User {
   }
 
   type Query {
+    searchBy(searchCriteria: SearchCriteria!): [Item]
     getAllUsers: [User!]!
     getUserById(id: ID!): User!
     getAllItems(first:Int): [Item]
