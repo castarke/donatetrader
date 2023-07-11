@@ -1,11 +1,9 @@
 const { Category, Items, Users } = require('../models');
 const { signToken } = require('../utils/auth');
-const resolvers = {
 
+const resolvers = {
   Date: {
-    // Resolver function for the Date scalar type
     resolve: (date) => {
-      // Format the date value as "dd/mm/yyyy"
       const formattedDate = date.toLocaleDateString("en-GB");
       return formattedDate;
     },
@@ -31,19 +29,19 @@ const resolvers = {
 
     getAllItems: async (_, { first }) => {
       if (first) {
-        return Items.find().limit(first).sort({dateListed: -1});
+        return Items.find().limit(first).sort({ dateListed: -1 });
       }
       return Items.find();
     },
 
     getItemById: async (parent, { id }) => {
       return Items.findOne({ _id: id })
-      .populate({
-        path: 'owner',
-        model: 'users',
-      })
-      .populate('categories')
-      .populate('tradeFor');
+        .populate({
+          path: 'owner',
+          model: 'users',
+        })
+        .populate('categories')
+        .populate('tradeFor');
     },
 
     getAllCategories: async () => {
@@ -52,11 +50,11 @@ const resolvers = {
 
     getCategoryById: async (parent, { categoryId }) => {
       return Category.findOne({ _id: categoryId });
-    }
+    },
   },
 
   Mutation: {
-    createUser: async (parent, data ) => {
+    createUser: async (parent, data) => {
       return Users.create(...data);
     },
 
@@ -72,39 +70,39 @@ const resolvers = {
         serial,
         categories: categories,
         tradeFor: tradeFor,
-        expire: null, // You can set the initial value for 'expire' field as per your requirement
-        dateListed: new Date().toISOString() // You can set the initial value for 'dateListed' field as per your requirement
+        expire: null,
+        dateListed: new Date().toISOString()
       });
-    
+
       return newItem;
     },
 
-    updateUser: async (parent, {userId, data})=> {
+    updateUser: async (parent, { userId, data }) => {
       return Users.findOneAndUpdate(
-         { _id: userId },
-         { $push: {...data} },
-         { new: true }
+        { _id: userId },
+        { $push: { ...data } },
+        { new: true }
       );
-   },
+    },
 
 
-   updateItem: async (parent, { _id, desc, imagePath, value, donate, yearMade, model, serial, categories, tradeFor }) => {
-    return Items.findOneAndUpdate(
-      { _id: _id },
-      {
-        desc,
-        imagePath,
-        value,
-        donate,
-        yearMade,
-        model,
-        serial,
-        categories,
-        tradeFor,
-      },
-      { new: true }
-    );
-  },
+    updateItem: async (parent, { _id, desc, imagePath, value, donate, yearMade, model, serial, categories, tradeFor }) => {
+      return Items.findOneAndUpdate(
+        { _id: _id },
+        {
+          desc,
+          imagePath,
+          value,
+          donate,
+          yearMade,
+          model,
+          serial,
+          categories,
+          tradeFor,
+        },
+        { new: true }
+      );
+    },
 
     removeUser: async (parent, { userId }) => {
       return Users.findOneAndDelete({ _id: userId });
@@ -114,11 +112,15 @@ const resolvers = {
       return Items.findOneAndDelete({ _id: itemId });
     },
 
-    signup:async(parent,{username,email,password})=>{
-      const user=await Users.create({username,email,password});
-      const token=signToken(user);
-      //await user.save();
-      return {token,user};
+    signup: async (parent, { username, email, password, city, state, zip }) => {
+      const user = await Users.create({ username, email, password, city, state, zip });
+      const token = signToken(user);
+
+      if (!token) {
+        throw new Error("Token generation failed.");
+      }
+
+      return { token }; 
     },
   },
 };

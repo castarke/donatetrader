@@ -11,7 +11,7 @@ function Signup() {
     password: '',
     city: '',
     state: '',
-    zip: '',
+    zip: "",
   });
 
   const styles = useStyles();
@@ -21,13 +21,14 @@ function Signup() {
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+console.log(formData)
     signupMutation({ variables: formData })
       .then((res) => {
         console.log('User signed up successfully:', res.data);
@@ -91,7 +92,7 @@ function Signup() {
 
           <input
             className={styles.input}
-            type="text"
+            type="number"
             name="zip"
             placeholder="Zip code"
             value={formData.zip}
