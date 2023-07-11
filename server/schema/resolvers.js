@@ -13,7 +13,7 @@ const resolvers = {
     getAllUsers: async () => {
       return Users.find();
     },
-
+// 
     getUserById: async (parent, { id }) => {
       return Users.findOne({ _id: id })
         .populate({
