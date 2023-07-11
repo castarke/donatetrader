@@ -1,114 +1,117 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { SIGNUP_USER } from '../utils/mutations';
-import backgroundImg from './signup_pic.jpg';
+import Auth from '../utils/auth';
+import useStyles from '../utils/styles';
 
 function Signup() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
+  const [formData, setFormData] = useState({
+    username: '',
+    email: '',
+    password: '',
+    city: '',
+    state: '',
+    zip: "",
+  });
+
+  const styles = useStyles();
+
   const [signupMutation, { loading, error }] = useMutation(SIGNUP_USER);
 
-  const handleSignup = async () => {
-    try {
-      const response = await signupMutation({
-        variables: {
-          email,
-          password,
-          name,
-        },
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+console.log(formData)
+    signupMutation({ variables: formData })
+      .then((res) => {
+        console.log('User signed up successfully:', res.data);
+        // Perform any necessary actions after successful signup
+      })
+      .catch((error) => {
+        console.error('Signup error:', error.message);
+        // Handle signup error or display error message to the user
       });
-    } catch (error) {
-      console.log(error);
-    }
   };
 
   return (
-    <div style={styles.background}>
-      <div style={styles.container}>
+    <div className={styles.background}>
+      <div className={styles.container}>
         <h2>Sign Up</h2>
-        <div style={styles.form}>
-          <p>Please enter your name</p>
+        <form className={styles.form} onSubmit={handleSubmit}>
           <input
-            style={styles.input}
+            className={styles.input}
             type="text"
-            placeholder="Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            name="username"
+            placeholder="Username"
+            value={formData.username}
+            onChange={handleChange}
           />
-          <p>Please enter your email</p>
+
           <input
-            style={styles.input}
+            className={styles.input}
             type="email"
+            name="email"
             placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={formData.email}
+            onChange={handleChange}
           />
-          <p>Please create a password</p>
+
           <input
-            style={styles.input}
+            className={styles.input}
             type="password"
+            name="password"
             placeholder="Create Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={formData.password}
+            onChange={handleChange}
           />
+
+          <input
+            className={styles.input}
+            type="text"
+            name="city"
+            placeholder="City"
+            value={formData.city}
+            onChange={handleChange}
+          />
+
+          <input
+            className={styles.input}
+            type="text"
+            name="state"
+            placeholder="State"
+            value={formData.state}
+            onChange={handleChange}
+          />
+
+          <input
+            className={styles.input}
+            type="number"
+            name="zip"
+            placeholder="Zip code"
+            value={formData.zip}
+            onChange={handleChange}
+          />
+
           <button
-            style={styles.button}
-            onClick={handleSignup}
+            className={styles.button}
+            // onClick={handleSubmit}
             disabled={loading}
           >
             {loading ? 'Signing up...' : 'Submit'}
           </button>
+
           {error && <p>Error occurred. Please try again.</p>}
-        </div>
+        </form>
       </div>
     </div>
   );
 }
-
-const styles = {
-  background: {
-    backgroundColor: '#dcdcdc',
-    backgroundImage: `url(${backgroundImg})`, // Set the background image
-    backgroundSize: 'cover', // Adjust the background size
-    backgroundRepeat: 'no-repeat', // Prevent repeating the image
-    backgroundPosition: 'center', // Center the background image
-    minHeight: '80vh', // Set a minimum height to cover the entire viewport
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: '20px',
-    border: '1px solid #ccc',
-    borderRadius: '4px',
-    maxWidth: '300px',
-    backgroundColor: 'rgba(255, 255, 255, 0.3)',
-  },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    marginTop: '20px',
-  },
-  input: {
-    width: '100%',
-    padding: '10px',
-    marginBottom: '10px',
-    border: '1px solid teal',
-    borderRadius: '4px',
-  },
-  button: {
-    padding: '10px 20px',
-    background: '#4CAF50',
-    color: 'white',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer',
-  },
-};
 
 export default Signup;

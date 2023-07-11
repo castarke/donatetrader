@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const CREATE_USER = gql`
-  mutation createUser($username: String!, $email: String!, $password: String!, $city: String!, $state: String!, $zip: Int!) {
+  mutation createUser($username: String!, $email: String!, $password: String!, $city: String!, $state: String!, $zip:String!) {
     createUser(username: $username, email: $email, password: $password, city: $city, state: $state, zip: $zip) {
       _id
       username
@@ -17,7 +17,7 @@ export const CREATE_USER = gql`
 `;
 
 export const UPDATE_USER = gql`
-  mutation updateUser($userId: ID!, $username: String!, $email: String!, $password: String!, $city: String!, $state: String!, $zip: Int!) {
+  mutation updateUser($userId: ID!, $username: String!, $email: String!, $password: String!, $city: String!, $state: String!, $zip: String!) {
     updateUser(userId: $userId, username: $username, email: $email, password: $password, city: $city, state: $state, zip: $zip) {
       _id
       username
@@ -99,19 +99,25 @@ mutation updateItem($itemId: ID!, $owner:ID!, $desc: String!, $imagePath: String
 `;
 
 export const LOGIN_USER = gql`
-  mutation loginUser($email: String!, $password: String!) {
-    loginUser(email: $email, password: $password) {
+  mutation loginUser($username: String!, $password: String!) {
+    loginUser(username: $username, password: $password) {
       token
     }
   }
 `;
 
-export const SIGNUP_USER=gql`
-  mutation Signup($email:String!, $password:String!, $name:String!){
-    signup(email:$email, password:$password, name:$name){
-      _id
-      name
-      email
+export const SIGNUP_USER = gql`
+  mutation signup($username: String!, $email: String!, $password: String!, $city: String!, $state: String!, $zip: String!) {
+    signup(username: $username, email: $email, password: $password, city: $city, state: $state, zip: $zip) {
+      token
+      user {
+        _id
+        username
+        email
+        city
+        state
+        zip
+      }
     }
   }
 `;

@@ -26,11 +26,9 @@ export const GET_ME = gql`
         serial
         categories {
           _id
-          category
         }
         tradeFor {
           _id
-          category
         }
         expire
         dateListed
@@ -94,7 +92,13 @@ query getItemById($id: ID!) {
 }
 `;
 
-
+export const MY_ITEMS = gql`
+query getItemByOwner($owner: ID!) {
+  getItemByOwner(owner: $owner) {
+    _id
+  }
+}
+`;
 export const GET_Latest_9 = gql`
   query {
     getAllItems(first: 9) {
