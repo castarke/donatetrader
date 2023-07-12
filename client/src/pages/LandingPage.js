@@ -45,6 +45,7 @@ export default function LandingPage() {
   return (
     <div className={classes.landingPageContainer}>
       <AppBar position="static" className={classes.appBar} style={{ backgroundColor: '#66B2B2' }}>
+
         <Toolbar>
           <div className={classes.logoContainer}>
             <Logo className={classes.logo} />
