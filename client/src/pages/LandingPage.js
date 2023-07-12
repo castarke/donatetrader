@@ -45,6 +45,7 @@ export default function LandingPage() {
   return (
     <div className={classes.landingPageContainer}>
       <AppBar position="static" className={classes.appBar} style={{ backgroundColor: '#66B2B2' }}>
+
         <Toolbar>
           <div className={classes.logoContainer}>
             <Logo className={classes.logo} />
@@ -66,20 +67,6 @@ export default function LandingPage() {
             who share your passions.
           </p>
         </Typography>
-      </div>
-      <div className="SignUp">
-        <Link to="/login">
-          <Button variant="contained" color="primary">
-            SignUp
-          </Button>
-        </Link>
-      </div>
-      <div className="LogIn">
-        <Link to="/signup">
-          <Button variant="contained" color="primary">
-            LogIn
-          </Button>
-        </Link>
       </div>
       <div>
         <Button
