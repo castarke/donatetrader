@@ -1,15 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { Grid, Paper } from "@material-ui/core";
 import { GET_ME, MY_ITEMS } from '../utils/queries';
 import { Link } from 'react-router-dom';
 import Item from '../components/item';
-import useStyles from '../utils/styles';
-import { AuthContext } from '../utils/auth';
+import {useStyles} from '../utils/makeStyles';
+import auth from '../utils/auth';
 
 const AccountInfo = () => {
   const classes = useStyles();
-  const { user } = useContext(AuthContext);
+  // const { user } = useContext(AuthContext);
+  const [user, setUser ] = useState(auth.getProfile())
   const userId = user ? user.data._id : null;
 
   const { loading, error, data } = useQuery(GET_ME, {

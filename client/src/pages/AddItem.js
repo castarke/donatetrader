@@ -8,7 +8,7 @@ import CloudinaryUploadWidget from '../components/CloudinaryUploadWidget';
 //import Footer from '../components/Footer'
 import SearchCriteria from '../components/SearchCriteria'
 import RecentTrades from '../components/RecentTrades'
-import useStyles from '../utils/makeStyles'
+import {useStyles} from '../utils/makeStyles'
 import { Link } from 'react-router-dom';
 
 const AddItem = () => {
