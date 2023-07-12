@@ -71,43 +71,37 @@ export default function LandingPage() {
                     who share your passions.
                 </p>
 
-            </div> */}
-            <div className='SignUp'>
-                <Link to="/login">
-                    <Button variant="contained" color="primary">
-                        SignUp
+           
+                <div className='SignUp'>
+                    <Button
+                        component={Link}
+                        to="/signup"
+                        variant="contained"
+                        color="primary"
+                        className={classes.button}
+                        style ={{backgroundColor: '#66b2b2'}}
+                    >
+                        Sign Up
                     </Button>
-                </Link>
-            </div>
-            <div className='LogIn'>
-                <Link to="/signup">
-                    <Button variant="contained" color="primary">
-                        LogIn
+                </div>
+                
+                <div className='LogIn'>
+                    <Button
+                        component={Link}
+                        to="/login"
+                        variant="contained"
+                        color="primary"
+                        className={classes.button}
+                            style ={{backgroundColor: '#66b2b2'}}
+                    >
+                        Log In
                     </Button>
-                </Link>
+                </div>
+            </Typography>
             </div>
-      <div>
-        <Button
-          component={Link}
-          to="/signup"
-          variant="contained"
-          color="primary"
-          className={classes.button}
-          style ={{backgroundColor: '#66b2b2'}}
-        >
-          Sign Up
-        </Button>
-        <Button
-          component={Link}
-          to="/login"
-          variant="contained"
-          color="primary"
-          className={classes.button}
-          style ={{backgroundColor: '#66b2b2'}}
-        >
-          Log In
-        </Button>
-      </div>
+        
+        
+      
     </div>
   );
 }

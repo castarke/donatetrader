@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
-import { BrowserRouter as Router, Routes, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from "./components/Navbar";
 import Home from './pages/Home';
 import AccountInfo from './pages/Account';
@@ -16,6 +16,7 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import ItemPage from './pages/ItemPage'
 import Auth from './utils/auth';
+
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql'
@@ -44,24 +45,15 @@ function App() {
       <Router>
         <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
         <Routes>
-        {/* <Link to="/login">LogIn</Link>
-      <Link to="/signup">SignUp</Link>
+        
+            <Route path="/" element={<Home />} />
+            <Route path='/login' element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+            <Route path='/signup' element={<Signup setIsLoggedIn={setIsLoggedIn} />} />
 
-      <Switch>
-        <Route path="/login">
-          <Login />
-        </Route>
-        <Route path="/signup">
-          <Signup />
-        </Route>
-      </Switch> */}
-          <Route path="/" element={<Home />} />
+          
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/account" element={<AccountInfo />} /> 
-          <Switch>
-          <Route path='/login' element={<Login setIsLoggedIn={setIsLoggedIn} />} />
-          <Route path='/signup' element={<Signup setIsLoggedIn={setIsLoggedIn} />} />
-          </Switch>
+          
           <Route path ="/contact" element={<Contact />} />
           <Route path ="/item/:itemId" element={<ItemPage />} />
           <Route path="/additem/:ownerId" element={<AddItem />} />
