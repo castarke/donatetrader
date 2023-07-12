@@ -13,7 +13,8 @@ const SearchCriteria = () => {
 
   const [searchCriteria, setSearch] = useState({
     searchText: null,
-    categories: null
+    categories: null,
+    value: null
   });
 
   const { loading:loadingCategory , error: categoryError, data:categoryData} = useQuery(GET_ALL_CATEGORIES);
@@ -66,7 +67,19 @@ const SearchCriteria = () => {
         margin="normal"
       />
 
-      <FormControl variant="outlined" margin="normal">
+      <FormControl fullWidth variant="outlined" margin="normal">
+        <InputLabel>Price</InputLabel>
+        <Select name="value" value={searchCriteria.value} onChange={handleInputChange}>
+            <MenuItem value={[0,25]}>$0-$25</MenuItem>
+            <MenuItem value={[26,50]}>$26-$50</MenuItem>
+            <MenuItem value={[51,100]}>$51-$100</MenuItem>
+            <MenuItem value={[101,500]}>$101-$500</MenuItem>
+            <MenuItem value={[500,1000]}>$501-$1000</MenuItem>
+            <MenuItem value={[1001,1000000]}>&gt1000</MenuItem>
+        </Select>
+      </FormControl>
+
+      <FormControl fullWidth variant="outlined" margin="normal">
         <InputLabel>Category</InputLabel>
         <Select
           name="categories"
@@ -87,28 +100,8 @@ const SearchCriteria = () => {
 };
 
 export default SearchCriteria;
-      {/* <FormControl fullWidth variant="outlined" margin="normal">
-        <InputLabel>Condition</InputLabel>
-        <Select value={age} onChange={(e) => setAge(e.target.value)}>
-          <MenuItem value="new">New</MenuItem>
-          <MenuItem value="used">Used</MenuItem>
-        </Select>
-      </FormControl>
-
-      <FormControl fullWidth variant="outlined" margin="normal">
-        <InputLabel>Price</InputLabel>
-        <Select value={category} onChange={(e) => setCategory(e.target.value)}>
-            <MenuItem value="0-25">$0-25</MenuItem>
-            <MenuItem value="26-50">$26-50</MenuItem>
-            <MenuItem value="51-100">$51-100</MenuItem>
-            <MenuItem value="101-150">$101-150</MenuItem>
-            <MenuItem value="151-200">$151-200</MenuItem>
-            <MenuItem value="201-300">$201-300</MenuItem>
-            <MenuItem value="301-400">$301-400</MenuItem>
-            <MenuItem value="401-500">$401-500</MenuItem>
-            <MenuItem value="501 or more">$501 or more</MenuItem>
-        </Select>
-      </FormControl>
+      {/* 
+      
 
 
 
