@@ -1,5 +1,12 @@
 import { gql } from '@apollo/client';
 
+export const GET_DONATIONS = gql`
+query {
+  getDonations{
+    _id
+  }
+}
+`;
 
 export const SEARCH_BY = gql`
 query searchBy($searchCriteria: SearchCriteria!) {

@@ -1,45 +1,44 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import {useStyles} from '../utils/makeStyles';
-import { Modal } from '@material-ui/core';
+import React from 'react';
+import { useQuery } from '@apollo/client';
+import SearchCriteria from '../components/SearchCriteria';
+import RecentTrades from '../components/RecentTrades';
+import {useStyles} from '../utils/makeStyles'
+import {GET_DONATIONS} from '../utils/queries'
+import { Grid, Paper } from "@material-ui/core";
+import Item from '../components/item'
 
-
-function DonationsPage() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
-
+export default function Donations() {
   const classes = useStyles();
+  let items = []
+  const { loading, error, data } = useQuery(GET_DONATIONS);
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
+  for (let item of data.getDonations){
+    items.push(item._id)
+    };
 
   return (
-    <div className={classes.donationContainer}>
-      <h2 className={classes.donationHeading}>Donations Page</h2>
-
-        <div className={classes.donationModal}>
-          <h2>Choose a charity to donate to:</h2>
-          <button onClick={handleOpenModal}>Donate to Red Cross</button>
-          <button onClick={handleOpenModal}>Donate to Salvation Army</button>
+    <div className={classes.container}>
+      <div className={classes.searchContainer}>
+        <SearchCriteria />
+      </div>
+      <div className={classes.itemsContainer}>
+        <div className={classes.root}>
+        <Grid container spacing={2}>
+            {items.map((item) => (
+            <Grid item xs={4} key={item}>
+                <Paper className={classes.paper}>
+                <Item itemId={item} />
+                </Paper>
+            </Grid>
+            ))}
+        </Grid>
         </div>
-
-      {isModalOpen && (
-        <div className={classes.donationModal}>
-          <div className={classes.donationModalContent}>
-            <h2>Thank you for your donation!</h2>
-            <p>The charity will be in touch with you soon.</p>
-            <button onClick={handleCloseModal}>Close</button>
-          </div>
-        </div>
-      )}
+      </div>
+      <div className={classes.searchContainer}>
+        <RecentTrades />
+      </div>
     </div>
   );
-}
-
-export default DonationsPage;
+};
