@@ -72,13 +72,25 @@ function Navbar() {
       to="/logout"
       className={classes.navLink}
       activeClassName="active"
-      key="logout">
-      Logout
-    </NavLink>, 
+      style={linkStyle}
+      key="gallery"
+    >
+      Items for trade
+    </NavLink>,
+    <NavLink
+      exact
+      to="/account"
+      className={classes.link}
+      activeClassName="active"
+      style={linkStyle}
+      key="account"
+    >
+      My Account
+    </NavLink>,
   ];
 
   return (
-    <AppBar position="static" style={{ backgroundColor: "#66b2b2" }}>
+    <AppBar position="static" style ={{backgroundColor: '#66b2b2'}}>
       <CssBaseline />
       <Toolbar>
         <Typography variant="h4" className={classes.navLogo}>

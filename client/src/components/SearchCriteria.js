@@ -13,7 +13,8 @@ const SearchCriteria = () => {
 
   const [searchCriteria, setSearch] = useState({
     searchText: null,
-    categories: null
+    categories: null,
+    value: null
   });
 
   const { loading:loadingCategory , error: categoryError, data:categoryData} = useQuery(GET_ALL_CATEGORIES);
@@ -22,18 +23,19 @@ const SearchCriteria = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(searchCriteria)
     searchItems({ variables: { searchCriteria } })
     .then((result) => {
-      console.log(result)
       const categoryIds = result.data.searchBy.map((item) => item._id).join(",");
       return categoryIds
     })
     .then((categoryIds)=>{
-      console.log(categoryIds)
+      if (!categoryIds){
+        const path = `/search/noitemsfound`;
+        window.location.href = path;
+      }else{
       const path = `/search/${categoryIds}`;
-      console.log(path)
       window.location.href = path;
+      }
     })
     .catch((error) => {
       console.error("Error executing search query:", error);
@@ -55,19 +57,30 @@ const SearchCriteria = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <input
-          type="text"
-          name="searchText"
-          value={searchCriteria.searchText}
-          onChange={handleInputChange}
-        />
-      </div>
-  
-      <FormControl variant="outlined" style={{ width: '100px', height: '20px' }}>
-        <InputLabel variant="outlined" style={{ width: '100px', height: '20px' }}>
-          Category
-        </InputLabel>
+      <TextField
+        label="Search"
+        value={searchCriteria.searchText}
+        name="searchText"
+        onChange={handleInputChange}
+        // fullWidth
+        variant="outlined"
+        margin="normal"
+      />
+
+      <FormControl fullWidth variant="outlined" margin="normal">
+        <InputLabel>Price</InputLabel>
+        <Select name="value" value={searchCriteria.value} onChange={handleInputChange}>
+            <MenuItem value={[0,25]}>$0-$25</MenuItem>
+            <MenuItem value={[26,50]}>$26-$50</MenuItem>
+            <MenuItem value={[51,100]}>$51-$100</MenuItem>
+            <MenuItem value={[101,500]}>$101-$500</MenuItem>
+            <MenuItem value={[500,1000]}>$501-$1000</MenuItem>
+            <MenuItem value={[1001,1000000]}>&gt1000</MenuItem>
+        </Select>
+      </FormControl>
+
+      <FormControl fullWidth variant="outlined" margin="normal">
+        <InputLabel>Category</InputLabel>
         <Select
           name="categories"
           value={searchCriteria.categories}
@@ -95,28 +108,8 @@ const SearchCriteria = () => {
 };
 
 export default SearchCriteria;
-      {/* <FormControl fullWidth variant="outlined" margin="normal">
-        <InputLabel>Condition</InputLabel>
-        <Select value={age} onChange={(e) => setAge(e.target.value)}>
-          <MenuItem value="new">New</MenuItem>
-          <MenuItem value="used">Used</MenuItem>
-        </Select>
-      </FormControl>
-
-      <FormControl fullWidth variant="outlined" margin="normal">
-        <InputLabel>Price</InputLabel>
-        <Select value={category} onChange={(e) => setCategory(e.target.value)}>
-            <MenuItem value="0-25">$0-25</MenuItem>
-            <MenuItem value="26-50">$26-50</MenuItem>
-            <MenuItem value="51-100">$51-100</MenuItem>
-            <MenuItem value="101-150">$101-150</MenuItem>
-            <MenuItem value="151-200">$151-200</MenuItem>
-            <MenuItem value="201-300">$201-300</MenuItem>
-            <MenuItem value="301-400">$301-400</MenuItem>
-            <MenuItem value="401-500">$401-500</MenuItem>
-            <MenuItem value="501 or more">$501 or more</MenuItem>
-        </Select>
-      </FormControl>
+      {/* 
+      
 
 
 

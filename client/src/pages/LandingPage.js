@@ -23,7 +23,6 @@ const AnimatedAppBar = styled(AppBar)`
 
 export default function LandingPage() {
   const classes = useStyles();
-
   return (
      <div className={classes.lpContainer}>
           <AnimatedAppBar position="static" className={classes.lpAppBar}>

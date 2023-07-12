@@ -7,21 +7,31 @@ import Item from "./item";
 import {useStyles} from '../utils/makeStyles';
 
 const Gallery = ({categories}) => {
+
   const classes = useStyles();
   let items=[]
   const { loading, error, data } = useQuery(GET_Latest_9);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
-  if (categories){
+  if (categories && categories != 'noitemsfound'){
     items = categories.split(',')
-    console.log("categories detected", items)
   }else{
     for (let item of data.getAllItems){
-        items.push(item)
+        items.push(item._id)
     };
-    console.log(items)
   }
+
+  if (categories === 'noitemsfound'){
+    return (
+      <div className={classes.root} styles={{paddingTop: "20px"}}>
+
+              <h1>No Items Found!</h1>
+
+    </div>
+    )
+  }
+
   return (
     <div className={classes.root}>
       <Grid container spacing={2}>
