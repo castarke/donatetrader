@@ -4,7 +4,7 @@ import { useParams, Link } from 'react-router-dom';
 import { GET_ITEM_BY_ID, GET_ALL_CATEGORIES } from '../../utils/queries';
 import { UPDATE_ITEM } from '../../utils/mutations';
 import CloudinaryUploadWidget from '../../components/CloudinaryUploadWidget';
-import useStyles from '../../utils/makeStyles';
+import {useStyles} from '../../utils/makeStyles';
 import auth from '../../utils/auth';
 
 const UpdateItemForm = () => {

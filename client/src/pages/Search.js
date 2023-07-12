@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import SearchCriteria from '../components/SearchCriteria';
 import Gallery from '../components/Gallery';
 import RecentTrades from '../components/RecentTrades';
-import useStyles from '../utils/makeStyles'
+import { useStyles } from '../utils/makeStyles'
 
 export default function Search() {
   const classes = useStyles();

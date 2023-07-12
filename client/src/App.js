@@ -15,6 +15,7 @@ import Signup from './components/Signup';
 import ItemPage from './pages/ItemPage'
 import AuthService, { Auth, AuthProvider } from './utils/auth';
 import LandingPage from './pages/LandingPage';
+import About from './pages/About';
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql'
@@ -56,6 +57,7 @@ function App() {
           <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
           <Route path="/signup" element={<Signup setIsLoggedIn={setIsLoggedIn} />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={<About />} />
           <Route path="/item/:itemId" element={<ItemPage />} />
         </Routes>
       </Router>

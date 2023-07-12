@@ -1,9 +1,12 @@
-import { useMutation } from '@apollo/client';
+import React from 'react';
 import { useState } from 'react';
 import Auth from '../utils/auth';
+import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
+import {useStyles} from '../utils/makeStyles';
 
 function Login({ setIsLoggedIn }) {
+  const classes = useStyles();
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -33,63 +36,36 @@ function Login({ setIsLoggedIn }) {
   };
 
   return (
-    <div style={styles.background}>
-      <div style={styles.container}>
-        <h1>Login Page</h1>
-        <form onSubmit={handleSubmit}>
-          {/* Input fields for username and password */}
-          <input
-            type="text"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-          />
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-          />
-          <button type="submit" disabled={loading}>
-            {loading ? 'Logging in...' : 'Login'}
-          </button>
-        </form>
-        {error && <p>{error.message}</p>}
+    <div className={classes.loginBackground}>
+      <div className={classes.loginContainer}>
+        <div className={classes.loginContent}>
+        <h2 className={classes.loginHeading}>Login Page</h2>
+          <form onSubmit={handleSubmit} className={classes.loginForm}>
+            <input
+              type="text"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              className={classes.loginInput}
+              placeholder="Username"
+            />
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              className={classes.loginInput}
+              placeholder="Password"
+            />
+            <button type="submit" disabled={loading} className={classes.loginButton}>
+              {loading ? 'Logging in...' : 'Login'}
+            </button>
+          </form>
+          {error && <p>{error.message}</p>}
+        </div>
       </div>
     </div>
   );
 }
-
-const styles = {
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: '20px',
-    border: '1px solid #ccc',
-    borderRadius: '4px',
-    maxWidth: '300px',
-    margin: '0 auto',
-  },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    marginTop: '20px',
-  },
-  input: {
-    width: '100%',
-    padding: '10px',
-    marginBottom: '10px',
-  },
-  button: {
-    padding: '10px 20px',
-    background: '#4CAF50',
-    color: 'white',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer',
-  },
-};
 
 export default Login;

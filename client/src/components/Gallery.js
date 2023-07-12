@@ -4,7 +4,7 @@ import { Grid, Paper } from "@material-ui/core";
 import { useQuery } from "@apollo/client";
 import { GET_Latest_9 } from "../utils/queries";
 import Item from "./item"; 
-import useStyles from '../utils/styles'
+import {useStyles} from '../utils/makeStyles';
 
 const Gallery = ({categories}) => {
 

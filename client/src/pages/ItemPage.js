@@ -2,7 +2,7 @@ import React from "react";
 import { useQuery } from "@apollo/client";
 import { GET_ITEM_BY_ID } from "../utils/queries";
 import { useParams } from 'react-router-dom';
-import useStyles from '../utils/styles'
+import {useStyles} from '../utils/makeStyles';
 import SearchCriteria from '../components/SearchCriteria';
 import RecentTrades from '../components/RecentTrades'
 

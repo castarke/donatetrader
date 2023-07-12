@@ -86,15 +86,23 @@ const SearchCriteria = () => {
           value={searchCriteria.categories}
           onChange={handleInputChange}
         >
-          {categoryArr.map((item) =>(
-                  <option key={item._id} value={item._id}>{item.name}</option>
-                ))}
+          {categoryArr.map((item) => (
+            <MenuItem key={item._id} value={item._id}>
+              {item.name}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
-
-      <Button type="submit" variant="contained" color="primary">
-        Search
-      </Button>
+  
+      <div>
+        <Button
+          type="submit"
+          variant="contained"
+          style={{ backgroundColor: '#66b2b2', fontSize: '12px', padding: '4px 8px' }}
+        >
+          Search
+        </Button>
+      </div>
     </form>
   );
 };
