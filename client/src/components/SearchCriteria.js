@@ -22,18 +22,19 @@ const SearchCriteria = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(searchCriteria)
     searchItems({ variables: { searchCriteria } })
     .then((result) => {
-      console.log(result)
       const categoryIds = result.data.searchBy.map((item) => item._id).join(",");
       return categoryIds
     })
     .then((categoryIds)=>{
-      console.log(categoryIds)
+      if (!categoryIds){
+        const path = `/search/noitemsfound`;
+        window.location.href = path;
+      }else{
       const path = `/search/${categoryIds}`;
-      console.log(path)
       window.location.href = path;
+      }
     })
     .catch((error) => {
       console.error("Error executing search query:", error);
@@ -55,7 +56,15 @@ const SearchCriteria = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type="text" name="searchText" value={searchCriteria.searchText}  onChange={handleInputChange}></input>
+      <TextField
+        label="Search"
+        value={searchCriteria.searchText}
+        name="searchText"
+        onChange={handleInputChange}
+        // fullWidth
+        variant="outlined"
+        margin="normal"
+      />
 
       <FormControl variant="outlined" margin="normal">
         <InputLabel>Category</InputLabel>
