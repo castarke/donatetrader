@@ -67,20 +67,6 @@ export default function LandingPage() {
           </p>
         </Typography>
       </div>
-      <div className="SignUp">
-        <Link to="/login">
-          <Button variant="contained" color="primary">
-            SignUp
-          </Button>
-        </Link>
-      </div>
-      <div className="LogIn">
-        <Link to="/signup">
-          <Button variant="contained" color="primary">
-            LogIn
-          </Button>
-        </Link>
-      </div>
       <div>
         <Button
           component={Link}
