@@ -49,6 +49,7 @@ type User {
   }
 
   type Query {
+    getDonations:[Item]
     searchBy(searchCriteria: SearchCriteria!): [Item]
     getAllUsers: [User!]!
     getUserById(id: ID!): User!

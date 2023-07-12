@@ -4,13 +4,6 @@ import { useQuery, useLazyQuery } from "@apollo/client";
 import { GET_ALL_CATEGORIES, SEARCH_BY } from '../utils/queries';
 
 const SearchCriteria = () => {
-  //State variables for form values
-  // const [searchText, setSearchText] = useState("");
-  // const [category, setCategory] = useState("");
-  // const [age, setAge] = useState("");
-  // const [price, setPrice] = useState("");
-  // const [location, setLocation] = useState("");
-
   const [searchCriteria, setSearch] = useState({
     searchText: null,
     categories: null,
@@ -43,11 +36,11 @@ const SearchCriteria = () => {
   };
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setSearch((prevSearchCriteria) => ({
-      ...prevSearchCriteria,
-      [name]: value,
-    }));
+    setSearch({
+      ...searchCriteria,
+      [e.target.name]: e.target.value
+    });
+    console.log(searchCriteria)
   };
 
   if (loadingCategory || searchItemsLoading) return <p>Loading...</p>;
@@ -59,7 +52,7 @@ const SearchCriteria = () => {
     <form onSubmit={handleSubmit}>
       <TextField
         label="Search"
-        value={searchCriteria.searchText}
+        value={searchCriteria.searchText || ""}
         name="searchText"
         onChange={handleInputChange}
         fullWidth
@@ -69,13 +62,13 @@ const SearchCriteria = () => {
 
       <FormControl fullWidth variant="outlined" margin="normal">
         <InputLabel>Price</InputLabel>
-        <Select value={searchCriteria.value || ""} name="value"  onChange={handleInputChange}>
+        <Select name="value" value={searchCriteria.value || ""} onChange={handleInputChange}>
             <MenuItem value={[0,25]}>$0-$25</MenuItem>
             <MenuItem value={[26,50]}>$26-$50</MenuItem>
             <MenuItem value={[51,100]}>$51-$100</MenuItem>
             <MenuItem value={[101,500]}>$101-$500</MenuItem>
             <MenuItem value={[500,1000]}>$501-$1000</MenuItem>
-            <MenuItem value={[1001,1000000]}>&gt;1000</MenuItem>
+            <MenuItem value={[1001,1000000]}>&gt1000</MenuItem>
         </Select>
       </FormControl>
 
@@ -86,15 +79,23 @@ const SearchCriteria = () => {
           value={searchCriteria.categories || ""}
           onChange={handleInputChange}
         >
-          {categoryArr.map((item) =>(
-                  <option key={item._id} value={item._id}>{item.name}</option>
-                ))}
+          {categoryArr.map((item) => (
+            <MenuItem key={item._id} value={item._id}>
+              {item.name}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
-
-      <Button type="submit" variant="contained" color="primary">
-        Search
-      </Button>
+  
+      <div>
+        <Button
+          type="submit"
+          variant="contained"
+          style={{ backgroundColor: '#66b2b2', fontSize: '12px', padding: '4px 8px' }}
+        >
+          Search
+        </Button>
+      </div>
     </form>
   );
 };
