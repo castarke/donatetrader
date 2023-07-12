@@ -1,4 +1,3 @@
-import React from "react";
 import {
   AppBar,
   Toolbar,
@@ -88,7 +87,22 @@ function Navbar() {
       My Account
     </NavLink>,
   ];
-
+  const handleLogout = () => {
+    auth.logout();
+  };
+  const logoutLink = <NavLink 
+      exact
+      onClick={handleLogout}
+      className={classes.link}   
+      activeClassName="active"
+      style={linkStyle}
+      key="account">
+    Logout
+  </NavLink>
+console.log(NavigationLinks)
+if(auth.loggedIn()) {
+  NavigationLinks.splice(0,2,logoutLink)
+}
   return (
     <AppBar position="static" style ={{backgroundColor: '#66b2b2'}}>
       <CssBaseline />
