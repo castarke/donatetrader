@@ -18,7 +18,8 @@ const UpdateItemForm = () => {
     variables: { id: itemId },
   });
 
-  const { loading: categoriesLoading, error: categoriesError, data: categoriesData } = useQuery(GET_ALL_CATEGORIES);
+  const { loading:loadingCategory , error: categoryError, data:categoryData} = useQuery(GET_ALL_CATEGORIES);
+
 
   const [itemData, setItemData] = useState({
     desc: '',
@@ -31,6 +32,9 @@ const UpdateItemForm = () => {
     categories: [],
     tradeFor: [],
   });
+
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedTradeFor, setSelectedTradeFor] = useState([]);
 
   useEffect(() => {
     if (currentItemData) {
@@ -47,6 +51,8 @@ const UpdateItemForm = () => {
         categories: currentData.categories.map((category) => category._id),
         tradeFor: currentData.tradeFor.map((category) => category._id),
       });
+      setSelectedCategories(currentData.categories);
+      setSelectedTradeFor(currentData.tradeFor);
     }
   }, [currentItemData]);
 
@@ -85,11 +91,22 @@ const UpdateItemForm = () => {
       });
   };
 
-  if (currentItemLoading || loading || categoriesLoading) return <p>Loading item...</p>;
-  if (currentItemError || error || categoriesError) return <p>Error loading item: {error.message}</p>;
+  const handleCategoryChange = (e) => {
+    const selectedOptions = Array.from(e.target.selectedOptions);
+    const selectedValues = selectedOptions.map((option) => option.value);
+    setSelectedCategories(selectedValues);
+  };
 
-  const { getItemById: currentItem } = currentItemData;
-  const { getAllCategories: categories } = categoriesData;
+  const handleTradeForChange = (e) => {
+    const selectedOptions = Array.from(e.target.selectedOptions);
+    const selectedValues = selectedOptions.map((option) => option.value);
+    setSelectedTradeFor(selectedValues);
+  };
+
+  if (currentItemLoading || loadingCategory || loading) return <p>Loading item...</p>;
+  if (currentItemError || categoryError || error) return <p>Error loading item: {error.message}</p>;
+
+  const categories = categoryData.getAllCategories
 
   return (
     <div>

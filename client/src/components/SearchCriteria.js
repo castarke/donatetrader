@@ -1,53 +1,84 @@
-import React from "react";
+import React, {useState} from "react";
 import { TextField, Select, MenuItem, FormControl, InputLabel, Button } from "@material-ui/core";
+import { useQuery, useLazyQuery } from "@apollo/client";
+import { GET_ALL_CATEGORIES, SEARCH_BY } from '../utils/queries';
 
 const SearchCriteria = () => {
-  // State variables for form values
-  const [searchText, setSearchText] = React.useState("");
-  const [category, setCategory] = React.useState("");
-  const [age, setAge] = React.useState("");
-  const [price, setPrice] = React.useState("");
-  const [location, setLocation] = React.useState("");
+  //State variables for form values
+  // const [searchText, setSearchText] = useState("");
+  // const [category, setCategory] = useState("");
+  // const [age, setAge] = useState("");
+  // const [price, setPrice] = useState("");
+  // const [location, setLocation] = useState("");
 
-  // Handle form submission
+  const [searchCriteria, setSearch] = useState({
+    searchText: null,
+    categories: null
+  });
+
+  const { loading:loadingCategory , error: categoryError, data:categoryData} = useQuery(GET_ALL_CATEGORIES);
+
+  const [searchItems, { loading:searchItemsLoading, error:searchItemsError, data:searchItemsData }] = useLazyQuery(SEARCH_BY);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Perform search or other actions with the form values
-    console.log("Search Text:", searchText);
-    console.log("Category:", category);
-    console.log("Age:", age);
-    console.log("Price:", price);
-    console.log("Location:", location);
+    console.log(searchCriteria)
+    searchItems({ variables: { searchCriteria } })
+    .then((result) => {
+      console.log(result)
+      const categoryIds = result.data.searchBy.map((item) => item._id).join(",");
+      return categoryIds
+    })
+    .then((categoryIds)=>{
+      console.log(categoryIds)
+      const path = `/search/${categoryIds}`;
+      console.log(path)
+      window.location.href = path;
+    })
+    .catch((error) => {
+      console.error("Error executing search query:", error);
+    });
   };
+
+  const handleInputChange = (e) => {
+    setSearch({
+      ...searchCriteria,
+      [e.target.name]: e.target.value
+    });
+    console.log(searchCriteria)
+  };
+
+  if (loadingCategory || searchItemsLoading) return <p>Loading...</p>;
+  if (categoryError || searchItemsError) return <p>Error: no categories or search items found!</p>;
+
+  const categoryArr = categoryData.getAllCategories
 
   return (
     <form onSubmit={handleSubmit}>
-      <TextField
-        label="Search"
-        value={searchText}
-        onChange={(e) => setSearchText(e.target.value)}
-        // fullWidth
-        variant="outlined"
-        margin="normal"
-      />
+      <input type="text" name="searchText" value={searchCriteria.searchText}  onChange={handleInputChange}></input>
 
-      <FormControl fullWidth variant="outlined" margin="normal">
+      <FormControl variant="outlined" margin="normal">
         <InputLabel>Category</InputLabel>
-        <Select value={category} onChange={(e) => setCategory(e.target.value)}>
-            <MenuItem value="appliances">Appliances</MenuItem>
-            <MenuItem value="apparel">Apparel</MenuItem>
-            <MenuItem value="auto">Auto</MenuItem>
-            <MenuItem value="furniture">Furniture</MenuItem>
-            <MenuItem value="electronics">Electronics</MenuItem>
-            <MenuItem value="entertainment">Entertainment</MenuItem>
-            <MenuItem value="household">Household</MenuItem>
-            <MenuItem value="miscellaneous">Miscellaneous</MenuItem>
-            <MenuItem value="outdoor">Outdoor</MenuItem>
-            <MenuItem value="services">Services</MenuItem>
+        <Select
+          name="categories"
+          value={searchCriteria.categories}
+          onChange={handleInputChange}
+        >
+          {categoryArr.map((item) =>(
+                  <option key={item._id} value={item._id}>{item.name}</option>
+                ))}
         </Select>
       </FormControl>
 
-      <FormControl fullWidth variant="outlined" margin="normal">
+      <Button type="submit" variant="contained" color="primary">
+        Search
+      </Button>
+    </form>
+  );
+};
+
+export default SearchCriteria;
+      {/* <FormControl fullWidth variant="outlined" margin="normal">
         <InputLabel>Condition</InputLabel>
         <Select value={age} onChange={(e) => setAge(e.target.value)}>
           <MenuItem value="new">New</MenuItem>
@@ -85,7 +116,4 @@ const SearchCriteria = () => {
         Search
       </Button>
     </form>
-  );
-};
-
-export default SearchCriteria;
+  ); */}

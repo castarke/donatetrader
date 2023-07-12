@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Switch } from 'react-router-dom';
 import Navbar from "./components/Navbar";
 import Home from './pages/Home';
 import AccountInfo from './pages/Account';
@@ -9,6 +9,7 @@ import { setContext } from '@apollo/client/link/context';
 import Gallery from './components/Gallery';
 import { Contact } from './pages/Contact'
 import UpdateItemForm from './pages/MyAccountPages/UpdateItem';
+import Search from './pages/Search';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import ItemPage from './pages/ItemPage'
