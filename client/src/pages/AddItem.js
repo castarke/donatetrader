@@ -4,10 +4,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import { CREATE_ITEM } from '../utils/mutations';
 import { GET_ALL_CATEGORIES } from '../utils/queries';
 import CloudinaryUploadWidget from '../components/CloudinaryUploadWidget';
-//import Header from '../components/Header'
-//import Footer from '../components/Footer'
 import SearchCriteria from '../components/SearchCriteria'
-import RecentTrades from '../components/RecentTrades'
 import {useStyles} from '../utils/makeStyles'
 import { Link } from 'react-router-dom';
 

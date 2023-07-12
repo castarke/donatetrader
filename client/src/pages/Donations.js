@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import SearchCriteria from '../components/SearchCriteria';
 import RecentTrades from '../components/RecentTrades';
-import useStyles from '../utils/makeStyles'
+import {useStyles} from '../utils/makeStyles'
 import {GET_DONATIONS} from '../utils/queries'
 import { Grid, Paper } from "@material-ui/core";
 import Item from '../components/item'

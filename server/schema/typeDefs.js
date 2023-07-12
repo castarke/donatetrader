@@ -101,7 +101,7 @@ type User {
       imagePath: String
       value: Float
       donate: Boolean
-      yearMade: Int!
+      yearMade: Int
       model: String
       serial: String
       categories: [ID]

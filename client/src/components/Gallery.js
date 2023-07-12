@@ -1,5 +1,4 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Paper } from "@material-ui/core";
 import { useQuery } from "@apollo/client";
 import { GET_Latest_9 } from "../utils/queries";
@@ -14,7 +13,7 @@ const Gallery = ({categories}) => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
-  if (categories && categories != 'noitemsfound'){
+  if (categories && categories !== 'noitemsfound'){
     items = categories.split(',')
   }else{
     for (let item of data.getAllItems){
