@@ -6,7 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Logo from '../components/Logo';
-
 const useStyles = makeStyles((theme) => ({
   landingPageContainer: {
     maxWidth: 800,
@@ -34,20 +33,23 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 'bold',
   },
   DTText: {
-    color: '#66b2b2',
+
+
+    color: '#66B2B2',
+
     fontWeight: 'bold',
   },
   button: {
     margin: theme.spacing(1),
   },
 }));
-
 export default function LandingPage() {
   const classes = useStyles();
-
   return (
     <div className={classes.landingPageContainer}>
-      <AppBar position="static" className={classes.appBar} style={{ backgroundColor: '#66b2b2' }}>
+
+      <AppBar position="static" className={classes.appBar} style={{ backgroundColor: '#66B2B2' }}>
+
         <Toolbar>
           <div className={classes.logoContainer}>
             <Logo className={classes.logo} />
@@ -71,27 +73,18 @@ export default function LandingPage() {
         </Typography>
       </div>
       <div className="SignUp">
-        {/* <Link to="/login">
-          <Button variant="contained" color="primary">
-            SignUp
-          </Button>
-        </Link>
       </div>
-      <div className="LogIn">
-        <Link to="/signup">
-          <Button variant="contained" color="primary">
-            LogIn
-          </Button>
-        </Link>
-      </div> */}
-      {/* <div> */}
+      <div>
+
         <Button
           component={Link}
           to="/signup"
           variant="contained"
           color="primary"
           className={classes.button}
-          style={{ backgroundColor: '#66b2b2' }}
+
+
+          style={{ backgroundColor: '#66B2B2' }}
         >
           Sign Up
         </Button>
@@ -101,7 +94,10 @@ export default function LandingPage() {
           variant="contained"
           color="primary"
           className={classes.button}
-          style={{ backgroundColor: '#66b2b2' }}
+
+
+          style={{ backgroundColor: '#66B2B2' }}
+
         >
           Log In
         </Button>

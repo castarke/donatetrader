@@ -55,6 +55,7 @@ function App() {
             <Route path="/signup" element={<Signup setIsLoggedIn={setIsLoggedIn} />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/item/:itemId" element={<ItemPage />} />
+            <Route path="/search/:searchCriteria" element={<Search />} />
           </Routes>
         </Router>
       {/* </AuthProvider> */}
