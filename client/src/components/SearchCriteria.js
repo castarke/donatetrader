@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { Grid, Select, MenuItem, FormControl, InputLabel, Button } from "@material-ui/core";
+import { TextField, Select, MenuItem, FormControl, InputLabel, Button } from "@material-ui/core";
 import { useQuery, useLazyQuery } from "@apollo/client";
 import { GET_ALL_CATEGORIES, SEARCH_BY } from '../utils/queries';
 

@@ -5,6 +5,7 @@ import { GET_ME, MY_ITEMS } from '../utils/queries';
 import { Link } from 'react-router-dom';
 import Item from '../components/item';
 import {useStyles} from '../utils/makeStyles';
+import auth from '../utils/auth';
 
 const AccountInfo = () => {
   const classes = useStyles();

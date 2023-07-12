@@ -5,12 +5,13 @@ import {
   Typography,
   useTheme,
   useMediaQuery,
-  Link,
 } from "@material-ui/core";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import DrawerComponent from "./Drawer";
 import Logo from "./Logo";
-import {useStyles} from '../utils/makeStyles'
+import {useStyles} from '../utils/makeStyles';
+import auth from '../utils/auth';
+
 
 function Navbar() {
   const classes = useStyles();
@@ -20,7 +21,27 @@ function Navbar() {
   const NavigationLinks = [
     <NavLink
       exact
-      to="/"
+      to="/login"
+      className={classes.link}
+      activeClassName="active"
+      // style={linkStyle}
+      key="login"
+    >
+      Login
+    </NavLink>,
+    <NavLink
+      exact
+      to="/signup"
+      className={classes.link}
+      activeClassName="active"
+      // style={linkStyle}
+      key="signup"
+    >
+      Signup
+    </NavLink>,
+    <NavLink
+      exact
+      to="/home"
       className={classes.navLink}
       activeClassName="active"
       key="home">
@@ -66,26 +87,16 @@ function Navbar() {
       key="contact">
       Contact
     </NavLink>,
-    <NavLink
-      exact
-      to="/logout"
-      className={classes.navLink}
-      activeClassName="active"
-      style={linkStyle}
-      key="gallery"
-    >
-      Items for trade
-    </NavLink>,
-    <NavLink
-      exact
-      to="/account"
-      className={classes.link}
-      activeClassName="active"
-      style={linkStyle}
-      key="account"
-    >
-      My Account
-    </NavLink>,
+    // <NavLink
+    //   exact
+    //   to="/logout"
+    //   className={classes.navLink}
+    //   activeClassName="active"
+    //   // style={linkStyle}
+    //   key="gallery"
+    // >
+    //   Items for trade
+    // </NavLink>,
   ];
   const handleLogout = () => {
     auth.logout();
@@ -93,9 +104,9 @@ function Navbar() {
   const logoutLink = <NavLink 
       exact
       onClick={handleLogout}
-      className={classes.link}   
+      className={classes.navLink}   
       activeClassName="active"
-      style={linkStyle}
+      // style={linkStyle}
       key="account">
     Logout
   </NavLink>
@@ -108,7 +119,7 @@ if(auth.loggedIn()) {
       <CssBaseline />
       <Toolbar>
         <Typography variant="h4" className={classes.navLogo}>
-          <Link to="/" className={classes.navLink}>
+          <Link to="/home" className={classes.navLink}>
             <Logo className={classes.navLogo} />
           </Link>
         </Typography>
