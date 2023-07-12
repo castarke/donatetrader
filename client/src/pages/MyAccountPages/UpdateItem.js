@@ -1,14 +1,12 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { GET_ITEM_BY_ID, GET_ALL_CATEGORIES } from '../../utils/queries';
 import { UPDATE_ITEM } from '../../utils/mutations';
 import CloudinaryUploadWidget from '../../components/CloudinaryUploadWidget';
-import {useStyles} from '../../utils/makeStyles';
 import auth from '../../utils/auth';
 
 const UpdateItemForm = () => {
-  const classes = useStyles();
   const { itemId } = useParams();
   const  [user, setUser]  = useState(auth.getProfile())
   const userId = user ? user._id : null;
@@ -41,7 +39,7 @@ const UpdateItemForm = () => {
       const currentData = currentItemData.getItemById;
       setItemData({
         desc: currentData.desc,
-        owner: currentData.owner,
+        owner: currentData.owner._id,
         imagePath: currentData.imagePath,
         value: currentData.value,
         donate: currentData.donate,
@@ -89,18 +87,6 @@ const UpdateItemForm = () => {
       .catch((error) => {
         console.error('Error updating item:', error);
       });
-  };
-
-  const handleCategoryChange = (e) => {
-    const selectedOptions = Array.from(e.target.selectedOptions);
-    const selectedValues = selectedOptions.map((option) => option.value);
-    setSelectedCategories(selectedValues);
-  };
-
-  const handleTradeForChange = (e) => {
-    const selectedOptions = Array.from(e.target.selectedOptions);
-    const selectedValues = selectedOptions.map((option) => option.value);
-    setSelectedTradeFor(selectedValues);
   };
 
   if (currentItemLoading || loadingCategory || loading) return <p>Loading item...</p>;

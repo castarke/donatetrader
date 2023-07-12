@@ -10,6 +10,7 @@ import Gallery from './components/Gallery';
 import { Contact } from './pages/Contact'
 import UpdateItemForm from './pages/MyAccountPages/UpdateItem';
 import Search from './pages/Search';
+import Donations from './pages/Donations'
 import Login from './components/Login';
 import Signup from './components/Signup';
 import ItemPage from './pages/ItemPage'
@@ -59,6 +60,8 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
           <Route path="/item/:itemId" element={<ItemPage />} />
+          <Route path="/search/:searchCriteria" element={<Search />} />
+          <Route path="/donations" element={<Donations />} />
         </Routes>
       </Router>
     </ApolloProvider>

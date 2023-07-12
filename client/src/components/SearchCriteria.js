@@ -4,13 +4,6 @@ import { useQuery, useLazyQuery } from "@apollo/client";
 import { GET_ALL_CATEGORIES, SEARCH_BY } from '../utils/queries';
 
 const SearchCriteria = () => {
-  //State variables for form values
-  // const [searchText, setSearchText] = useState("");
-  // const [category, setCategory] = useState("");
-  // const [age, setAge] = useState("");
-  // const [price, setPrice] = useState("");
-  // const [location, setLocation] = useState("");
-
   const [searchCriteria, setSearch] = useState({
     searchText: null,
     categories: null,
@@ -59,17 +52,17 @@ const SearchCriteria = () => {
     <form onSubmit={handleSubmit}>
       <TextField
         label="Search"
-        value={searchCriteria.searchText}
+        value={searchCriteria.searchText || ""}
         name="searchText"
         onChange={handleInputChange}
-        // fullWidth
+        fullWidth
         variant="outlined"
         margin="normal"
       />
 
       <FormControl fullWidth variant="outlined" margin="normal">
         <InputLabel>Price</InputLabel>
-        <Select name="value" value={searchCriteria.value} onChange={handleInputChange}>
+        <Select name="value" value={searchCriteria.value || ""} onChange={handleInputChange}>
             <MenuItem value={[0,25]}>$0-$25</MenuItem>
             <MenuItem value={[26,50]}>$26-$50</MenuItem>
             <MenuItem value={[51,100]}>$51-$100</MenuItem>
@@ -83,7 +76,7 @@ const SearchCriteria = () => {
         <InputLabel>Category</InputLabel>
         <Select
           name="categories"
-          value={searchCriteria.categories}
+          value={searchCriteria.categories || ""}
           onChange={handleInputChange}
         >
           {categoryArr.map((item) => (
@@ -108,22 +101,3 @@ const SearchCriteria = () => {
 };
 
 export default SearchCriteria;
-      {/* 
-      
-
-
-
-      <TextField
-        label="Location"
-        value={location}
-        onChange={(e) => setLocation(e.target.value)}
-        fullWidth
-        variant="outlined"
-        margin="normal"
-      />
-
-      <Button type="submit" variant="contained" color="primary">
-        Search
-      </Button>
-    </form>
-  ); */}

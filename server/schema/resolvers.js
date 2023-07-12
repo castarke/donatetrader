@@ -10,6 +10,15 @@ const resolvers = {
   },
 
   Query: {
+    getDonations: async ()=>{
+      try {
+        const donations = await Items.find({donate:true});
+        return donations;
+      } catch (error) {
+        throw new Error('No Items Found!');
+      }
+    },
+
     searchBy: async (_, { searchCriteria }) => {
       console.log(searchCriteria)
       const { searchText, categories, value } = searchCriteria;
@@ -131,7 +140,9 @@ const resolvers = {
           tradeFor,
         },
         { new: true }
-      );
+      )
+      .populate('categories')
+      .populate('tradeFor');
     },
     removeUser: async (parent, { userId }) => {
       return Users.findOneAndDelete({ _id: userId });

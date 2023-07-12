@@ -75,7 +75,7 @@ mutation createItem(
 
 
 export const UPDATE_ITEM = gql`
-mutation updateItem($itemId: ID!, $owner:ID!, $desc: String!, $imagePath: String, $value: Float, $donate: Boolean, $yearMade: Int!, $model: String, $serial: String, $categories: [ID!], $tradeFor: [ID!]) {
+mutation updateItem($itemId: ID!, $owner:ID!, $desc: String!, $imagePath: String, $value: Float, $donate: Boolean, $yearMade: Int, $model: String, $serial: String, $categories: [ID], $tradeFor: [ID]) {
   updateItem(_id: $itemId, owner:$owner, desc: $desc, imagePath: $imagePath, value: $value, donate: $donate, yearMade: $yearMade, model: $model, serial: $serial, categories: $categories, tradeFor: $tradeFor) {
     _id
     owner{_id}
