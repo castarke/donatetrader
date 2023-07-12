@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -27,16 +26,15 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 200,
     height: 'auto',
   },
-
   about: {
     marginBottom: theme.spacing(3),
-    fontFamily: 'Arial, sans-serif', 
+    fontFamily: 'Arial, sans-serif',
   },
   boldText: {
     fontWeight: 'bold',
   },
   DTText: {
-    color: '#66b2b2', 
+    color: '#66b2b2',
     fontWeight: 'bold',
   },
   button: {
@@ -49,43 +47,43 @@ export default function LandingPage() {
 
   return (
     <div className={classes.landingPageContainer}>
-      <AppBar position="static" className={classes.appBar} style ={{backgroundColor: '#66b2b2'}}>
+      <AppBar position="static" className={classes.appBar} style={{ backgroundColor: '#66b2b2' }}>
         <Toolbar>
           <div className={classes.logoContainer}>
             <Logo className={classes.logo} />
           </div>
         </Toolbar>
       </AppBar>
-            <div className={classes.about}>
-                <Typography variant="body1">
-                <p>
-                    Welcome to <span className={classes.DTText}>DonateTrader</span>, the ultimate marketplace for users to donate and trade their items,
-                    revolutionizing the way people exchange goods. Our platform is designed to foster a vibrant
-                    community where individuals can connect, barter, and give back in a meaningful way.
-                </p>
-                <p>
-                    At <span className={classes.DTText}>DonateTrader</span>, we believe in the power of sharing and sustainability, empowering users to find
-                    new homes for their unwanted items while reducing waste and promoting a circular economy. Whether
-                    you're looking to declutter your space, discover unique treasures, or contribute to a worthy cause,
-                    our user-friendly interface and secure platform make it easy to connect with like-minded individuals
-                    who share your passions.
-                </p>
-
-            </div> */}
-            <div className='SignUp'>
-                <Link to="/login">
-                    <Button variant="contained" color="primary">
-                        SignUp
-                    </Button>
-                </Link>
-            </div>
-            <div className='LogIn'>
-                <Link to="/signup">
-                    <Button variant="contained" color="primary">
-                        LogIn
-                    </Button>
-                </Link>
-            </div>
+      <div className={classes.about}>
+        <Typography variant="body1">
+          <p>
+            Welcome to <span className={classes.DTText}>DonateTrader</span>, the ultimate marketplace for users to donate and trade their items,
+            revolutionizing the way people exchange goods. Our platform is designed to foster a vibrant
+            community where individuals can connect, barter, and give back in a meaningful way.
+          </p>
+          <p>
+            At <span className={classes.DTText}>DonateTrader</span>, we believe in the power of sharing and sustainability, empowering users to find
+            new homes for their unwanted items while reducing waste and promoting a circular economy. Whether
+            you're looking to declutter your space, discover unique treasures, or contribute to a worthy cause,
+            our user-friendly interface and secure platform make it easy to connect with like-minded individuals
+            who share your passions.
+          </p>
+        </Typography>
+      </div>
+      <div className="SignUp">
+        <Link to="/login">
+          <Button variant="contained" color="primary">
+            SignUp
+          </Button>
+        </Link>
+      </div>
+      <div className="LogIn">
+        <Link to="/signup">
+          <Button variant="contained" color="primary">
+            LogIn
+          </Button>
+        </Link>
+      </div>
       <div>
         <Button
           component={Link}
@@ -93,7 +91,7 @@ export default function LandingPage() {
           variant="contained"
           color="primary"
           className={classes.button}
-          style ={{backgroundColor: '#66b2b2'}}
+          style={{ backgroundColor: '#66b2b2' }}
         >
           Sign Up
         </Button>
@@ -103,7 +101,7 @@ export default function LandingPage() {
           variant="contained"
           color="primary"
           className={classes.button}
-          style ={{backgroundColor: '#66b2b2'}}
+          style={{ backgroundColor: '#66b2b2' }}
         >
           Log In
         </Button>
