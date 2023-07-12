@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -69,11 +70,21 @@ export default function LandingPage() {
                     our user-friendly interface and secure platform make it easy to connect with like-minded individuals
                     who share your passions.
                 </p>
-                <p>
-                    Join our growing community today and experience the joy of giving and receiving through the art of
-                    bartering at DonateTrader.
-                </p>
-                </Typography>
+
+            </div> */}
+            <div className='SignUp'>
+                <Link to="/login">
+                    <Button variant="contained" color="primary">
+                        SignUp
+                    </Button>
+                </Link>
+            </div>
+            <div className='LogIn'>
+                <Link to="/signup">
+                    <Button variant="contained" color="primary">
+                        LogIn
+                    </Button>
+                </Link>
             </div>
       <div>
         <Button
