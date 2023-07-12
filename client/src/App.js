@@ -16,6 +16,7 @@ import ItemPage from './pages/ItemPage'
 import AuthService, { Auth, AuthProvider } from './utils/auth';
 import LandingPage from './pages/LandingPage';
 import About from './pages/About';
+import DonationsPage from './pages/Donations';
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql'
@@ -58,6 +59,7 @@ function App() {
           <Route path="/signup" element={<Signup setIsLoggedIn={setIsLoggedIn} />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
+          <Route path="/donations" element={<DonationsPage />} />
           <Route path="/item/:itemId" element={<ItemPage />} />
         </Routes>
       </Router>
