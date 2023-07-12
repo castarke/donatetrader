@@ -36,9 +36,8 @@ const AuthService = {
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(AuthService.getProfile());
-console.log('cats',user)
   return (
-    <AuthContext.Provider value={{ user, setUser }}>
+    <AuthContext.Provider value={{ user, setUser, ...AuthService }}>
       {children}
     </AuthContext.Provider>
   );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   AppBar,
   Toolbar,
@@ -11,6 +11,8 @@ import {
 import { NavLink, Link } from "react-router-dom";
 import DrawerComponent from "./Drawer";
 import Logo from "./Logo";
+import { AuthService, AuthContext } from "../utils/auth";
+
 // import Logout from "./Logout"; 
 
 const useStyles = makeStyles((theme) => ({
@@ -46,6 +48,15 @@ function Navbar() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
+  const {
+    loggedIn, 
+    logout
+  } = useContext(AuthContext)
+  const [isLoggedIn,setIsLoggedIn] = useState(false)
+  console.log(loggedIn())
+  // useEffect(()=> {
+  //   setIsLoggedIn(loggedIn())
+  // },[isLoggedIn])
   const linkStyle = {
     color: "white",
   };
@@ -123,7 +134,22 @@ function Navbar() {
     </NavLink>,
     // <Logout key="logout" />, 
   ];
-
+  const handleLogout = () => {
+    logout();
+  };
+  const logoutLink = <NavLink 
+      exact
+      onClick={handleLogout}
+      className={classes.link}   
+      activeClassName="active"
+      style={linkStyle}
+      key="account">
+    Logout
+  </NavLink>
+console.log(NavigationLinks)
+if(isLoggedIn) {
+  NavigationLinks.splice(0,2,logoutLink)
+}
   return (
     <AppBar position="static" style={{ backgroundColor: "#66b2b2" }}>
       <CssBaseline />
