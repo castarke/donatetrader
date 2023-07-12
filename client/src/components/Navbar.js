@@ -11,6 +11,7 @@ import {
 import { NavLink, Link } from "react-router-dom";
 import DrawerComponent from "./Drawer";
 import Logo from "./Logo";
+// import Logout from "./Logout"; 
 
 const useStyles = makeStyles((theme) => ({
   navlinks: {
@@ -19,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(5),
     padding: theme.spacing(7),
     "& > * + *": {
-      marginLeft: theme.spacing(2), 
+      marginLeft: theme.spacing(2),
     },
   },
   logo: {
@@ -35,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
       borderBottom: "1px solid white",
     },
     "&.active": {
-      color: "white"
+      color: "white",
     },
   },
 }));
@@ -120,10 +121,11 @@ function Navbar() {
     >
       My Account
     </NavLink>,
+    // <Logout key="logout" />, 
   ];
 
   return (
-    <AppBar position="static" style ={{backgroundColor: '#66b2b2'}}>
+    <AppBar position="static" style={{ backgroundColor: "#66b2b2" }}>
       <CssBaseline />
       <Toolbar>
         <Typography variant="h4" className={classes.logo}>

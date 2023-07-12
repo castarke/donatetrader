@@ -1,19 +1,16 @@
-
+import React, { createContext, useState } from 'react';
 import decode from 'jwt-decode';
 
-class AuthService {
+export const AuthContext = createContext();
 
+const AuthService = {
   getProfile() {
     return decode(this.getToken());
-  }
-
+  },
   loggedIn() {
-
     const token = this.getToken();
-    return !!token && !this.isTokenExpired(token); // handwaiving here
-  }
-
-
+    return !!token && !this.isTokenExpired(token);
+  },
   isTokenExpired(token) {
     try {
       const decoded = decode(token);
@@ -23,25 +20,28 @@ class AuthService {
     } catch (err) {
       return false;
     }
-  }
-
+  },
   getToken() {
-
     return localStorage.getItem('id_token');
-  }
-
+  },
   login(idToken) {
-
     localStorage.setItem('id_token', idToken);
     window.location.assign('/');
-  }
-
+  },
   logout() {
-
     localStorage.removeItem('id_token');
-  
     window.location.assign('/');
-  }
-}
+  },
+};
 
-export default new AuthService();
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(AuthService.getProfile());
+console.log('cats',user)
+  return (
+    <AuthContext.Provider value={{ user, setUser }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+export default AuthService;
