@@ -8,7 +8,7 @@ import { GET_ALL_CATEGORIES } from '../../utils/queries';
 import CloudinaryUploadWidget from '../../components/CloudinaryUploadWidget';
 import SearchCriteria from '../../components/SearchCriteria'
 import RecentTrades from '../../components/RecentTrades'
-import useStyles from '../../utils/makeStyles'
+import {useStyles} from '../../utils/makeStyles'
 
 const ownerId = "64aa0287e14635b4eb7767f9"
 

@@ -5,7 +5,7 @@ import { GET_ME } from '../utils/queries';
 import { Link } from 'react-router-dom';
 import { MY_ITEMS } from '../utils/queries'
 import Item from '../components/item';
-import useStyles from '../utils/styles'
+import {useStyles} from '../utils/makeStyles';
 
 const AccountInfo = () => {
   const classes = useStyles();

@@ -16,6 +16,8 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import ItemPage from './pages/ItemPage'
 import Auth from './utils/auth';
+import About from './pages/About';
+import LandingPage from './pages/LandingPage'
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql'

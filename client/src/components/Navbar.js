@@ -4,137 +4,92 @@ import {
   Toolbar,
   CssBaseline,
   Typography,
-  makeStyles,
   useTheme,
   useMediaQuery,
+  Link,
 } from "@material-ui/core";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import DrawerComponent from "./Drawer";
 import Logo from "./Logo";
-
-const useStyles = makeStyles((theme) => ({
-  navlinks: {
-    display: "flex",
-    alignItems: "center",
-    marginLeft: theme.spacing(5),
-    padding: theme.spacing(7),
-    "& > * + *": {
-      marginLeft: theme.spacing(2), 
-    },
-  },
-  logo: {
-    flexGrow: 1,
-    cursor: "pointer",
-  },
-  link: {
-    textDecoration: "none",
-    color: "white",
-    fontSize: "20px",
-    "&:hover, &:focus": {
-      color: "#7FFFD4",
-      borderBottom: "1px solid white",
-    },
-    "&.active": {
-      color: "white"
-    },
-  },
-}));
+import {useStyles} from '../utils/makeStyles'
 
 function Navbar() {
   const classes = useStyles();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
-  const linkStyle = {
-    color: "white",
-  };
-
   const NavigationLinks = [
     <NavLink
       exact
-      to="/login"
-      className={classes.link}
-      activeClassName="active"
-      style={linkStyle}
-      key="login"
-    >
-      Login
-    </NavLink>,
-    <NavLink
-      exact
-      to="/signup"
-      className={classes.link}
-      activeClassName="active"
-      style={linkStyle}
-      key="signup"
-    >
-      Signup
-    </NavLink>,
-    <NavLink
-      exact
       to="/"
-      className={classes.link}
+      className={classes.navLink}
       activeClassName="active"
-      style={linkStyle}
-      key="home"
-    >
-      Home
-    </NavLink>,
-    <NavLink
-      exact
-      to="/about"
-      className={classes.link}
-      activeClassName="active"
-      style={linkStyle}
-      key="about"
-    >
-      About
-    </NavLink>,
-    <NavLink
-      exact
-      to="/contact"
-      className={classes.link}
-      activeClassName="active"
-      style={linkStyle}
-      key="contact"
-    >
-      Contact
+      key="home">
+        Home
     </NavLink>,
     <NavLink
       exact
       to="/gallery"
-      className={classes.link}
+      className={classes.navLink}
       activeClassName="active"
-      style={linkStyle}
-      key="gallery"
-    >
+      key="gallery">
       Items for trade
     </NavLink>,
     <NavLink
       exact
       to="/account"
-      className={classes.link}
+      className={classes.navLink}
       activeClassName="active"
-      style={linkStyle}
-      key="account"
-    >
+      key="account">
       My Account
     </NavLink>,
+    <NavLink
+      exact
+      to="/donations"
+      className={classes.navLink}
+      activeClassName="active"
+      key="donations">
+      Donations
+    </NavLink>,
+    <NavLink
+      exact
+      to="/about"
+      className={classes.navLink}
+      activeClassName="active"
+      key="about">
+      About
+    </NavLink>,
+    <NavLink
+      exact
+      to="/contact"
+      className={classes.navLink}
+      activeClassName="active"
+      key="contact">
+      Contact
+    </NavLink>,
+    <NavLink
+      exact
+      to="/logout"
+      className={classes.navLink}
+      activeClassName="active"
+      key="logout">
+      Logout
+    </NavLink>, 
   ];
 
   return (
-    <AppBar position="static" style ={{backgroundColor: '#66b2b2'}}>
+    <AppBar position="static" style={{ backgroundColor: "#66b2b2" }}>
       <CssBaseline />
       <Toolbar>
-        <Typography variant="h4" className={classes.logo}>
-          <Link to="/" className={classes.link}>
-            <Logo className={classes.logo} />
+        <Typography variant="h4" className={classes.navLogo}>
+          <Link to="/" className={classes.navLink}>
+            <Logo className={classes.navLogo} />
           </Link>
         </Typography>
         {isMobile ? (
           <DrawerComponent links={NavigationLinks} />
         ) : (
-          <div className={classes.navlinks}>{NavigationLinks}</div>
+          <div className={classes.navLinks}>{NavigationLinks}</div>
         )}
       </Toolbar>
     </AppBar>

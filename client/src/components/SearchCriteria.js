@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { TextField, Select, MenuItem, FormControl, InputLabel, Button } from "@material-ui/core";
+import { Grid, Select, MenuItem, FormControl, InputLabel, Button } from "@material-ui/core";
 import { useQuery, useLazyQuery } from "@apollo/client";
 import { GET_ALL_CATEGORIES, SEARCH_BY } from '../utils/queries';
 
@@ -55,24 +55,41 @@ const SearchCriteria = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type="text" name="searchText" value={searchCriteria.searchText}  onChange={handleInputChange}></input>
-
-      <FormControl variant="outlined" margin="normal">
-        <InputLabel>Category</InputLabel>
+      <div>
+        <input
+          type="text"
+          name="searchText"
+          value={searchCriteria.searchText}
+          onChange={handleInputChange}
+        />
+      </div>
+  
+      <FormControl variant="outlined" style={{ width: '100px', height: '20px' }}>
+        <InputLabel variant="outlined" style={{ width: '100px', height: '20px' }}>
+          Category
+        </InputLabel>
         <Select
           name="categories"
           value={searchCriteria.categories}
           onChange={handleInputChange}
         >
-          {categoryArr.map((item) =>(
-                  <option key={item._id} value={item._id}>{item.name}</option>
-                ))}
+          {categoryArr.map((item) => (
+            <MenuItem key={item._id} value={item._id}>
+              {item.name}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
-
-      <Button type="submit" variant="contained" color="primary">
-        Search
-      </Button>
+  
+      <div>
+        <Button
+          type="submit"
+          variant="contained"
+          style={{ backgroundColor: '#66b2b2', fontSize: '12px', padding: '4px 8px' }}
+        >
+          Search
+        </Button>
+      </div>
     </form>
   );
 };

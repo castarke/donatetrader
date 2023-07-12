@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { SIGNUP_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
-import useStyles from '../utils/styles';
+import { useStyles } from '../utils/makeStyles';
 
 function Signup({ setIsLoggedIn }) {
   const [formData, setFormData] = useState({
@@ -14,7 +14,7 @@ function Signup({ setIsLoggedIn }) {
     zip: '',
   });
 
-  const styles = useStyles();
+  const classes = useStyles();
 
   const [signupMutation, { loading, error }] = useMutation(SIGNUP_USER);
 
@@ -41,76 +41,75 @@ function Signup({ setIsLoggedIn }) {
   };
 
   return (
-    <div className={styles.background}>
-      <div className={styles.container}>
-        <h2>Sign Up</h2>
-        <form className={styles.form} onSubmit={handleSubmit}>
-          <input
-            className={styles.input}
-            type="text"
-            name="username"
-            placeholder="Username"
-            value={formData.username}
-            onChange={handleChange}
-          />
+    <div className={classes.signupBackground}>
+    <div className={classes.signupContainer}>
+    <h2 className={classes.signupHeading}>Let's Donate or Trade!</h2>
+      <form className={classes.signupForm} onSubmit={handleSubmit}>
+        <input
+          className={classes.signupInput}
+          type="text"
+          name="username"
+          placeholder="Username"
+          value={formData.username}
+          onChange={handleChange}
+        />
 
-          <input
-            className={styles.input}
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={handleChange}
-          />
+        <input
+          className={classes.signupInput}
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={formData.email}
+          onChange={handleChange}
+        />
 
-          <input
-            className={styles.input}
-            type="password"
-            name="password"
-            placeholder="Create Password"
-            value={formData.password}
-            onChange={handleChange}
-          />
+        <input
+          className={classes.signupInput}
+          type="password"
+          name="password"
+          placeholder="Create Password"
+          value={formData.password}
+          onChange={handleChange}
+        />
 
-          <input
-            className={styles.input}
-            type="text"
-            name="city"
-            placeholder="City"
-            value={formData.city}
-            onChange={handleChange}
-          />
+        <input
+          className={classes.signupInput}
+          type="text"
+          name="city"
+          placeholder="City"
+          value={formData.city}
+          onChange={handleChange}
+        />
 
-          <input
-            className={styles.input}
-            type="text"
-            name="state"
-            placeholder="State"
-            value={formData.state}
-            onChange={handleChange}
-          />
+        <input
+          className={classes.signupInput}
+          type="text"
+          name="state"
+          placeholder="State"
+          value={formData.state}
+          onChange={handleChange}
+        />
 
-          <input
-            className={styles.input}
-            type="number"
-            name="zip"
-            placeholder="Zip code"
-            value={formData.zip}
-            onChange={handleChange}
-          />
+        <input
+          className={classes.signupInput}
+          type="number"
+          name="zip"
+          placeholder="Zip code"
+          value={formData.zip}
+          onChange={handleChange}
+        />
 
-          <button
-            className={styles.button}
-            disabled={loading}
-          >
-            {loading ? 'Signing up...' : 'Submit'}
-          </button>
+        <button
+          className={classes.submitButton}
+          disabled={loading}
+        >
+          {loading ? 'Signing up...' : 'Submit'}
+        </button>
 
-          {error && <p>Error occurred. Please try again.</p>}
-        </form>
-      </div>
+        {error && <p>Error occurred. Please try again.</p>}
+      </form>
     </div>
-  );
+  </div>
+);
 }
-
 export default Signup;
