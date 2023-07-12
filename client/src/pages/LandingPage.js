@@ -71,7 +71,7 @@ export default function LandingPage() {
         </Typography>
       </div>
       <div className="SignUp">
-        <Link to="/login">
+        {/* <Link to="/login">
           <Button variant="contained" color="primary">
             SignUp
           </Button>
@@ -83,8 +83,8 @@ export default function LandingPage() {
             LogIn
           </Button>
         </Link>
-      </div>
-      <div>
+      </div> */}
+      {/* <div> */}
         <Button
           component={Link}
           to="/signup"

@@ -5,12 +5,12 @@ import { GET_ITEM_BY_ID, GET_ALL_CATEGORIES } from '../../utils/queries';
 import { UPDATE_ITEM } from '../../utils/mutations';
 import CloudinaryUploadWidget from '../../components/CloudinaryUploadWidget';
 import useStyles from '../../utils/makeStyles';
-import { AuthContext } from '../../utils/auth';
+import auth from '../../utils/auth';
 
 const UpdateItemForm = () => {
   const classes = useStyles();
   const { itemId } = useParams();
-  const { user } = useContext(AuthContext);
+  const  [user, setUser]  = useState(auth.getProfile())
   const userId = user ? user._id : null;
   const ownerId = userId;
 

@@ -1,4 +1,3 @@
-import React, { useContext, useEffect, useState } from "react";
 import {
   AppBar,
   Toolbar,
@@ -11,7 +10,7 @@ import {
 import { NavLink, Link } from "react-router-dom";
 import DrawerComponent from "./Drawer";
 import Logo from "./Logo";
-import { AuthService, AuthContext } from "../utils/auth";
+import auth from "../utils/auth";
 
 // import Logout from "./Logout"; 
 
@@ -48,12 +47,8 @@ function Navbar() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
-  const {
-    loggedIn, 
-    logout
-  } = useContext(AuthContext)
-  const [isLoggedIn,setIsLoggedIn] = useState(false)
-  console.log(loggedIn())
+  // const [isLoggedIn,setIsLoggedIn] = useState(false)
+  console.log(auth.loggedIn())
   // useEffect(()=> {
   //   setIsLoggedIn(loggedIn())
   // },[isLoggedIn])
@@ -135,7 +130,7 @@ function Navbar() {
     // <Logout key="logout" />, 
   ];
   const handleLogout = () => {
-    logout();
+    auth.logout();
   };
   const logoutLink = <NavLink 
       exact
@@ -147,7 +142,7 @@ function Navbar() {
     Logout
   </NavLink>
 console.log(NavigationLinks)
-if(isLoggedIn) {
+if(auth.loggedIn()) {
   NavigationLinks.splice(0,2,logoutLink)
 }
   return (

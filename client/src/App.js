@@ -14,6 +14,7 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import ItemPage from './pages/ItemPage'
 import AuthService, {Auth, AuthProvider} from './utils/auth';
+import LandingPage from './pages/LandingPage';
 
 
 const httpLink = createHttpLink({
@@ -40,11 +41,12 @@ function App() {
 
   return (
     <ApolloProvider client={client}>
-      <AuthProvider>
+      {/* <AuthProvider> */}
         <Router>
           <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path='/' element={<LandingPage />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/account" element={<AccountInfo />} />
             <Route path="/additem/:ownerId" element={<AddItem />} />
@@ -55,7 +57,7 @@ function App() {
             <Route path="/item/:itemId" element={<ItemPage />} />
           </Routes>
         </Router>
-      </AuthProvider>
+      {/* </AuthProvider> */}
     </ApolloProvider>
   );
 }
