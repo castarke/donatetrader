@@ -11,7 +11,8 @@ const resolvers = {
 
   Query: {
     searchBy: async (_, { searchCriteria }) => {
-      const { searchText, categories } = searchCriteria;
+      console.log(searchCriteria)
+      const { searchText, categories, value } = searchCriteria;
       let query = {};
       if (searchText) {
         query.desc = { $regex: searchText, $options: 'i' };
@@ -20,10 +21,14 @@ const resolvers = {
       if (categories && categories.length > 0) {
         query.categories = { $in: categories };
       }
+
+      if (value && value.length === 2) {
+        const [minPrice, maxPrice] = value;
+        query.value = { $gte: minPrice, $lte: maxPrice };
+      }
   
       try {
         const searchResults = await Items.find(query);
-        console.log(searchResults)
         return searchResults;
       } catch (error) {
         throw new Error('No Items Found!');
