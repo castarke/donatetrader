@@ -1,4 +1,7 @@
 import React from 'react';
+import { Button } from '@mui/material';
+import { Link } from 'react-router-dom';
+
 
 export default function LandingPage() {
     return (
@@ -24,14 +27,18 @@ export default function LandingPage() {
                 </p>
             </div> */}
             <div className='SignUp'>
-                <button>
-                    SignUp
-                </button>
+                <Link to="/login">
+                    <Button variant="contained" color="primary">
+                        SignUp
+                    </Button>
+                </Link>
             </div>
             <div className='LogIn'>
-                <button>
-                    LogIn
-                </button>
+                <Link to="/signup">
+                    <Button variant="contained" color="primary">
+                        LogIn
+                    </Button>
+                </Link>
             </div>
         </div>
     )
