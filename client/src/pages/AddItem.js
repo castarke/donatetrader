@@ -94,78 +94,88 @@ const AddItem = () => {
   };
 
   return (
-    <div>
-       <div className={classes.container} style={{display: 'inline'}}>
-        <div className={classes.searchContainer} style={{float: 'left', width:'20%'}}>
-          <SearchCriteria />
-        </div>
-        <div className={classes.itemsContainer} style={{float: 'left', width:'55%', margin: 'auto'}}>
-          <h2 style={{paddingBottom: '10px'}}>Add Item</h2>
-          <form onSubmit={handleSubmit}>
+    <div className={classes.container}>
+      <div className={classes.searchContainer}>
+        <SearchCriteria />
+      </div>
+      <div className={classes.itemsContainer}>
+        <h2>Add Item</h2>
+        <form onSubmit={handleSubmit}>
+          <div className={classes.formGroup}>
             <h2>Image</h2>
-            <div>
-              <div style={{ border: '1px solid black', width: '200px', height: '200px' }}>
-                <img id="itemImage" src="" alt="" />
+            <div className={classes.imageContainer}>
+              <div className={classes.imagePreview}>
+                <img id="itemImage" src="" alt="" className={classes.mediumImage} />
               </div>
               <CloudinaryUploadWidget />
             </div>
-            <div>
-              <label>Description:</label>
-              <input type="text" name="desc" value={itemData.desc} onChange={handleChange} />
-
-              <label>
-                Value:
-                <input type="text" name="value" value={itemData.value} onChange={handleChange}/>
-              </label>
-
-              <div>
-                <label>
-                  <input type="radio" name="donate" checked={itemData.donate} onChange={handleToggleDonate} />
-                  Donate
-                </label>
-                <label>
-                  <input type="radio" name="donate" checked={!itemData.donate} onChange={handleToggleTrade}/>
-                  Trade
-                </label>
-              </div>
-
-              <label>
-                Year Made:
-                <input type="text" name="yearMade" value={itemData.yearMade} onChange={handleChange}/>
-              </label>
-
-              <label>
-                Model:
-                <input type="text" name="model" value={itemData.model} onChange={handleChange}/>
-              </label>
-
-              <label>
-                Serial:
-                <input type="text" name="serial" value={itemData.serial} onChange={handleChange}/>
-              </label>
-              
-              <label>Category</label>
-              <select name="categories" onChange={handleChange}>
-                <option value=""></option>
-                {categories.map((item) =>(
-                  <option key={item._id} value={item._id}>{item.name}</option>
-                ))}
-              </select>
-              <label>Want to Trade For</label>
-              <select name="tradeFor" onChange={handleChange}>
-                <option value=""></option>
-                {categories.map((item) =>(
-                  <option key={item._id} value={item._id}>{item.name}</option>
-                ))}
-              </select>
-              <button type="submit">Add Item</button>
-            </div>
-          </form>
-        </div>
-        <Link to="/account">
-          <button>Back to Account</button>
-        </Link>
+          </div>
+          <div className={classes.formGroup}>
+            <label>Description:</label>
+            <input type="text" name="desc" value={itemData.desc} onChange={handleChange} />
+          </div>
+          <div className={classes.formGroup}>
+            <label>
+              Value:
+              <input type="text" name="value" value={itemData.value} onChange={handleChange} />
+            </label>
+          </div>
+          <div className={classes.formGroup}>
+            <label>
+              <input type="radio" name="donate" checked={itemData.donate} onChange={handleToggleDonate} />
+              Donate
+            </label>
+            <label>
+              <input type="radio" name="donate" checked={!itemData.donate} onChange={handleToggleTrade} />
+              Trade
+            </label>
+          </div>
+          <div className={classes.formGroup}>
+            <label>
+              Year Made:
+              <input type="text" name="yearMade" value={itemData.yearMade} onChange={handleChange} />
+            </label>
+          </div>
+          <div className={classes.formGroup}>
+            <label>
+              Model:
+              <input type="text" name="model" value={itemData.model} onChange={handleChange} />
+            </label>
+          </div>
+          <div className={classes.formGroup}>
+            <label>
+              Serial:
+              <input type="text" name="serial" value={itemData.serial} onChange={handleChange} />
+            </label>
+          </div>
+          <div className={classes.formGroup}>
+            <label>Category</label>
+            <select name="categories" onChange={handleChange}>
+              <option value=""></option>
+              {categories.map((item) => (
+                <option key={item._id} value={item._id}>
+                  {item.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className={classes.formGroup}>
+            <label>Want to Trade For</label>
+            <select name="tradeFor" onChange={handleChange}>
+              <option value=""></option>
+              {categories.map((item) => (
+                <option key={item._id} value={item._id}>
+                  {item.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          <button type="submit" style={{ color: '#66b2b2' }}>Add Item</button>
+        </form>
       </div>
+      <Link to="/account" className={classes.backButton}>
+        Back to Account
+      </Link>
     </div>
   );
 };

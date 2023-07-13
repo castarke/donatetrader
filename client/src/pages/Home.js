@@ -11,12 +11,10 @@ export default function Home() {
     <div className={classes.container}>
       <div className={classes.searchContainer}>
         <SearchCriteria />
+        <Contributions />
       </div>
       <div className={classes.itemsContainer}>
         <Gallery />
-      </div>
-      <div className={classes.searchContainer}>
-        <Contributions />
       </div>
     </div>
   );

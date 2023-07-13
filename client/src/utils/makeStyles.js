@@ -7,8 +7,9 @@ import signupImg from './signup_pic.jpg';
 const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
-    [theme.breakpoints.down('md')]: {
-      flexDirection: 'column',
+    flexDirection: 'column',
+    [theme.breakpoints.up('md')]: {
+      flexDirection: 'row',
     },
   },
   // Paper styling
@@ -21,25 +22,90 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
   },
   searchContainer: {
-    width: '33.33%',
-    marginRight: '10px',
+    flexBasis: '20%',
+    marginRight: theme.spacing(2),
+    marginBottom: theme.spacing(2),
     border: '1px solid #ccc',
-    padding: '10px',
+    padding: theme.spacing(2),
     [theme.breakpoints.down('md')]: {
-      width: '80%',
-      marginRight: '0',
-      marginBottom: '10px',
+      flexBasis: '100%',
+      marginRight: 0,
     },
   },
   itemsContainer: {
-    width: '66.66%',
+    flexBasis: '66.66%',
+    // border: "1px solid #ccc",
+    padding: "16px",
+    alignContent: 'center',
+    justifyContent: 'center',
+    // borderRadius: "8px",
     [theme.breakpoints.down('md')]: {
-      width: '100%',
+      flexBasis: '100%',
     },
   },
   navlinks: {
     marginLeft: theme.spacing(5),
     display: 'flex',
+  },
+  paper: {
+    padding: theme.spacing(2),
+    marginBottom: theme.spacing(2),
+  },
+
+  devimage: {
+    maxwidth: '50px', // adjust the width as needed
+    maxHeight: '50px', // adjust the height as needed
+    // objectFit: 'cover',
+    borderRadius: '50%',
+    margin: theme.spacing(1),
+  },
+
+  // Item Page
+  card: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    border: "1px solid #ccc",
+    padding: "16px",
+    borderRadius: "8px",
+    backgroundColor: "#fff",
+  },
+  mediumImage: {
+    width: "20%",
+    height: "auto",
+  },
+  cardContent: {
+    textAlign: "center",
+  },
+
+  // My Account Page Styling
+  accountContainer: {
+    width: '20%',
+    marginBottom: theme.spacing(1),
+    padding: theme.spacing(1),
+    border: '1px solid #ccc',
+    textAlign: 'left',
+    alignContent: 'center',
+    // backgroundColor: '#dee9eb',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    gridTemplateRows: 'auto 1fr',
+  },
+  myaccountContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'left',
+    flexDirection: 'column',
+    border: '1px solid teal',
+    borderRadius: '4px',
+    padding: theme.spacing(1),
+    backgroundColor: '#dee9eb',
+  },
+  myadditemsContainer: {
+    paddingTop: '5%',
+    textAlign: 'center',
   },
 
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import SearchCriteria from '../components/SearchCriteria';
 import Gallery from '../components/Gallery';
-import RecentTrades from '../components/RecentTrades';
+// import RecentTrades from '../components/RecentTrades';
 import { useStyles } from '../utils/makeStyles'
 
 export default function Search() {
@@ -19,9 +19,9 @@ console.log(categories)
       <div className={classes.itemsContainer}>
         <Gallery categories={categories} />
       </div>
-      <div className={classes.searchContainer}>
+      {/* <div className={classes.searchContainer}>
         <RecentTrades />
-      </div>
+      </div> */}
     </div>
   );
 };
