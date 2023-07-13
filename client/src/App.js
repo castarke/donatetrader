@@ -21,7 +21,7 @@ import Contributions from './pages/Contributions'
 import ThankYou from './pages/ThankYou'
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:3001/graphql'
+  uri: 'https://donatetrader-6968094a5822.herokuapp.com/'
 });
 
 const authLink = setContext((_, { headers }) => {
