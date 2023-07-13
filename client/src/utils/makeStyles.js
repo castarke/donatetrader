@@ -11,13 +11,22 @@ const useStyles = makeStyles((theme) => ({
       flexDirection: 'column',
     },
   },
+  // Paper styling
+  galleryPaper: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: theme.spacing(2),
+    height: '100%',
+  },
   searchContainer: {
     width: '33.33%',
     marginRight: '10px',
     border: '1px solid #ccc',
     padding: '10px',
     [theme.breakpoints.down('md')]: {
-      width: '100%',
+      width: '80%',
       marginRight: '0',
       marginBottom: '10px',
     },

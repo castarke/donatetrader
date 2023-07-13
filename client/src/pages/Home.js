@@ -1,7 +1,6 @@
 import React from 'react';
 import SearchCriteria from '../components/SearchCriteria';
 import Gallery from '../components/Gallery';
-import RecentTrades from '../components/RecentTrades';
 import { useStyles } from '../utils/makeStyles'
 
 export default function Home() {
@@ -14,9 +13,6 @@ export default function Home() {
       </div>
       <div className={classes.itemsContainer}>
         <Gallery />
-      </div>
-      <div className={classes.searchContainer}>
-        <RecentTrades />
       </div>
     </div>
   );

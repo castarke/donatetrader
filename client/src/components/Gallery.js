@@ -36,7 +36,7 @@ const Gallery = ({categories}) => {
       <Grid container spacing={2}>
         {items.map((item) => (
           <Grid item xs={4} key={item}>
-            <Paper className={classes.paper}>
+            <Paper className={classes.galleryPaper}>
               <Item itemId={item} />
             </Paper>
           </Grid>
