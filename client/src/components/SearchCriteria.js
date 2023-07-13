@@ -63,12 +63,12 @@ const SearchCriteria = () => {
       <FormControl fullWidth variant="outlined" margin="normal">
         <InputLabel>Price</InputLabel>
         <Select name="value" value={searchCriteria.value || ""} onChange={handleInputChange}>
-            <MenuItem value={[0,25]}>$0-$25</MenuItem>
-            <MenuItem value={[26,50]}>$26-$50</MenuItem>
-            <MenuItem value={[51,100]}>$51-$100</MenuItem>
-            <MenuItem value={[101,500]}>$101-$500</MenuItem>
-            <MenuItem value={[500,1000]}>$501-$1000</MenuItem>
-            <MenuItem value={[1001,1000000]}>&gt1000</MenuItem>
+            <MenuItem value={"0-25"}>$0-$25</MenuItem>
+            <MenuItem value={"26-50"}>$26-$50</MenuItem>
+            <MenuItem value={"51-100"}>$51-$100</MenuItem>
+            <MenuItem value={"101-500"}>$101-$500</MenuItem>
+            <MenuItem value={"500-1000"}>$501-$1000</MenuItem>
+            <MenuItem value={"1001-1000000"}>&gt;1000</MenuItem>
         </Select>
       </FormControl>
 

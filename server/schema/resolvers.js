@@ -20,7 +20,6 @@ const resolvers = {
     },
 
     searchBy: async (_, { searchCriteria }) => {
-      console.log(searchCriteria)
       const { searchText, categories, value } = searchCriteria;
       let query = {};
       if (searchText) {
@@ -31,8 +30,8 @@ const resolvers = {
         query.categories = { $in: categories };
       }
 
-      if (value && value.length === 2) {
-        const [minPrice, maxPrice] = value;
+      if (value){
+        const [minPrice, maxPrice] = value.split("-");
         query.value = { $gte: minPrice, $lte: maxPrice };
       }
   
@@ -74,7 +73,7 @@ const resolvers = {
         .populate('tradeFor');
     },
     getItemByOwner: async (parent, { owner }) => {
-      return Items.find({ owner })
+      return Items.find({ owner }).sort({ dateListed: -1 })
         .populate({
           path: 'owner',
           model: 'users',
