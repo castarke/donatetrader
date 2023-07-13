@@ -41,16 +41,23 @@ const AccountInfo = () => {
 
   return (
     <div className={classes.container}>
-      <div className={classes.searchContainer}>
-        <h2>Account Information</h2>
-        <p>Username: {username}</p>
-        <p>Email: {email}</p>
-        <p>City: {city}</p>
-        <p>State: {state}</p>
-        <p>Zip: {zip}</p>
+      <div className={classes.accountContainer}>
+          <div className={classes.myaccountContainer}>
+            <h2>Account Information</h2>
+            <p>Username: {username}</p>
+            <p>Email: {email}</p>
+            <p>City: {city}</p>
+            <p>State: {state}</p>
+            <p>Zip: {zip}</p>
+          </div>
+          <div className={classes.myadditemsContainer}>
+            <Link to={`/additem/${userId}`}>
+            <button>Add Item</button>
+          </Link>
+          </div>
       </div>
       <div className={classes.itemsContainer}>
-        <h2>Items:</h2>
+        <h2>My Items:</h2>
         <div>
           <Grid container spacing={2}>
             {items.map((item) => (
@@ -65,9 +72,7 @@ const AccountInfo = () => {
             ))}
           </Grid>
         </div>
-        <Link to={`/additem/${userId}`}>
-          <button>Add Item</button>
-        </Link>
+      
       </div>
     </div>
   );
