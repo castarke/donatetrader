@@ -1,3 +1,75 @@
+# DonateTrader
+
+## Description 
+
+A web application that allows users to donate and trade items with each other. Users can list items they no longer need and browse available items for trade or donation.
+
+## Features
+
+#### User registration and authentication
+* Allows Users to create accounts and authenticate themselves to gain access to the platform
+#### User Dashboard
+* Provide users with a personalized dashboard to manage their listings, trades/donations, messages, and account settings
+#### Listing items for trade or donation 
+* Enable users to create and update the listings of their items, having their images uploaded alongside a relevant description of them 
+#### Searching and filtering items
+* Search functionality for users to find specific items with/without the criteria of Price and/or Category
+#### Initiating trades and donations between users
+* Allow users to initiate and manage trade or donation requests, accept/reject offers, and finalize transactions
+#### Notifications and Alerts
+* Notification systems to keep users informed about trade or donation requests, messages, and updates
+#### Connect with limited charity organizations
+* Get connected to organizations like Red Cross and Salvation Army for donations
+#### Electronic transaction 
+* Transactions to be done instantly online enabled
+
+## Technologies Used
+
+* React: JavaScript library for building user interfaces
+* Node.js: Server-side JavaScript runtime environment
+* Express: Web application framework for Node.js
+* GraphQL: Query language and runtime for APIs
+* Apollo Server: GraphQL server implementation
+* MongoDB: NoSQL database for storing item and user data
+* Material-UI: React UI component library for styling the application
+* Git: Version control system for collaborative development
+
+
+## Installation
+
+* Clone your git repository to the local one on your machine using
+   #### git clone (path of your git repository)
+* Install the dependencies using
+   #### npm install
+* Have the connection string to the database stored in the .env file
+* Start the application using
+  #### npm run develop
+* Access the application in your browser at 
+  #### http://localhost:3000
+
+## Usage 
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
