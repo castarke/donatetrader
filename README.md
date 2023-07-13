@@ -49,6 +49,24 @@ A web application that allows users to donate and trade items with each other. U
 
 ## Usage 
 
+#### Signup page
+
+<img width="1860" alt="Screenshot-signup" src="https://github.com/castarke/donatetrader/assets/122113060/3956f4a9-42a9-4f79-aee7-feae449910a6">
+
+#### Marketplace
+
+<img width="1920" alt="Screenshot-marketplace" src="https://github.com/castarke/donatetrader/assets/122113060/7a4ccac3-f4b8-48b6-91e9-77c36169c210">
+
+#### Donations
+
+<img width="1915" alt="Screenshot-donations" src="https://github.com/castarke/donatetrader/assets/122113060/daaf5c60-d77d-4d8b-a977-a93027950b77">
+
+#### Dashboard
+
+<img width="1920" alt="Screenshot-dashboard" src="https://github.com/castarke/donatetrader/assets/122113060/bc99e7cc-de84-42e3-abe8-47cf2fa3a74f">
+
+
+
 
 
 
