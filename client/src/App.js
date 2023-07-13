@@ -61,7 +61,6 @@ function App() {
           <Route path="/signup" element={<Signup setIsLoggedIn={setIsLoggedIn} />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
-          <Route path="/donations" element={<DonationsPage />} />
           <Route path="/item/:itemId" element={<ItemPage />} />
           <Route path="/search/:searchCriteria" element={<Search />} />
           <Route path="/donations" element={<Donations />} />

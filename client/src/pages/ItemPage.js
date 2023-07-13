@@ -43,7 +43,7 @@ const ItemPage = () => {
         <p>Model: {model}</p>
         <p>Serial: {serial}</p>
         <p>Listed Date: {dateListed}</p>
-        <p>Owner: {owner.name}</p>
+        <p>Owner: {owner.username}</p>
         <p>Categories:</p>
         <ul>
           {categories.map((element) => (
