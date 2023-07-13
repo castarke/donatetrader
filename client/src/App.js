@@ -17,7 +17,8 @@ import ItemPage from './pages/ItemPage'
 import AuthService, { Auth, AuthProvider } from './utils/auth';
 import LandingPage from './pages/LandingPage';
 import About from './pages/About';
-import DonationsPage from './pages/Donations';
+import Contributions from './pages/Contributions'
+import ThankYou from './pages/ThankYou'
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql'
@@ -60,10 +61,11 @@ function App() {
           <Route path="/signup" element={<Signup setIsLoggedIn={setIsLoggedIn} />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
-          <Route path="/donations" element={<DonationsPage />} />
           <Route path="/item/:itemId" element={<ItemPage />} />
           <Route path="/search/:searchCriteria" element={<Search />} />
           <Route path="/donations" element={<Donations />} />
+          <Route path="/contributions" element={<Contributions />} />
+          <Route path="/thankyou" element={<ThankYou />} />
         </Routes>
       </Router>
     </ApolloProvider>
