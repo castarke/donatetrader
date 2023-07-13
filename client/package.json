@@ -1,6 +1,9 @@
 {
   "name": "donatetrader",
   "version": "0.1.0",
+  "engines": {
+    "node": "16.x"
+  },
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.7.16",
@@ -31,10 +34,6 @@
       "react-app",
       "react-app/jest"
     ]
-  },
-  "engines": {
-    "npm": ">=8.0.0 <9.0.0",
-    "node": ">=16.0.0 <17.0.0"
   },
   "browserslist": {
     "production": [
