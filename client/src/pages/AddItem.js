@@ -10,8 +10,7 @@ import { Link } from 'react-router-dom';
 
 const AddItem = () => {
   const { ownerId } = useParams();
-  const classes = useStyles();
-  const [itemData, setItemData] = useState({
+  let defaultValues = {
     owner: ownerId,
     desc: '',
     imagePath: '',
@@ -22,6 +21,11 @@ const AddItem = () => {
     serial: '',
     categories: [],
     tradeFor: [],
+
+  }
+  const classes = useStyles();
+  const [itemData, setItemData] = useState({
+    defaultValues
   });
   
   const { loading:loadingCategory , error: categoryError, data:categoryData} = useQuery(GET_ALL_CATEGORIES);
@@ -63,8 +67,7 @@ const AddItem = () => {
       },
     })
       .then((response) => {
-        console.log('Item created:', response.data.createItem);
-        console.log(itemData)
+        setItemData(defaultValues)
         
       })
       .catch((error) => {

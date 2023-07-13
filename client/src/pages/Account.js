@@ -1,34 +1,42 @@
-import React, { useContext, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { Grid, Paper } from "@material-ui/core";
 import { GET_ME, MY_ITEMS } from '../utils/queries';
 import { Link } from 'react-router-dom';
 import Item from '../components/item';
-import {useStyles} from '../utils/makeStyles';
+import { useStyles } from '../utils/makeStyles';
 import auth from '../utils/auth';
 
 const AccountInfo = () => {
   const classes = useStyles();
-  // const { user } = useContext(AuthContext);
-  const [user, setUser ] = useState(auth.getProfile())
+  const [user, setUser] = useState(auth.getProfile());
   const userId = user ? user.data._id : null;
 
-  const { loading, error, data } = useQuery(GET_ME, {
+  const { loading: meLoading, error: meError, data: meData, refetch: refetchMe } = useQuery(GET_ME, {
     variables: {
       userId: userId,
     },
+    skip: !userId,
   });
 
-  const { loading: itemsLoading, error: itemsError, data: itemsData } = useQuery(MY_ITEMS, {
+  const { loading: itemsLoading, error: itemsError, data: itemsData, refetch: refetchItems } = useQuery(MY_ITEMS, {
     variables: {
       owner: userId,
-    }
+    },
+    skip: !userId,
   });
 
-  if (loading || itemsLoading) return <p>Loading account information...</p>;
-  if (error || itemsError) return <p>Error fetching account information: {error.message}</p>;
+  useEffect(() => {
+    if (userId) {
+      refetchMe(); // Fetch account information
+      refetchItems(); // Fetch items
+    }
+  }, [userId, refetchMe, refetchItems]);
 
-  const { getUserById } = data;
+  if (meLoading || itemsLoading) return <p>Loading account information...</p>;
+  if (meError || itemsError) return <p>Error fetching account information: {meError.message}</p>;
+
+  const { getUserById } = meData;
   const { username, email, city, state, zip, items } = getUserById;
 
   return (

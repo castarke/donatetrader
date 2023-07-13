@@ -7,7 +7,7 @@ scalar Date
 input SearchCriteria{
   searchText: String
   categories: [ID]
-  value:[Int]
+  value:String
 }
 
 type User {
