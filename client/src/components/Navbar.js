@@ -41,7 +41,7 @@ function Navbar() {
           activeClassName="active"
           key="gallery"
         >
-          Items for trade
+          Marketplace
         </NavLink>,
         <NavLink
           exact

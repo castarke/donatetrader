@@ -1,6 +1,8 @@
+const stripe = require('stripe')('sk_test_51NT6fAJmZluKvBcaTVW0pch70KXSrc0ruGH7j7BlIawrJPzLmohhzcJQ6Zphvkv5qfzjB4lnS0esibfm6XYNgUuj00XEz7I09x');
 const express=require('express');
-//const jwt=require('jsonwebtoken');
+const jwt=require('jsonwebtoken');
 const {ApolloServer}=require('apollo-server-express');
+const router = require('./routes/checkout')
 const path=require('path');
 const { authMiddleware } = require('./utils/auth');
 const{typeDefs,resolvers}=require('./schema');
@@ -8,32 +10,52 @@ const db= require('./config/connection');
 const PORT=process.env.PORT||3001;
 const app=express();
 
-// const getUserFromToken=(token)=>{
-//     try{
-//         if(token){
-//             return jwt.verify(token,'9nw59gd');//secret-key
-//         }
-//         return null;
-//     }catch(error){
-//         return null;
-//     }
-// };
+const getUserFromToken=(token)=>{
+    try{
+        if(token){
+            return jwt.verify(token,'9nw59gd');//secret-key
+        }
+        return null;
+    }catch(error){
+        return null;
+    }
+};
 
 
 const server=new ApolloServer({
     typeDefs,
     resolvers,
-    // context:({req})=>{
-    //     const token=req.headers.authorization||'';
-    //     const user=getUserFromToken(token);
-    //     return {user};
+    context:({req})=>{
+        const token=req.headers.authorization||'';
+        const user=getUserFromToken(token);
+        return {user};
     context:authMiddleware
-    
+    }    
 });
 
-//a
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
+
+
+//donation api
+const YOUR_DOMAIN = 'http://localhost:3000'
+app.post('/create-checkout-session', async (req, res) => {
+    const session = await stripe.checkout.sessions.create({
+      line_items: [
+        {
+          // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
+          price: 'price_1NTBRZJmZluKvBcaqKlnB66q',
+          quantity: 1,
+        },
+      ],
+      mode: 'payment',
+      success_url: `${YOUR_DOMAIN}/thankyou`,
+      cancel_url: `${YOUR_DOMAIN}/home`,
+    });
+  
+    res.redirect(303, session.url);
+  });
+
 if(process.env.NODE_ENV==='production'){
     app.use(express.static(path.join(__dirname,'../client/build')));
 }

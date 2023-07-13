@@ -11,13 +11,22 @@ const useStyles = makeStyles((theme) => ({
       flexDirection: 'column',
     },
   },
+  // Paper styling
+  galleryPaper: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: theme.spacing(2),
+    height: '100%',
+  },
   searchContainer: {
     width: '33.33%',
     marginRight: '10px',
     border: '1px solid #ccc',
     padding: '10px',
     [theme.breakpoints.down('md')]: {
-      width: '100%',
+      width: '80%',
       marginRight: '0',
       marginBottom: '10px',
     },
@@ -40,10 +49,10 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  searchContainer: {
-    flexBasis: '20%',
-    marginRight: theme.spacing(2),
-  },
+  // searchContainer: {
+  //   flexBasis: '20%',
+  //   marginRight: theme.spacing(2),
+  // },
   addContainer: {
     flexBasis: '55%',
     marginLeft: theme.spacing(2),
@@ -124,6 +133,41 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
   },
   contactHeading: {
+    fontSize: '24px',
+    fontWeight: 'bold',
+    color: '#367588',
+    textAlign: 'center',
+    textShadow: '2px 2px 4px white',
+  },
+
+  // Donation Page Styling
+  donationContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: '20px',
+    border: '1px solid #ccc',
+    borderRadius: '4px',
+    maxWidth: '300px',
+    margin: '0 auto',
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    textAlign: 'center',
+  },
+  donationModal: {
+    width: '500px',
+    backgroundColor: '#fff',
+    padding: '20px',
+    borderRadius: '10px',
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    zIndex: 10,
+  },
+  donationModalContent: {
+    padding: '0 20px',
+  },
+  donationHeading: {
     fontSize: '24px',
     fontWeight: 'bold',
     color: '#367588',
