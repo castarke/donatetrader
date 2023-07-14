@@ -13,7 +13,7 @@ const ProductDisplay = () => (
         <h3 style={{textAlign: "center"}}>Buy your Developers<br/> a Beer!</h3>
       </div>
     </div>
-    <form action="http://localhost:3001/create-checkout-session" method="POST">
+    <form action="https://donatetrader-6968094a5822.herokuapp.com/create-checkout-session" method="POST">
       <button type="submit" style={{textAlign: "center", marginLeft:"50px", width: "75px"}}>
         Donate!
       </button>
