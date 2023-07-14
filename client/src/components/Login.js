@@ -4,6 +4,8 @@ import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 import {useStyles} from '../utils/makeStyles';
+import { useNavigate } from 'react-router-dom'
+
 
 function Login({ setIsLoggedIn }) {
   const classes = useStyles();
@@ -12,6 +14,7 @@ function Login({ setIsLoggedIn }) {
     password: '',
   });
   const [loginUser, { loading, error }] = useMutation(LOGIN_USER);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -29,6 +32,7 @@ function Login({ setIsLoggedIn }) {
         Auth.login(token);
         setIsLoggedIn(true); // Set isLoggedIn to true
         console.log('User logged in successfully:', res.data);
+        navigate('/home');
       })
       .catch((error) => {
         console.error('Login error:', error.message);

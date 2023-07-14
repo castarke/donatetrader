@@ -19,7 +19,7 @@ app.use(express.json());
 
 
 //donation api
-const MY_DOMAIN = 'http://localhost:3000'
+const MY_DOMAIN = 'https://dashboard.heroku.com/'
 app.post('/create-checkout-session', async (req, res) => {
     const session = await stripe.checkout.sessions.create({
       line_items: [
