@@ -3,6 +3,7 @@ import { useMutation } from '@apollo/client';
 import { SIGNUP_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
 import { useStyles } from '../utils/makeStyles';
+import { useNavigate } from 'react-router-dom'
 
 function Signup({ setIsLoggedIn }) {
   const [formData, setFormData] = useState({
@@ -13,7 +14,7 @@ function Signup({ setIsLoggedIn }) {
     state: '',
     zip: '',
   });
-
+  const navigate = useNavigate();
   const classes = useStyles();
 
   const [signupMutation, { loading, error }] = useMutation(SIGNUP_USER);
@@ -34,6 +35,7 @@ function Signup({ setIsLoggedIn }) {
         Auth.login(token);
         setIsLoggedIn(true); // Set isLoggedIn to true
         console.log('User signed up successfully:', res.data);
+        navigate('/home');
       })
       .catch((error) => {
         console.error('Signup error:', error.message);

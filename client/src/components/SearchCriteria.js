@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import { TextField, Select, MenuItem, FormControl, InputLabel, Button } from "@material-ui/core";
 import { useQuery, useLazyQuery } from "@apollo/client";
 import { GET_ALL_CATEGORIES, SEARCH_BY } from '../utils/queries';
+import { useNavigate } from 'react-router-dom'
 
 const SearchCriteria = () => {
   const [searchCriteria, setSearch] = useState({
@@ -9,6 +10,7 @@ const SearchCriteria = () => {
     categories: null,
     value: null
   });
+  const navigate = useNavigate();
 
   const { loading:loadingCategory , error: categoryError, data:categoryData} = useQuery(GET_ALL_CATEGORIES);
 
@@ -24,10 +26,10 @@ const SearchCriteria = () => {
     .then((categoryIds)=>{
       if (!categoryIds){
         const path = `/search/noitemsfound`;
-        window.location.href = path;
+        navigate(path);
       }else{
       const path = `/search/${categoryIds}`;
-      window.location.href = path;
+      navigate(path);
       }
     })
     .catch((error) => {
