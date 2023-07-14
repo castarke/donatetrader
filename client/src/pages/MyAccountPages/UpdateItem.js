@@ -5,8 +5,11 @@ import { GET_ITEM_BY_ID, GET_ALL_CATEGORIES } from '../../utils/queries';
 import { UPDATE_ITEM } from '../../utils/mutations';
 import CloudinaryUploadWidget from '../../components/CloudinaryUploadWidget';
 import auth from '../../utils/auth';
+import { useStyles } from "../../utils/makeStyles";
+
 
 const UpdateItemForm = () => {
+  const classes = useStyles();
   const { itemId } = useParams();
   const  [user, setUser]  = useState(auth.getProfile())
   const userId = user ? user._id : null;
@@ -94,55 +97,61 @@ const UpdateItemForm = () => {
 
   const categories = categoryData.getAllCategories
 
+
   return (
-    <div>
-      <h2>Update Item</h2>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="desc">Description:</label>
-        <input type="text" id="desc" name="desc" value={itemData.desc} onChange={handleChange} />
+    <div className={classes.updateContainer}>
+      <div className={classes.updateCard}>
+      <h2 className={classes.updateTitle}>Update Item</h2>
+        <div className={classes.updateForm}>
+              <form onSubmit={handleSubmit}>
+              <label className={classes.updateLabel} htmlFor="desc">Description:</label>
+              <input className={classes.updateInput} type="text" id="desc" name="desc" value={itemData.desc} onChange={handleChange} />
 
-        <label htmlFor="imagePath">Image:</label>
-        <CloudinaryUploadWidget
-          onUploadSuccess={(imagePath) => setItemData((prevData) => ({ ...prevData, imagePath }))}
-          onUploadFailure={(error) => console.error('Image upload failed:', error)}
-        />
+                <label htmlFor="imagePath">Image:</label>
+                <CloudinaryUploadWidget
+                  onUploadSuccess={(imagePath) => setItemData((prevData) => ({ ...prevData, imagePath }))}
+                  onUploadFailure={(error) => console.error('Image upload failed:', error)}
+                />
 
-        <label htmlFor="value">Value:</label>
-        <input type="number" id="value" name="value" value={itemData.value} onChange={handleChange} />
+                <label htmlFor="value">Value:</label>
+                <input type="number" id="value" name="value" value={itemData.value} onChange={handleChange} />
 
-        <label htmlFor="donate">Donate:</label>
-        <input type="checkbox" id="donate" name="donate" checked={itemData.donate} onChange={handleChange} />
+                <label htmlFor="donate">Donate:</label>
+                <input type="checkbox" id="donate" name="donate" checked={itemData.donate} onChange={handleChange} />
 
-        <label htmlFor="yearMade">Year Made:</label>
-        <input type="text" id="yearMade" name="yearMade" value={itemData.yearMade} onChange={handleChange} />
+                <label htmlFor="donate">Trade:</label>
+                <input type="checkbox" id="trade" name="trade" checked={itemData.trade} onChange={handleChange} />
 
-        <label htmlFor="model">Model:</label>
-        <input type="text" id="model" name="model" value={itemData.model} onChange={handleChange} />
+                <label htmlFor="yearMade">Year Made:</label>
+                <input type="text" id="yearMade" name="yearMade" value={itemData.yearMade} onChange={handleChange} />
 
-        <label htmlFor="serial">Serial Number:</label>
-        <input 
-        type="text" id="serial" name="serial" value={itemData.serial} onChange={handleChange} />
+                <label htmlFor="model">Model:</label>
+                <input type="text" id="model" name="model" value={itemData.model} onChange={handleChange} />
 
-        <label htmlFor="categories">Categories:</label>
-        <select multiple id="categories" name="categories" value={itemData.categories} onChange={handleChange}>
-          {categories.map((category) => (
-            <option key={category._id} value={category._id}>
-              {category.name}
-            </option>
-          ))}
-        </select>
+                <label htmlFor="serial">Serial Number:</label>
+                <input type="text" id="serial" name="serial" value={itemData.serial} onChange={handleChange} />
 
-        <label htmlFor="tradeFor">Trade For:</label>
-        <select multiple id="tradeFor" name="tradeFor" value={itemData.tradeFor} onChange={handleChange}>
-          {categories.map((category) => (
-            <option key={category._id} value={category._id}>
-              {category.name}
-            </option>
-          ))}
-        </select>
+                <label htmlFor="categories">Categories:</label>
+                <select multiple id="categories" name="categories" value={itemData.categories} onChange={handleChange}>
+                  {categories.map((category) => (
+                    <option key={category._id} value={category._id}>
+                      {category.name}
+                    </option>
+                  ))}
+                </select>
 
-        <button type="submit">Update</button>
-      </form>
+                <label htmlFor="tradeFor">Trade For:</label>
+                <select multiple id="tradeFor" name="tradeFor" value={itemData.tradeFor} onChange={handleChange}>
+                  {categories.map((category) => (
+                    <option key={category._id} value={category._id}>
+                      {category.name}
+                    </option>
+                  ))}
+                </select>
+                <button className={classes.updateButton} type="submit">Update</button>
+              </form>
+          </div>
+      </div>
     </div>
   );
 };

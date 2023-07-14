@@ -3,6 +3,8 @@
 import { makeStyles } from '@material-ui/core/styles';
 import loginImg from './login_pic.jpg';
 import signupImg from './signup_pic.jpg';
+import updateImg from './update_pic.jpg';
+// import addImg from './additem_pic.jpg';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -108,12 +110,73 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
   },
 
+  // Update Page Styling
+  updateContainer: {
+    // padding: theme.spacing(3),
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'flex-start', 
+    height: '100vh',
+    paddingTop: '40px', 
+    backgroundImage: `url(${updateImg})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    // gridTemplateRows: '50% 50%',
+    // backgroundColor: 'rgba(255, 255, 255, 0.6)',
+  },
+  updateCard: {
+    width: '75%',
+    padding: '20px',
+    backgroundColor: '#ffffff',
+    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+    borderRadius: '10px',
+  },
+  updateTitle: {
+    fontSize: '24px',
+    fontWeight: 'bold',
+    color: '#367588',
+    textAlign: 'center',
+    textShadow: '2px 2px 4px white',
+  },
+  updateLabel: {
+    marginBottom: '8px',
+    fontSize: '16px',
+    fontWeight: 'bold',
+  },
+  updateForm: {
+    
+  },
+  updateInput: {
+    width: '100%',
+    padding: '8px',
+    marginBottom: '16px',
+    border: '1px solid #ccc',
+    borderRadius: '4px',
+    marginBottom: '16px',
+  },
+  formCheckbox: {
+    marginBottom: '16px',
+  },
+  updateButton: {
+    padding: '8px 16px',
+    backgroundColor: '#66b2b2',
+    color: '#ffffff',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: 'pointer',
+    fontSize: '16px',
+    fontWeight: 'bold',
+  },
+  
 
   // AddItem Page Styling
   addItemsContainer: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
+    // backgroundImage: `url(${addImg})`,
+    // backgroundSize: 'cover',
+    // backgroundPosition: 'center',
   },
   // searchContainer: {
   //   flexBasis: '20%',
@@ -177,6 +240,18 @@ const useStyles = makeStyles((theme) => ({
     border: 'none',
     borderRadius: '4px',
     cursor: 'pointer',
+  },
+
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  modalCard: {
+    background: 'white',
+    padding: theme.spacing(4),
+    outline: 'none',
+    borderRadius: '4px',
   },
   
 
@@ -403,55 +478,6 @@ const useStyles = makeStyles((theme) => ({
     cursor: 'pointer',
   },
 
-  // Update Item Page Styling
-  // updateItemContainer: {
-  //   textAlign: "center",
-  //   maxWidth: "600px",
-  //   margin: "0 auto",
-  // },
-  // updateItemHeading: {
-  //   fontSize: "24px",
-  //   fontWeight: "bold",
-  //   color: "#367588",
-  //   textShadow: "2px 2px 4px white",
-  //   marginBottom: "20px",
-  // },
-  // updateItemForm: {
-  //   display: "flex",
-  //   flexDirection: "column",
-  //   alignItems: "center",
-  // },
-  // updateItemLabel: {
-  //   marginBottom: "10px",
-  // },
-  // updateItemInput: {
-  //   width: "100%",
-  //   padding: "10px",
-  //   marginBottom: "10px",
-  //   border: "1px solid teal",
-  //   borderRadius: "4px",
-  // },
-  // updateItemCheckbox: {
-  //   marginBottom: "10px",
-  // },
-  // updateItemImage: {
-  //   marginBottom: "10px",
-  // },
-  // updateItemSelect: {
-  //   width: "100%",
-  //   padding: "10px",
-  //   marginBottom: "10px",
-  //   border: "1px solid teal",
-  //   borderRadius: "4px",
-  // },
-  // updateItemButton: {
-  //   padding: "10px 20px",
-  //   background: "#4CAF50",
-  //   color: "white",
-  //   border: "none",
-  //   borderRadius: "4px",
-  //   cursor: "pointer",
-  // },
 }));
 
 export { useStyles };

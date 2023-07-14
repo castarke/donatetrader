@@ -2,6 +2,7 @@ import { useState } from "react";
 import emailjs from "emailjs-com";
 import React from "react";
 import { useStyles } from "../utils/makeStyles";
+import { Button, Modal, Typography } from "@material-ui/core";
 
 const initialState = {
   name: "",
@@ -18,8 +19,10 @@ export const Contact = (props) => {
     setState((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  const clearState = () => setState({ ...initialState });
-
+  const clearForm = () => {
+    setState(initialState);
+  };
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(state.name, state.email, state.message);
@@ -28,12 +31,25 @@ export const Contact = (props) => {
       .then(
         (result) => {
           console.log(result.text);
-          clearState();
+          clearForm(); // Reset the form fields
+          e.target.reset(); // Reset the form fields
         },
         (error) => {
           console.log(error.text);
         }
       );
+  };
+  
+  
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -92,9 +108,32 @@ export const Contact = (props) => {
                 <p className={classes.helpBlock}></p>
               </div>
               <div id="success"></div>
-              <button type="submit" className={classes.submitButton}>
-                Send Message
-              </button>
+              <Button
+                variant="contained"
+                className={`${classes.donateButton} ${classes.buttonSpacing}`}
+                onClick={handleOpenModal}
+              >
+                Submit
+              </Button>
+              <Modal
+                open={isModalOpen}
+                onClose={handleCloseModal}
+                className={classes.modal}
+              >
+                <div className={classes.modalCard}>
+                  <Typography variant="h6">Thank you for your message!</Typography>
+                  <Typography variant="body1">
+                    We will be in touch with you soon.
+                  </Typography>
+                  <Button
+                    variant="contained"
+                    className={classes.donateButton}
+                    onClick={handleCloseModal}
+                  >
+                    Close
+                  </Button>
+                </div>
+              </Modal>
             </form>
           </div>
         </div>
