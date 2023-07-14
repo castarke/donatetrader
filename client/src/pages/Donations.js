@@ -14,10 +14,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     padding: theme.spacing(2),
   },
-  // searchContainer: {
-  //   marginRight: theme.spacing(2),
-  //   width: '20%', // Adjust the width as needed
-  // },
   itemsContainer: {
     width: '50%', // Adjust the width as needed
   },
@@ -64,6 +60,14 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       backgroundColor: '#4c8c8c',
     },
+  donatePaper: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: theme.spacing(1),
+    height: '100%',
+    },
   },
   buttonSpacing: {
     margin: theme.spacing(1, 1), // Adjust the horizontal spacing
@@ -101,7 +105,7 @@ export default function Donations() {
           <Grid container spacing={2}>
             {items.map((item) => (
               <Grid item xs={4} key={item}>
-                <Paper className={classes.paper}>
+                <Paper className={classes.donatePaper}>
                   <Item itemId={item} />
                 </Paper>
               </Grid>

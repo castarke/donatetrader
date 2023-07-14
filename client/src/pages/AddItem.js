@@ -98,7 +98,7 @@ const AddItem = () => {
       <div className={classes.searchContainer}>
         <SearchCriteria />
       </div>
-      <div className={classes.itemsContainer}>
+      <div className={classes.addItemsContainer}>
         <h2>Add Item</h2>
         <form onSubmit={handleSubmit}>
           <div className={classes.formGroup}>
